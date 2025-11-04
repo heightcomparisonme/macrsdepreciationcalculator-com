@@ -1,4 +1,4 @@
-const DEFAULT_BASE_URL = "https://mondkalender.app";
+const DEFAULT_BASE_URL = "https://macrsdepreciationcalculator.com";
 
 /**
  * Resolve the public base URL for metadata generation and canonical links.

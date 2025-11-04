@@ -17,6 +17,7 @@ import Showcase from "@/components/blocks/showcase";
 import Stats from "@/components/blocks/stats";
 import Testimonial from "@/components/blocks/testimonial";
 // import { MoonVisualizerBlock } from "@/components/blocks/moon-visualizer";
+import TestCalculator from "@/components/Tools/testCalculator";
 import { getLandingPage } from "@/services/page";
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
@@ -101,9 +102,15 @@ export default async function LandingPage({
       ) : (
         page.hero && <Hero hero={page.hero} />
       )} */}
+
+
+      {/* MACRS Calculator - 第一屏计算器 */}
+      <section className="py-12 md:py-20">
+        <TestCalculator />
+      </section>
+
       {/* Hero - 第一屏 */}
       {page.hero && <Hero hero={page.hero} />}
-      
       {page.branding && <Branding section={page.branding} />}
       
       

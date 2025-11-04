@@ -48,7 +48,7 @@ const defaultCreations: Creation[] = [
     views: 12500,
     downloads: 2300,
     likes: 850,
-    tags: ["Mondkalender", "Haare", "Moon Phase"],
+    tags: ["Macrs Depreciation Calculator", "Haare", "Moon Phase"],
     featured: true,
     new: false,
     href: "/tools/mondkalender-haare-schneiden"
@@ -82,7 +82,7 @@ const defaultCreations: Creation[] = [
     views: 9800,
     downloads: 1800,
     likes: 650,
-    tags: ["Hair Color", "Mondkalender", "Beauty"],
+    tags: ["Hair Color", "Macrs Depreciation Calculator", "Beauty"],
     featured: false,
     new: true,
     href: "/tools/haare-farben-mondkalender"
@@ -116,7 +116,7 @@ const defaultCreations: Creation[] = [
     views: 11200,
     downloads: 2100,
     likes: 720,
-    tags: ["Cooking", "Mondkalender", "Recipes"],
+    tags: ["Cooking", "Macrs Depreciation Calculator", "Recipes"],
     featured: false,
     new: false,
     href: "/tools/kochen"

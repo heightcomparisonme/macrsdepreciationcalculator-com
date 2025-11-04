@@ -34,7 +34,7 @@ ENV NODE_OPTIONS="--max-old-space-size=4096"
 # Build-time environment variables with safe defaults
 # These prevent the build from hanging when env vars are missing
 ENV NEXT_PUBLIC_APP_URL="http://localhost:3000"
-ENV NEXT_PUBLIC_APP_NAME="Mondkalender"
+ENV NEXT_PUBLIC_APP_NAME="Macrs Depreciation Calculator"
 ENV NEXT_PUBLIC_DEFAULT_LOCALE="de"
 ENV SKIP_ENV_VALIDATION=1
 ENV SKIP_GLOSSARY_BUILD_FETCH=1

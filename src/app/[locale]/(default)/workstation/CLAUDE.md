@@ -1,4 +1,4 @@
-# Mondkalender.app AI 功能设计与 ChatGPT API 实现指南
+# macrsdepreciationcalculator.com AI 功能设计与 ChatGPT API 实现指南
 
 **目标：** 设计两个核心 AI 驱动的付费功能页面：**AI 情绪与运势解读**（Luna Mind/Destiny）和**AI 智能食谱生成**（Luna Mind），并提供基于 **ChatGPT API** 的集成指南。
 

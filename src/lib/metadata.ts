@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { getBaseUrl } from "@/lib/url";
 import { defaultLocale } from "@/i18n/locale";
 
-const DEFAULT_SITE_NAME = "Mondkalender";
+const DEFAULT_SITE_NAME = "Macrs Depreciation Calculator";
 const DEFAULT_TWITTER_HANDLE = "@mondkalenderai";
 const DEFAULT_SOCIAL_IMAGE_PATH = "/og";
 

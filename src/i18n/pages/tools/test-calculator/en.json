@@ -1,168 +1,255 @@
 {
   "metadata": {
-    "title": "Test Calculator - Simple Addition Tool",
-    "description": "A simple test calculator to verify the dynamic tool creation workflow. Add two numbers together."
+    "title": "MACRS Depreciation Calculator - Asset Depreciation Tool",
+    "description": "Calculate MACRS depreciation schedules for business assets. Modified Accelerated Cost Recovery System calculator with multiple depreciation methods."
   },
-  "title": "Test Calculator",
-  "subtitle": "Simple Addition Calculator for Testing",
+  "title": "MACRS Depreciation Calculator",
+  "subtitle": "Modified Accelerated Cost Recovery System",
+  "comments": {
+    "depreciation_rates": "MACRS depreciation rate table (based on IRS Publication 946)",
+    "salvage_consideration": "MACRS typically does not consider salvage value, but if the user enters a salvage value, we adjust it at the end",
+    "stop_depreciation": "Stop depreciation when salvage value is reached"
+  },
+  "alerts": {
+    "invalid_combination": "Invalid recovery period or depreciation method combination"
+  },
   "input": {
-    "title": "Input Numbers",
-    "description": "Enter two numbers to add together",
-    "number1": "First Number",
-    "number2": "Second Number"
+    "title": "Input Parameters",
+    "description": "Enter asset information to calculate MACRS depreciation schedule",
+    "basis": {
+      "label": "Asset Basis",
+      "placeholder": "50000"
+    },
+    "business_usage": {
+      "label": "Business Use Percentage",
+      "placeholder": "100"
+    },
+    "salvage_value": {
+      "label": "Salvage Value",
+      "placeholder": "0",
+      "note": "Note: MACRS typically assumes $0 salvage value, but you can enter an estimated value"
+    },
+    "recovery_period": {
+      "label": "Recovery Period",
+      "options": {
+        "3": "3-Year",
+        "5": "5-Year",
+        "7": "7-Year",
+        "10": "10-Year",
+        "15": "15-Year",
+        "20": "20-Year",
+        "27_5": "27.5-Year (Residential Rental)",
+        "39": "39-Year (Nonresidential Real Property)"
+      }
+    },
+    "method": {
+      "label": "Depreciation Method",
+      "options": {
+        "200DB": "200% Declining Balance (GDS)",
+        "150DB": "150% Declining Balance (GDS)",
+        "SL": "Straight Line (SL)"
+      }
+    },
+    "convention": {
+      "label": "Convention",
+      "options": {
+        "half_year": "Half-Year Convention",
+        "mid_quarter": "Mid-Quarter Convention",
+        "mid_month": "Mid-Month Convention"
+      }
+    },
+    "placed_in_service": {
+      "label": "Date Placed in Service"
+    }
   },
   "button": {
-    "calculate": "Calculate Sum"
+    "calculate": "Calculate Depreciation"
   },
-  "result": {
-    "title": "Calculation Result",
-    "description": "The sum of your numbers is:"
+  "results": {
+    "title": "Depreciation Schedule",
+    "description": "Detailed annual depreciation breakdown",
+    "table": {
+      "year": "Year",
+      "rate": "Depreciation Rate",
+      "depreciation": "Annual Depreciation",
+      "accumulated": "Accumulated Depreciation",
+      "book_value": "Book Value"
+    },
+    "summary": {
+      "title": "Summary Information",
+      "original_cost": "Original Cost:",
+      "depreciable_basis": "Depreciable Basis:",
+      "salvage_value": "Salvage Value:",
+      "total_depreciation": "Total Depreciation:"
+    }
   },
   "info": {
-    "title": "About This Test Tool",
-    "description": "This is a test calculator created to verify that the dynamic tool discovery system works correctly. It demonstrates automatic tool registration, translation loading, and component rendering."
+    "title": "About MACRS Depreciation",
+    "description": "MACRS (Modified Accelerated Cost Recovery System) is the primary method used to determine depreciation deductions for U.S. federal income tax purposes.",
+    "methods": {
+      "title": "Depreciation Methods:",
+      "200DB": "200% Declining Balance (GDS): Provides the highest tax deductions in the early years",
+      "150DB": "150% Declining Balance (GDS): Provides higher deductions than straight-line but lower than the 200% method",
+      "SL": "Straight Line (SL): Deducts the same amount each year (except the first and last year)"
+    },
+    "recovery_examples": {
+      "title": "Recovery Period Examples:",
+      "3_year": "3-year: Certain tractors, horses",
+      "5_year": "5-year: Automobiles, computers, office equipment",
+      "7_year": "7-year: Office furniture, agricultural machinery",
+      "27_5_year": "27.5-year: Residential rental real estate",
+      "39_year": "39-year: Nonresidential real estate"
+    },
+    "salvage_note": {
+      "title": "About Salvage Value:",
+      "description": "Under MACRS rules, depreciation calculations typically assume a salvage value of $0. However, this calculator allows you to enter an estimated salvage value to more accurately reflect the asset's actual value. When a salvage value is entered, depreciation will stop when the book value reaches the salvage value."
+    }
   },
   "hero": {
-    "badge": "Test Tool",
-    "title": "Test Calculator",
-    "subtitle": "Simple addition calculator for testing dynamic tool creation",
-    "description": "This calculator demonstrates the automated tool discovery system. Simply enter two numbers and see the result.",
+    "badge": "Tax Tool",
+    "title": "MACRS Depreciation Calculator",
+    "subtitle": "Calculate accurate depreciation schedules for your business assets",
+    "description": "Professional MACRS calculator based on IRS Publication 946. Support for multiple depreciation methods and asset classes.",
     "cta_primary": "Try Calculator",
     "cta_secondary": "Learn More"
   },
   "features": {
     "title": "Calculator Features",
-    "description": "A simple yet effective tool for testing our dynamic tool system",
-    "simple": {
-      "title": "Simple Interface",
-      "description": "Clean and intuitive design that anyone can use"
+    "description": "Professional-grade MACRS depreciation calculation for tax planning",
+    "irs_compliant": {
+      "title": "IRS Compliant",
+      "description": "Based on official IRS Publication 946 depreciation tables"
     },
-    "fast": {
-      "title": "Lightning Fast",
-      "description": "Instant calculation results with no delays"
+    "multiple_methods": {
+      "title": "Multiple Methods",
+      "description": "Support for 200% DB, 150% DB, and Straight Line depreciation"
     },
-    "accurate": {
-      "title": "100% Accurate",
-      "description": "Reliable calculations you can trust"
+    "detailed_schedule": {
+      "title": "Detailed Schedule",
+      "description": "Year-by-year breakdown of depreciation, rates, and book values"
     },
-    "multilingual": {
-      "title": "Multi-language Support",
-      "description": "Available in English, German, and Spanish"
+    "easy_to_use": {
+      "title": "Easy to Use",
+      "description": "Simple interface with clear input fields and instant results"
     }
   },
   "showcase": {
     "badge": "How it works",
-    "title": "Simple and effective calculation",
-    "description": "This test calculator demonstrates the dynamic tool system with instant results and a clean interface.",
+    "title": "Professional depreciation calculations",
+    "description": "Calculate MACRS depreciation schedules with IRS-compliant rates and methods for accurate tax planning.",
     "image_url": "/imgs/showcases/7.png",
-    "image_alt": "Test Calculator interface",
+    "image_alt": "MACRS Calculator interface",
     "benefits": [
-      "Enter two numbers with an intuitive input interface",
-      "Get instant calculation results with no delays",
-      "Experience a clean, responsive design across all devices",
-      "Test the dynamic tool discovery and registration system",
-      "Verify multi-language support with full translation coverage"
+      "Enter asset cost, business usage percentage, and recovery period",
+      "Select depreciation method (200% DB, 150% DB, or Straight Line)",
+      "Get detailed year-by-year depreciation schedule instantly",
+      "View accumulated depreciation and remaining book value",
+      "Calculate tax deductions based on IRS Publication 946"
     ]
   },
   "features2": {
-    "label": "Experience the simplicity",
-    "title": "From numbers to results in seconds",
-    "description": "See how the test calculator provides instant feedback with a beautiful interface.",
-    "hover_tip": "Select a card to preview the before/after slider",
+    "label": "Experience professional tax tools",
+    "title": "From asset to depreciation in seconds",
+    "description": "See how the MACRS calculator provides instant, accurate depreciation schedules.",
+    "hover_tip": "Select a card to preview the calculation",
     "slider_before_alt": "Before calculation",
     "slider_after_alt": "After calculation",
     "slider_hover_title": "Drag to compare",
-    "slider_hover_description": "Use the slider to see the calculation process in action.",
+    "slider_hover_description": "Use the slider to see the depreciation calculation process in action.",
     "items": {
-      "easy": {
-        "title": "Easy Input",
-        "description": "Simple number input fields with clear labels and instant validation."
+      "accurate": {
+        "title": "IRS-Accurate",
+        "description": "Depreciation rates based on official IRS tables for reliable tax planning."
       },
-      "precise": {
-        "title": "Precise Results",
-        "description": "Accurate calculations displayed immediately with proper formatting."
+      "comprehensive": {
+        "title": "Comprehensive Schedule",
+        "description": "Complete year-by-year breakdown with rates, depreciation, and book values."
       },
-      "reliable": {
-        "title": "Reliable Performance",
-        "description": "Consistent results every time with no errors or delays."
+      "flexible": {
+        "title": "Flexible Methods",
+        "description": "Choose from multiple depreciation methods to optimize your tax strategy."
       }
     }
   },
   "testimonials": {
     "title": "Testimonials",
-    "description": "What developers say about our test calculator and dynamic tool system.",
+    "description": "What tax professionals and business owners say about our MACRS calculator.",
     "stats": {
       "modelsCreated": "Calculations Made",
       "averageRating": "Average Rating",
-      "successRate": "Success Rate",
-      "countriesServed": "Countries Served"
+      "successRate": "Accuracy Rate",
+      "countriesServed": "Users Worldwide"
     },
     "items": [
       {
-        "name": "John Developer",
-        "role": "Frontend Engineer",
-        "avatar": "https://randomuser.me/api/portraits/men/1.jpg",
-        "quote": "This test calculator perfectly demonstrates the dynamic tool system. Clean code and great architecture!",
+        "name": "Jennifer Tax CPA",
+        "role": "Certified Public Accountant",
+        "avatar": "https://randomuser.me/api/portraits/women/1.jpg",
+        "quote": "This MACRS calculator is incredibly accurate and saves me hours of manual calculations. Essential tool for tax season!",
         "rating": "5"
       },
       {
-        "name": "Sarah Designer",
-        "role": "UI/UX Designer",
-        "avatar": "https://randomuser.me/api/portraits/women/2.jpg",
-        "quote": "The interface is beautiful and responsive. Great example of modern web design.",
+        "name": "David Business Owner",
+        "role": "Small Business Owner",
+        "avatar": "https://randomuser.me/api/portraits/men/2.jpg",
+        "quote": "Finally, a depreciation calculator that's both powerful and easy to use. Perfect for planning asset purchases.",
         "rating": "5"
       },
       {
-        "name": "Mike Ops",
-        "role": "DevOps Engineer",
-        "avatar": "https://randomuser.me/api/portraits/men/3.jpg",
-        "quote": "Setup was seamless and performance is solid. Great for validating tooling.",
+        "name": "Sarah CFO",
+        "role": "Chief Financial Officer",
+        "avatar": "https://randomuser.me/api/portraits/women/3.jpg",
+        "quote": "Reliable IRS-compliant calculations. We use this for all our depreciation schedules and tax planning.",
         "rating": "5"
       },
       {
-        "name": "Emma PM",
-        "role": "Product Manager",
-        "avatar": "https://randomuser.me/api/portraits/women/4.jpg",
-        "quote": "Clear UX and fast feedback loop. Ideal demo for stakeholders.",
+        "name": "Mike Accountant",
+        "role": "Tax Accountant",
+        "avatar": "https://randomuser.me/api/portraits/men/4.jpg",
+        "quote": "The detailed breakdown and multiple depreciation methods make this tool invaluable for my practice.",
         "rating": "5"
       },
       {
-        "name": "Liam Analyst",
-        "role": "Data Analyst",
-        "avatar": "https://randomuser.me/api/portraits/men/5.jpg",
-        "quote": "Accurate and reliable—exactly what we need for quick checks.",
+        "name": "Lisa Analyst",
+        "role": "Financial Analyst",
+        "avatar": "https://randomuser.me/api/portraits/women/5.jpg",
+        "quote": "Accurate, fast, and easy to understand. Exactly what we need for asset depreciation analysis.",
         "rating": "5"
       }
     ]
   },
   "faq": {
     "title": "FAQ",
-    "description": "Common questions about the test calculator tool.",
+    "description": "Common questions about MACRS depreciation calculation.",
     "items": [
       {
-        "title": "What is this calculator for?",
-        "description": "This is a test calculator to demonstrate the dynamic tool discovery and registration system. It performs simple addition to verify the workflow."
+        "title": "What is MACRS depreciation?",
+        "description": "MACRS (Modified Accelerated Cost Recovery System) is the depreciation method required by the IRS for most business assets placed in service after 1986. It allows businesses to recover the cost of assets over a predetermined recovery period."
       },
       {
-        "title": "How do I create my own tool?",
-        "description": "Create a new folder in src/app/[locale]/(default)/tools with a page.tsx file and translation files. The system will automatically discover it."
+        "title": "Which depreciation method should I use?",
+        "description": "The 200% Declining Balance method provides the highest deductions in early years, making it ideal for maximizing early tax benefits. The Straight Line method spreads deductions evenly and may be required for certain asset types. Consult with a tax professional for your specific situation."
       },
       {
-        "title": "Can I customize the styling?",
-        "description": "Yes! You can customize the icon, color, category, and tags in src/lib/tools-config.ts for each tool."
+        "title": "What is a recovery period?",
+        "description": "The recovery period is the number of years over which you can depreciate an asset. Common periods include 5 years for computers and cars, 7 years for office furniture, and 27.5 years for residential rental property. The IRS determines the recovery period based on asset classification."
       },
       {
-        "title": "Is it multilingual?",
-        "description": "Absolutely! Add translation files in src/i18n/pages/tools/[tool-name] for each language you want to support."
+        "title": "Do I need to consider salvage value?",
+        "description": "Under MACRS rules, salvage value is typically assumed to be $0 for depreciation calculations. However, you can enter an estimated salvage value in this calculator to see when depreciation will stop if you plan to sell or dispose of the asset."
+      },
+      {
+        "title": "Is this calculator IRS-compliant?",
+        "description": "Yes, this calculator uses depreciation rates from IRS Publication 946. However, for official tax filing, always consult with a qualified tax professional or CPA to ensure compliance with current tax laws."
       }
     ]
   },
   "cta": {
-    "title": "Ready to build your own tools?",
-    "description": "Use this template to create amazing tools with dynamic discovery, multi-language support, and beautiful UI.",
-    "primary_button": "Explore More Tools",
-    "secondary_button": "Read Documentation",
-    "primary_link": "/tools",
-    "secondary_link": "/docs"
+    "title": "Ready to calculate your asset depreciation?",
+    "description": "Use our professional MACRS calculator for accurate, IRS-compliant depreciation schedules and tax planning.",
+    "primary_button": "Start Calculating",
+    "secondary_button": "Read IRS Publication 946",
+    "primary_link": "#calculator",
+    "secondary_link": "https://www.irs.gov/publications/p946"
   }
 }

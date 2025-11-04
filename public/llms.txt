@@ -1,35 +1,35 @@
-# https://mondkalender.app llms.txt
+# https://macrsdepreciationcalculator.com llms.txt
 
 ## Mondkalender 2026 - Leben im Einklang mit dem Mond
 
-- [Mondkalender Homepage](https://mondkalender.app/): Ihr umfassender Mondkalender für 2026 mit allen Mondphasen
-- [Mondkalender 2026](https://mondkalender.app/de/mondkalender-2026): Vollständiger Jahreskalender 2026 mit allen Mondphasen
-- [Mondkalender 2026 zum Ausdrucken](https://mondkalender.app/de/mondkalender-2026-zum-ausdrucken): PDF-Kalender zum Ausdrucken
+- [Mondkalender Homepage](https://macrsdepreciationcalculator.com/): Ihr umfassender Mondkalender für 2026 mit allen Mondphasen
+- [Mondkalender 2026](https://macrsdepreciationcalculator.com/de/mondkalender-2026): Vollständiger Jahreskalender 2026 mit allen Mondphasen
+- [Mondkalender 2026 zum Ausdrucken](https://macrsdepreciationcalculator.com/de/mondkalender-2026-zum-ausdrucken): PDF-Kalender zum Ausdrucken
 
 ## Mondkalender Tools
 
-- [Alle Mondkalender Tools](https://mondkalender.app/de/tools): Übersicht aller 12 Mondkalender-Werkzeuge
-- [Mondkalender Haare Schneiden](https://mondkalender.app/de/tools/mondkalender-haare-schneiden): Optimale Tage zum Haare schneiden nach Mondphasen
-- [Haare Färben Mondkalender](https://mondkalender.app/de/tools/haare-farben-mondkalender): Beste Zeitpunkte zum Haare färben
-- [Mond Heute](https://mondkalender.app/de/tools/mond-heute): Aktuelle Mondphase und Tagesempfehlungen
-- [Mondaufgang und Untergang](https://mondkalender.app/de/tools/auf-untergang): Präzise Zeiten für Ihren Standort
-- [Kochen nach Mondkalender](https://mondkalender.app/de/tools/kochen): Ernährungsplanung nach Mondphasen
-- [Moon Sign Calculator](https://mondkalender.app/de/tools/moon-sign-calculator): Berechnen Sie Ihr Mondzeichen
-- [Mondkalender Online](https://mondkalender.app/de/tools/mondkalender-online): Interaktiver Online-Mondkalender
-- [Mondaufgang Heute](https://mondkalender.app/de/tools/mondaufgang-heute): Heutige Mondaufgangszeit
-- [Moon Dashboard](https://mondkalender.app/de/tools/moon): Persönliches Mond-Dashboard
-- [AI Moon Advisor](https://mondkalender.app/de/tools/example): KI-gestützte Mondberatung
+- [Alle Mondkalender Tools](https://macrsdepreciationcalculator.com/de/tools): Übersicht aller 12 Mondkalender-Werkzeuge
+- [Mondkalender Haare Schneiden](https://macrsdepreciationcalculator.com/de/tools/mondkalender-haare-schneiden): Optimale Tage zum Haare schneiden nach Mondphasen
+- [Haare Färben Mondkalender](https://macrsdepreciationcalculator.com/de/tools/haare-farben-mondkalender): Beste Zeitpunkte zum Haare färben
+- [Mond Heute](https://macrsdepreciationcalculator.com/de/tools/mond-heute): Aktuelle Mondphase und Tagesempfehlungen
+- [Mondaufgang und Untergang](https://macrsdepreciationcalculator.com/de/tools/auf-untergang): Präzise Zeiten für Ihren Standort
+- [Kochen nach Mondkalender](https://macrsdepreciationcalculator.com/de/tools/kochen): Ernährungsplanung nach Mondphasen
+- [Moon Sign Calculator](https://macrsdepreciationcalculator.com/de/tools/moon-sign-calculator): Berechnen Sie Ihr Mondzeichen
+- [Mondkalender Online](https://macrsdepreciationcalculator.com/de/tools/mondkalender-online): Interaktiver Online-Mondkalender
+- [Mondaufgang Heute](https://macrsdepreciationcalculator.com/de/tools/mondaufgang-heute): Heutige Mondaufgangszeit
+- [Moon Dashboard](https://macrsdepreciationcalculator.com/de/tools/moon): Persönliches Mond-Dashboard
+- [AI Moon Advisor](https://macrsdepreciationcalculator.com/de/tools/example): KI-gestützte Mondberatung
 
 ## Content & Community
 
-- [Mondkalender Blog](https://mondkalender.app/de/posts): Neueste Artikel über Mondphasen und Tipps
-- [Mondkalender Dokumentation](https://mondkalender.app/de/docs): Umfassende Anleitungen und Wissen
-- [Mondkalender Glossar](https://mondkalender.app/de/glossary): Begriffe rund um Mondphasen erklärt
-- [Discord Community](https://mondkalender.app/de/discord): Treten Sie unserer Community bei
-- [Preise](https://mondkalender.app/de/pricing): Mondkalender Mitgliedschaft und Premium-Features
+- [Mondkalender Blog](https://macrsdepreciationcalculator.com/de/posts): Neueste Artikel über Mondphasen und Tipps
+- [Mondkalender Dokumentation](https://macrsdepreciationcalculator.com/de/docs): Umfassende Anleitungen und Wissen
+- [Mondkalender Glossar](https://macrsdepreciationcalculator.com/de/glossary): Begriffe rund um Mondphasen erklärt
+- [Discord Community](https://macrsdepreciationcalculator.com/de/discord): Treten Sie unserer Community bei
+- [Preise](https://macrsdepreciationcalculator.com/de/pricing): Mondkalender Mitgliedschaft und Premium-Features
 
 ## Legal & Account
 
-- [Datenschutz](https://mondkalender.app/de/privacy-policy): Unsere Datenschutzrichtlinien
-- [Nutzungsbedingungen](https://mondkalender.app/de/terms-of-service): Allgemeine Geschäftsbedingungen
-- [Anmelden](https://mondkalender.app/de/auth/signin): Login für registrierte Nutzer
+- [Datenschutz](https://macrsdepreciationcalculator.com/de/privacy-policy): Unsere Datenschutzrichtlinien
+- [Nutzungsbedingungen](https://macrsdepreciationcalculator.com/de/terms-of-service): Allgemeine Geschäftsbedingungen
+- [Anmelden](https://macrsdepreciationcalculator.com/de/auth/signin): Login für registrierte Nutzer

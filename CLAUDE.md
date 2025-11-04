@@ -270,4 +270,4 @@ This is **Mondkalender Template One** - a production-ready Mondkalender boilerpl
 - Database-driven content management
 - SEO-optimized documentation system
 
-For more information, visit [mondkalender.app](https://Mondkalender.app) and [Documentation](https://docs.mondkalender.app).
+For more information, visit [macrsdepreciationcalculator.com](https://macrsdepreciationcalculator.com) and [Documentation](https://docs.macrsdepreciationcalculator.com).

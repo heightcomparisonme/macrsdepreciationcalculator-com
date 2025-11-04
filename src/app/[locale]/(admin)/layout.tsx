@@ -22,10 +22,10 @@ export default async function AdminLayout({
 
   const sidebar: Sidebar = {
     brand: {
-      title: "Mondkalender",
+      title: "Macrs Depreciation Calculator",
       logo: {
         src: "/logo.png",
-        alt: "Mondkalender",
+        alt: "Macrs Depreciation Calculator",
       },
       url: "/admin",
     },
@@ -86,19 +86,19 @@ export default async function AdminLayout({
       items: [
         {
           title: "Documents",
-          url: "https://docs.mondkalender.app",
+          url: "https://docs.macrsdepreciationcalculator.com",
           target: "_blank",
           icon: "RiFileTextLine",
         },
         {
           title: "Blocks",
-          url: "https://mondkalender.app/blocks",
+          url: "https://macrsdepreciationcalculator.com/blocks",
           target: "_blank",
           icon: "RiDashboardLine",
         },
         {
           title: "Showcases",
-          url: "https://mondkalender.app/showcase",
+          url: "https://macrsdepreciationcalculator.com/showcase",
           target: "_blank",
           icon: "RiAppsLine",
         },

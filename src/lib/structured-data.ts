@@ -76,7 +76,7 @@ export function generateToolSchema({
     },
     provider: {
       "@type": "Organization",
-      name: "Mondkalender",
+      name: "Macrs Depreciation Calculator",
       url: baseUrl,
     },
   };

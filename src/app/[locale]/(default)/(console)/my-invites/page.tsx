@@ -129,7 +129,7 @@ export default async function MyInvitesPage() {
         {
           title: t("my_invites.edit_invite_link"),
           icon: "RiBookLine",
-          url: "https://docs.mondkalender.app",
+          url: "https://docs.macrsdepreciationcalculator.com",
           target: "_blank",
           variant: "outline",
         },

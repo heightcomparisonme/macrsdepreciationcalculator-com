@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "Mondkalender | Mondkalender 2026 | Moon Calendar 2026",
-    "description": "Mondkalender 2026 - Full Year Moon Planner,for hair cutting, gardening, health and more",
-    "keywords": "Mondkalender, Mondkalender 2026, Moon Calendar 2026, Moon Calendar 2026 Printable"
+    "title": "MACRS Depreciation Calculator | Fixed Asset Depreciation Software",
+    "description": "MACRS Depreciation Calculator automates MACRS, ADS, bonus, and Section 179 schedules for accountants and finance teams.",
+    "keywords": "MACRS depreciation calculator, IRS Form 4562, fixed asset software, Section 179, bonus depreciation"
   },
   "user": {
     "sign_in": "Sign In",
@@ -10,9 +10,9 @@
     "credits": "Credits",
     "api_keys": "API Keys",
     "my_orders": "My Orders",
-    "user_center": "User Center",
-    "admin_system": "Admin System",
-    "cpm_calculator": "Mondkalender"
+    "user_center": "Account Center",
+    "admin_system": "Admin Console",
+    "cpm_calculator": "MACRS Depreciation Calculator"
   },
   "sign_modal": {
     "sign_in_title": "Sign In",
@@ -35,12 +35,12 @@
   },
   "my_orders": {
     "title": "My Orders",
-    "description": "orders paid with Mondkalender.",
+    "description": "Subscriptions and add-ons purchased for MACRS Depreciation Calculator.",
     "no_orders": "No orders found",
     "tip": "",
     "activate_order": "Activate Order",
     "actived": "Activated",
-    "join_discord": "Join Discord",
+    "join_discord": "Join community",
     "read_docs": "Read Docs",
     "table": {
       "order_no": "Order No",
@@ -59,7 +59,7 @@
   },
   "my_credits": {
     "title": "My Credits",
-    "left_tip": "left credits: {left_credits}",
+    "left_tip": "Remaining credits: {left_credits}",
     "no_credits": "No credits records",
     "recharge": "Recharge",
     "table": {
@@ -74,7 +74,7 @@
   },
   "api_keys": {
     "title": "API Keys",
-    "tip": "Please keep your apikey safe to avoid leaks",
+    "tip": "Please keep your API key secure to avoid leaks.",
     "no_api_keys": "No API Keys",
     "create_api_key": "Create API Key",
     "table": {
@@ -89,8 +89,8 @@
     }
   },
   "blog": {
-    "title": "Marketing Blog",
-    "description": "Digital marketing insights, CPM tips, and advertising strategies",
+    "title": "Depreciation Insights",
+    "description": "MACRS updates, tax planning strategies, and fixed asset tips",
     "read_more_text": "Read More",
     "no_content": "No content",
     "all": "All",
@@ -105,7 +105,7 @@
     "edit_invite_link": "Edit Invite Link",
     "copy_invite_link": "Copy Invite Link",
     "invite_code": "Invite Code",
-    "invite_tip": "Invite 1 friend to buy Mondkalender, reward $50.",
+    "invite_tip": "Invite a colleague to adopt MACRS Depreciation Calculator and earn $50.",
     "invite_balance": "Invite Reward Balance",
     "total_invite_count": "Total Invite Count",
     "total_paid_count": "Total Paid Count",
@@ -113,7 +113,7 @@
     "update_invite_code": "Set Invite Code",
     "update_invite_code_tip": "Input your custom invite code",
     "update_invite_button": "Save",
-    "no_orders": "You can't invite others before you bought Mondkalender",
+    "no_orders": "You need an active MACRS Depreciation Calculator plan before inviting others.",
     "no_affiliates": "You're not allowed to invite others, please contact us to apply for permission.",
     "table": {
       "invite_time": "Invite Time",
@@ -131,304 +131,304 @@
     "submit": "Submit",
     "loading": "Submitting...",
     "contact_tip": "Other ways to contact us",
-    "rating_tip": "How do you feel about Mondkalender?",
+    "rating_tip": "How do you feel about MACRS Depreciation Calculator?",
     "placeholder": "Leave your words here..."
   },
   "navigation": {
     "home": "Home",
-    "search": "Community",
-    "moon": "Tools",
-    "favorites": "Blog",
-    "profile": "Glossary"
+    "search": "Support",
+    "moon": "Calculators",
+    "favorites": "Insights",
+    "profile": "Asset Classes"
   },
   "hero_switcher": {
     "component_one": {
-      "brand_name": "Mondkalender",
-      "title": "Calculate CPM Like a Pro",
-      "description": "The ultimate Mondkalender for digital marketers and advertisers. ",
-      "subdescription": "Calculate Cost Per Mille, plan budgets, and optimize your advertising campaigns with precision.",
-      "button_text": "Calculate CPM",
-      "see_demo": "See Demo"
+      "brand_name": "MACRS Depreciation Calculator",
+      "title": "Build depreciation schedules without spreadsheets",
+      "description": "Automate MACRS, ADS, bonus and Section 179 schedules from one workspace.",
+      "subdescription": "Import asset listings, apply IRS conventions, and export audit-ready Form 4562 support in minutes.",
+      "button_text": "Launch Calculator",
+      "see_demo": "See sample schedule"
     },
     "control_panel": {
-      "title": "Campaign Calculator",
-      "description": "Enter your campaign data to calculate CPM and other metrics",
-      "upload_button": "Upload Data",
-      "file_types": "We accept .jpeg, .jpg, .png, .webp formats up to 24MB.",
-      "max_images_reached": "Maximum {maxImages} images reached",
-      "remove": "Remove",
-      "images_count": "{count} / {max} images",
-      "prompt_title": "Prompt",
-      "prompt_description": "Describe what you want to change in the image",
-      "prompt_placeholder": "Example: Change the background to a blue sky",
-      "aspect_ratio_title": "Aspect Ratio",
-      "aspect_ratio_description": "Choose the aspect ratio you want to use",
-      "output_count_title": "Number of Outputs",
-      "output_count_description": "Choose the number of outputs you want",
-      "generate_button": "Generate Images ✨{count}",
-      "back_button": "← Return to hero-one"
-    },
-    "preview_carousel": {
-      "title": "Preview Gallery",
-      "number": "3",
-      "description": "Preview your AI-generated transformations",
-      "no_images": "No images to display",
-      "download_all": "Download All Images",
-      "share": "Share",
-      "save_gallery": "Save to Gallery",
-      "image_count": "{current} of {total}",
-      "alt_text": {
-        "professional_headshot_1": "Professional headshot 1",
-        "professional_headshot_2": "Professional headshot 2", 
-        "professional_headshot_3": "Professional headshot 3"
-      },
-      "image_titles": {
-        "convert_linkedin": "Convert to LinkedIn profile",
-        "professional_portrait": "Professional portrait",
-        "business_headshot": "Business headshot"
-      }
+      "title": "Depreciation run setup",
+      "description": "Import asset data, choose the correct convention, and generate schedules instantly.",
+      "back_button": "Back to overview",
+      "aspect_ratio_title": "Convention",
+      "aspect_ratio_description": "Select the IRS convention that applies to this asset group.",
+      "output_count_title": "Projection years",
+      "output_count_description": "Choose how many years to project depreciation.",
+      "prompt_title": "Reviewer notes",
+      "prompt_description": "Explain adjustments or assumptions for this run.",
+      "prompt_placeholder": "Example: Asset transferred mid-quarter and needs override in year 3.",
+      "file_types": "We accept .csv and .xlsx files up to 10MB.",
+      "upload_button": "Upload asset file",
+      "generate_button": "Generate schedules ({count})",
+      "images_count": "{count} / {max} assets",
+      "max_images_reached": "Maximum {maxImages} assets per batch",
+      "remove": "Remove asset"
     },
     "mode_indicator": {
-      "mode": "Mode",
+      "mode": "View",
       "current_mode": "{mode}"
+    },
+    "preview_carousel": {
+      "title": "Schedule preview",
+      "description": "Review depreciation schedules before exporting.",
+      "image_count": "{current} of {total}",
+      "download_all": "Download all reports",
+      "save_gallery": "Archive run",
+      "share": "Share with team",
+      "number": "3",
+      "no_images": "No schedules to display",
+      "image_titles": {
+        "business_headshot": "Book vs tax summary",
+        "convert_linkedin": "Form 4562 preview",
+        "professional_portrait": "Asset detail schedule"
+      },
+      "alt_text": {
+        "professional_headshot_1": "Depreciation schedule overview",
+        "professional_headshot_2": "Book to tax variance view",
+        "professional_headshot_3": "Asset detail report"
+      }
     }
   },
   "calculator": {
-    "title": "Mondkalender",
-    "description": "Enter any two of the following fields, then click 'Calculate' to get the third value",
-    "hero_title": "Professional Mondkalender",
-    "hero_description": "Calculate Cost Per Mille, impressions, and advertising costs with precision. The essential tool for digital marketers and advertisers.",
+    "title": "MACRS Depreciation Calculator",
+    "description": "Enter any two values - depreciable basis, rate, or expense - and we will calculate the third.",
+    "hero_title": "Professional MACRS Calculator",
+    "hero_description": "Calculate MACRS, ADS, bonus, and Section 179 depreciation with audit-ready precision.",
     "cpm": {
-      "title": "Mondkalender",
-      "description": "Calculate Cost Per Mille (CPM) for your advertising campaigns with precision",
-      "label": "Cost Per Thousand Impressions (CPM)",
-      "calculation_description": "To calculate cost per thousand impressions, enter:",
-      "step1": "Total Ad Spend",
-      "step2": "Number of Impressions"
+      "title": "Depreciation Rate Calculator",
+      "label": "Depreciation rate (%)",
+      "description": "Determine the MACRS depreciation rate using basis and annual expense.",
+      "calculation_description": "To calculate the depreciation rate, enter:",
+      "step1": "Annual depreciation expense",
+      "step2": "Depreciable basis"
     },
     "cpa": {
-      "title": "CPA Calculator",
-      "description": "Calculate Cost Per Action/Acquisition for your marketing campaigns",
-      "label": "Cost Per Action (CPA)",
-      "calculation_description": "To calculate cost per action, enter:",
-      "step1": "Total Ad Spend",
-      "step2": "Number of Actions/Conversions"
+      "title": "Bonus Depreciation Calculator",
+      "label": "Bonus depreciation amount",
+      "description": "Calculate bonus depreciation for eligible property after Section 179 deductions.",
+      "calculation_description": "To calculate bonus depreciation, enter:",
+      "step1": "Eligible basis after Section 179",
+      "step2": "Bonus percentage"
     },
     "cpc": {
-      "title": "CPC Calculator",
-      "description": "Calculate Cost Per Click for your advertising campaigns",
-      "label": "Cost Per Click (CPC)",
-      "calculation_description": "To calculate cost per click, enter:",
-      "step1": "Total Ad Spend",
-      "step2": "Number of Clicks",
-      "card_title": "CPC Calculator",
-      "card_description": "Calculate cost per click, total cost, or number of clicks",
-      "total_cost_label": "Total Ad Spend",
-      "total_cost_description": "To calculate the total cost of your advertising campaign, enter:",
-      "total_cost_step1": "CPC (Cost Per Click)",
-      "total_cost_step2": "Number of Clicks",
-      "cpc_label": "Cost Per Click (CPC)",
-      "cpc_description": "To calculate the cost per click, enter:",
-      "cpc_step1": "Total Ad Spend",
-      "cpc_step2": "Number of Clicks",
-      "clicks_label": "Number of Clicks",
-      "clicks_description": "To calculate the number of clicks your ad received, enter:",
-      "clicks_step1": "Total Ad Spend",
-      "clicks_step2": "CPC (Cost Per Click)",
+      "title": "Section 179 Calculator",
+      "label": "Section 179 deduction",
+      "description": "Evaluate Section 179 elections by solving for deduction amount, qualifying spend, or deduction percentage.",
+      "calculation_description": "To calculate Section 179 deduction, enter:",
+      "step1": "Qualifying spend",
+      "step2": "Deduction percentage",
+      "card_title": "Section 179 Calculator",
+      "card_description": "Compute deduction amount, qualifying spend, or deduction percentage for Section 179 elections.",
+      "cpc_description": "To calculate the deduction amount, enter:",
+      "cpc_label": "Section 179 deduction",
+      "cpc_step1": "Qualifying spend",
+      "cpc_step2": "Deduction percentage",
+      "total_cost_description": "To calculate the required qualifying spend, enter:",
+      "total_cost_label": "Qualifying spend",
+      "total_cost_step1": "Section 179 deduction",
+      "total_cost_step2": "Deduction percentage",
+      "clicks_description": "To calculate remaining deduction capacity, enter:",
+      "clicks_label": "Deduction remaining",
+      "clicks_step1": "Annual limit",
+      "clicks_step2": "Deduction already taken",
       "error_min_fields": "Please fill in at least two fields"
     },
     "ctr": {
-      "title": "CTR Calculator",
-      "description": "Calculate Click-Through Rate to measure ad performance",
-      "label": "Click-Through Rate (CTR)",
-      "calculation_description": "To calculate click-through rate, enter:",
-      "step1": "Number of Clicks",
-      "step2": "Number of Impressions",
-      "card_title": "CTR Calculator",
-      "card_description": "Calculate click-through rate, clicks, or impressions",
-      "clicks_label": "Number of Clicks",
-      "clicks_description": "Number of clicks your ad received",
-      "impressions_label": "Number of Impressions",
-      "impressions_description": "Total number of ad impressions",
-      "ctr_label": "Click-Through Rate (CTR)",
-      "ctr_description": "Click-through rate percentage",
-      "ctr_formula": "Formula: CTR = (Clicks / Impressions) × 100%",
-      "cvr_card_title": "CVR Calculator",
-      "cvr_card_description": "Calculate conversion rate, conversions, or clicks",
-      "conversions_label": "Number of Conversions",
-      "conversions_description": "Number of conversions from your ad",
-      "cvr_clicks_label": "Number of Clicks",
-      "cvr_clicks_description": "Number of clicks your ad received",
-      "cvr_label": "Conversion Rate (CVR)",
-      "cvr_description": "Conversion rate percentage",
-      "cvr_formula": "Formula: CVR = (Conversions / Clicks) × 100%",
+      "title": "Mid-Quarter Test Calculator",
+      "label": "Mid-quarter percentage",
+      "description": "Assess mid-quarter convention impact on your depreciation schedule.",
+      "calculation_description": "To calculate the mid-quarter percentage, enter:",
+      "step1": "Total basis placed in service",
+      "step2": "Basis placed in service during Q4",
+      "card_title": "Mid-Quarter Calculator",
+      "card_description": "Evaluate mid-quarter percentage, total basis, or Q4 basis as needed.",
+      "clicks_description": "Total basis placed in service for the year",
+      "clicks_label": "Total basis",
+      "impressions_description": "Basis placed in service during the last quarter",
+      "impressions_label": "Q4 basis",
+      "ctr_description": "Mid-quarter percentage result",
+      "ctr_label": "Mid-quarter percentage",
+      "ctr_formula": "Formula: Mid-quarter % = Q4 basis / Total basis x 100%",
+      "conversions_description": "Basis that qualifies for ADS treatment",
+      "conversions_label": "ADS basis",
+      "cvr_card_title": "ADS Calculator",
+      "cvr_card_description": "Compute ADS depreciation rate, annual expense, or remaining basis.",
+      "cvr_clicks_description": "Total ADS basis",
+      "cvr_clicks_label": "ADS basis",
+      "cvr_description": "ADS depreciation rate (%)",
+      "cvr_label": "ADS depreciation rate",
+      "cvr_formula": "Formula: Rate = Expense / Basis x 100%",
       "error_min_fields": "Please fill in at least two fields",
-      "error_zero_impressions": "Impressions cannot be zero",
-      "error_zero_clicks": "Clicks cannot be zero"
+      "error_zero_clicks": "Total basis cannot be zero",
+      "error_zero_impressions": "Q4 basis cannot be zero"
     },
     "roi": {
-      "title": "ROI Calculator",
-      "description": "Calculate Return on Investment for your marketing campaigns",
-      "label": "Return on Investment (ROI)",
-      "calculation_description": "To calculate ROI, enter:",
-      "step1": "Revenue Generated",
-      "step2": "Total Investment"
+      "title": "Tax Savings Impact",
+      "label": "Tax savings",
+      "description": "Frame the cash impact of depreciation by comparing expense and tax rate.",
+      "calculation_description": "To estimate tax savings, enter:",
+      "step1": "Depreciation expense",
+      "step2": "Effective tax rate (%)"
     },
     "total_cost": {
-      "label": "Total Ad Spend",
-      "description": "To calculate the total cost of an online advertising campaign, enter:",
-      "step1": "CPM (Cost Per Thousand Impressions)",
-      "step2": "Number of Impressions"
+      "description": "To calculate annual depreciation expense, enter:",
+      "label": "Annual depreciation expense",
+      "step1": "Depreciable basis",
+      "step2": "Depreciation rate (%)"
     },
     "impressions": {
-      "label": "Number of Impressions",
-      "description": "To calculate how many impressions your budget can get, enter:",
-      "step1": "Total Ad Spend",
-      "step2": "CPM (Cost Per Thousand Impressions)"
+      "description": "To calculate depreciable basis, enter:",
+      "label": "Depreciable basis",
+      "step1": "Annual depreciation expense",
+      "step2": "Depreciation rate (%)"
     },
     "buttons": {
       "reset": "Reset",
       "calculate": "Calculate"
-    },     
+    },
     "placeholders": {
-      "total_cost": "1000",
-      "cpm": "10",
-      "impressions": "100000"
+      "cpm": "20",
+      "impressions": "250000",
+      "total_cost": "50000"
     },
     "currency_label": "Select Currency",
     "error_min_fields": "Please fill in at least two fields",
     "results": {
-      "title": "Calculation Results",
-      "total_cost_label": "Total Ad Spend",
-      "cpm_label": "CPM",
-      "impressions_label": "Impressions"
+      "title": "Calculation results",
+      "cpm_label": "Depreciation rate (%)",
+      "impressions_label": "Depreciable basis",
+      "total_cost_label": "Annual depreciation expense"
     }
   },
   "cpm_data_selector": {
-    "title": "CPM Data Explorer",
-    "description": "Global CPM insights by country & industry",
-    "search_placeholder": "Search countries & industries...",
-    "country_label": "Country",
-    "industry_label": "Industry",
-    "all_countries": "All Countries",
-    "all_industries": "All Industries",
-    "export_data": "Export Data",
-    "view_details": "View Details",
-    "trend_up": "Rising",
-    "trend_down": "Falling", 
-    "trend_stable": "Stable",
-    "results_count": "Results"
+    "title": "Asset Class Explorer",
+    "description": "Review IRS property classes, recovery periods, and conventions.",
+    "country_label": "Entity",
+    "industry_label": "Asset type",
+    "all_countries": "All entities",
+    "all_industries": "All asset types",
+    "search_placeholder": "Search entities or asset categories...",
+    "results_count": "Records",
+    "trend_up": "Increasing basis",
+    "trend_stable": "Stable basis",
+    "trend_down": "Decreasing basis",
+    "export_data": "Export table",
+    "view_details": "View schedule"
   },
   "cpm_features": {
-    "title": "Powerful CPM Calculation Features",
-    "description": "Everything you need to calculate, analyze, and optimize your digital advertising campaigns.",
+    "title": "Powerful depreciation workflows",
+    "description": "Everything you need to import assets, compute MACRS schedules, and report results.",
     "calculate": {
-      "title": "Precise Calculations",
-      "description": "Calculate CPM, impressions, and total costs with professional accuracy for any advertising campaign."
-    },
-    "optimize": {
-      "title": "Campaign Optimization",
-      "description": "Find the optimal balance between cost and reach to maximize your advertising ROI."
+      "title": "Accurate calculations",
+      "description": "Apply MACRS, ADS, bonus, and Section 179 rules automatically with IRS factors."
     },
     "analyze": {
-      "title": "Performance Analysis",
-      "description": "Analyze your campaign performance with detailed metrics and insights for better decision making."
+      "title": "Variance analysis",
+      "description": "Compare book versus tax depreciation, run projections, and flag variances early."
+    },
+    "optimize": {
+      "title": "Close management",
+      "description": "Coordinate mid-quarter tests, adjustments, and approvals across every entity."
     },
     "report": {
-      "title": "Detailed Reports",
-      "description": "Generate comprehensive reports with all key metrics to share with stakeholders and clients."
+      "title": "Audit-ready reporting",
+      "description": "Export Form 4562 support, journal entries, and detailed schedules for each asset."
     }
   },
   "aero_section": {
     "tabs": {
-      "cpm": "Mondkalender 2026",
-      "cpc": "Hair Cutting",
-      "cpa": "Garden Calendar",
-      "ctr": "Health",
-      "roi": "Print Version",
-      "youtube": "Daily Calendar"
+      "cpm": "MACRS overview",
+      "cpc": "Section 179 planner",
+      "cpa": "Bonus depreciation",
+      "ctr": "ADS schedules",
+      "roi": "Reporting",
+      "youtube": "Close checklist"
     },
     "content": {
       "cpm": {
-        "title": "Mondkalender 2026 – Your Moon Phase Guide",
-        "subtitle": "Live in Harmony with the Moon",
-        "description": "Use the Mondkalender 2026 for optimal planning. Discover the best times for haare schneiden (hair cutting), gardening, and health. Your digital companion for the entire year.",
-        "placeholder": "Explore moon phases for 2026..."
+        "title": "MACRS overview",
+        "subtitle": "Stay aligned with the latest IRS tables",
+        "description": "Review recovery periods, conventions, and depreciation rates for every property class included in the 2025 IRS update.",
+        "placeholder": "Search property classes..."
       },
       "cpc": {
-        "title": "Mondkalender Haare Schneiden – Perfect Timing",
-        "subtitle": "Hair cutting according to moon calendar",
-        "description": "Haare schneiden im Mondkalender: Find the best days for haircuts and hair care. The moon influences hair growth – use moon phases optimally for healthy, strong hair.",
-        "placeholder": "Find the ideal day for your haircut..."
+        "title": "Section 179 planning",
+        "subtitle": "Immediate expensing for qualifying property",
+        "description": "Evaluate Section 179 limits, phase-outs, and deduction elections before year end.",
+        "placeholder": "Assess deduction strategy..."
       },
       "cpa": {
-        "title": "Garden According to Moon Calendar",
-        "subtitle": "Planting, Sowing and Harvesting at the Right Time",
-        "description": "Plan your gardening according to the moon calendar. Optimal times for sowing, planting and harvesting. The moon supports plant growth and soil care.",
-        "placeholder": "Discover favorable gardening times..."
+        "title": "Bonus depreciation scenarios",
+        "subtitle": "Model 80% bonus and future phase-downs",
+        "description": "Compare bonus depreciation impact across entities and track remaining basis automatically.",
+        "placeholder": "Model bonus depreciation..."
       },
       "ctr": {
-        "title": "Health and Wellness in Moon Rhythm",
-        "subtitle": "Body and Mind in Harmony",
-        "description": "Use the moon calendar for your health. Find optimal times for wellness, fasting, sports and relaxation. The moon influences our body and wellbeing.",
-        "placeholder": "Plan your wellness days..."
+        "title": "ADS schedules",
+        "subtitle": "Compute alternative depreciation requirements",
+        "description": "Switch to ADS for AMT or international compliance while keeping book and tax views aligned.",
+        "placeholder": "Build ADS schedules..."
       },
       "roi": {
-        "title": "Mondkalender 2026 zum Ausdrucken (Printable)",
-        "subtitle": "Your Personal Wall Calendar",
-        "description": "Download the Mondkalender 2026 zum Ausdrucken. Practical annual calendar with all moon phases, zodiac signs and favorable days for your daily life. Perfect for home or office.",
-        "placeholder": "Download print version..."
+        "title": "Reporting and exports",
+        "subtitle": "Deliver audit-ready documentation",
+        "description": "Generate Form 4562 support, journal entries, roll-forward schedules, and variance explanations with one click.",
+        "placeholder": "Prepare filings..."
       },
       "youtube": {
-        "title": "Daily Moon Calendar – Today",
-        "subtitle": "Current Moon Phase and Daily Recommendations",
-        "description": "What does the moon say today? Get daily recommendations for haare schneiden, gardening, health and more. Your personal moon calendar for every day.",
-        "placeholder": "View today's moon phase..."
+        "title": "Daily close checklist",
+        "subtitle": "Stay on top of depreciation tasks",
+        "description": "Track run status, reviewer assignments, and outstanding adjustments across every entity.",
+        "placeholder": "Review today's tasks..."
+      }
+    },
+    "hints": {
+      "audio": {
+        "audio_effects": "Upload template",
+        "bgm_composer": "Validate asset data",
+        "noise_removal": "Resolve warnings",
+        "soundtrack": "Assign property classes",
+        "voice_clone": "Confirm conventions"
+      },
+      "image": {
+        "artistic_style": "Choose depreciation method",
+        "color_grading": "Apply bonus elections",
+        "enhance_quality": "Review adjustments",
+        "photo_realistic": "Confirm basis",
+        "remove_background": "Lock schedules"
+      },
+      "video": {
+        "add_bgm": "Export Form 4562",
+        "animate_scene": "Share journal entries",
+        "remove_objects": "Archive retired assets",
+        "short_film": "Build audit packet",
+        "style_transfer": "Sync with ERP"
       }
     },
     "ui": {
-      "add_image": "Add Image",
-      "send": "Send",
-      "hints": "Hints:",
-      "change_background": "Change Background"
-    },
-    "hints": {
-      "video": {
-        "short_film": "Short Film",
-        "animate_scene": "Animate Scene",
-        "style_transfer": "Style Transfer",
-        "add_bgm": "Add BGM",
-        "remove_objects": "Remove Objects"
-      },
-      "image": {
-        "artistic_style": "Artistic Style",
-        "remove_background": "Remove Background",
-        "enhance_quality": "Enhance Quality",
-        "photo_realistic": "Photo Realistic",
-        "color_grading": "Color Grading"
-      },
-      "audio": {
-        "bgm_composer": "BGM Composer",
-        "soundtrack": "Soundtrack",
-        "voice_clone": "Voice Clone",
-        "audio_effects": "Audio Effects",
-        "noise_removal": "Noise Removal"
-      }
+      "add_image": "Add asset",
+      "change_background": "Change convention",
+      "hints": "Tips:",
+      "send": "Generate"
     }
   },
   "feature0": {
-    "title": "Other Mondkalender Tools",
-    "description": "Mondkalender | cpa-calculator | cpc-calculator | ctr-calculator | roi-calculator | youtube-cpm-calculator",
-    "pause_rotation": "Pause Auto Rotation",
-    "start_rotation": "Start Auto Rotation",
-    "auto_rotating": "Auto Rotating",
+    "title": "Other MACRS tools",
+    "description": "macrs-depreciation-calculator | section-179-evaluator | bonus-depreciation-planner | ads-schedule-builder | reporting-hub",
+    "auto_rotating": "Auto cycling",
+    "start_rotation": "Start auto cycling",
+    "pause_rotation": "Pause auto cycling",
     "scroll_hint": "Scroll or drag to explore",
     "swipe_hint": "Swipe on mobile"
   },
   "select_style": {
-    "title": "Select Style",
-    "description": "Choose a style for your photo transformation",
-    "more_styles": "More Styles Below"
+    "title": "Select scenario",
+    "description": "Choose the scenario you want to preview for this asset group.",
+    "more_styles": "More scenarios below"
   },
   "comments": {
     "title": "Comments",
@@ -461,4 +461,3 @@
     "fetch_error": "Failed to load comments"
   }
 }
-

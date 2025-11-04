@@ -36,7 +36,7 @@ export default function Hero({ hero }: { hero: HeroType }) {
             {hero.show_badge && (
               <div className="flex items-center gap-3">
                 <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white/70">
-                  {hero.tip || "Mondkalender"}
+                  {hero.tip || "Macrs Depreciation Calculator"}
                 </span>
                 <img
                   src="/imgs/badges/phdaily.svg"

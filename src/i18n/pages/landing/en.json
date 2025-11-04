@@ -1,12 +1,12 @@
 {
-  "template": "mondkalender",
+  "template": "MACRS Depreciation Calculator",
   "theme": "light",
   "header": {
     "brand": {
-      "title": "Mondkalender",
+      "title": "MACRS Depreciation Calculator",
       "logo": {
         "src": "/logo.png",
-        "alt": "Mondkalender"
+        "alt": "MACRS Depreciation Calculator"
       },
       "url": "/"
     },
@@ -18,18 +18,18 @@
           "icon": "RiHomeHeartLine"
         },
         {
-          "title": "Tools",
+          "title": "Calculators",
           "url": "/tools",
           "icon": "RiToolsLine",
           "children": []
         },
         {
-          "title": "Blog",
+          "title": "Insights",
           "url": "/posts",
           "icon": "RiArticleLine"
         },
         {
-          "title": "Glossary",
+          "title": "MACRS Classes",
           "url": "/glossary",
           "icon": "RiBookOpenLine"
         },
@@ -39,16 +39,16 @@
           "icon": "RiBookOpenLine"
         },
         {
-          "title": "Community",
-          "url": "/discord",
-          "icon": "RiDiscordFill"
+          "title": "Support",
+          "url": "/support",
+          "icon": "RiCustomerService2Line"
         }
       ]
     },
     "buttons": [
       {
-        "title": "Open Moon Today",
-        "url": "/tools/mond-heute",
+        "title": "Launch Calculator",
+        "url": "/tools/macrs-depreciation-calculator",
         "target": "_self",
         "variant": "link",
         "icon": "RiArrowRightUpLine"
@@ -59,27 +59,27 @@
     "show_locale": true
   },
   "hero": {
-    "title": "Mondkalender 2026 – Live in Harmony with the Moon",
-    "highlight_text": "Hair Cutting, Gardening & More by Moon Phases",
-    "description": "The comprehensive Mondkalender with all important moon phases for 2026. Plan haare schneiden (hair cutting), gardening, health and daily activities by Mondkalender – with precise recommendations for every day of the year.",
+    "title": "MACRS Depreciation Calculator - Automate Your Fixed Asset Schedules",
+    "highlight_text": "Accurate MACRS, ADS, bonus and Section 179 depreciation in minutes.",
+    "description": "MACRS Depreciation Calculator helps tax professionals and finance leaders build audit ready depreciation schedules, model scenarios and stay compliant with the latest IRS guidance.",
     "announcement": {
-      "label": "New",
-      "title": "✨ Mondkalender 2026 zum Ausdrucken (Printable) Available",
-      "url": "/mondkalender-2026-zum-ausdrucken"
+      "label": "Update",
+      "title": "2025 IRS MACRS tables and bonus depreciation rules now live",
+      "url": "/blog/2025-macrs-updates"
     },
-    "tip": "🌙 Discover all 12 Mondkalender tools for free",
+    "tip": "Import assets, assign property classes and export Form 4562 support files instantly.",
     "buttons": [
       {
-        "title": "Open Mondkalender 2026",
-        "icon": "RiCalendar2Line",
-        "url": "/mondkalender-2026",
+        "title": "Start a depreciation run",
+        "icon": "RiCalculatorLine",
+        "url": "/tools/macrs-depreciation-calculator",
         "target": "_self",
         "variant": "default"
       },
       {
-        "title": "Haare Schneiden Calendar",
-        "icon": "RiScissors2Line",
-        "url": "/tools/mondkalender-haare-schneiden",
+        "title": "Explore asset library",
+        "icon": "RiArchiveDrawerLine",
+        "url": "/tools/macrs-asset-library",
         "target": "_self",
         "variant": "outline"
       }
@@ -88,7 +88,7 @@
     "show_badge": true
   },
   "branding": {
-    "title": "Built on trusted foundations",
+    "title": "Powered by tools finance teams trust",
     "items": [
       {
         "title": "Next.js",
@@ -129,81 +129,81 @@
   },
   "introduce": {
     "name": "introduce",
-    "title": "Your Digital Mondkalender for 2026",
     "label": "Overview",
-    "description": "Mondkalender provides precise moon phase information and practical recommendations for haare schneiden (hair cutting), gardening, cooking and health. Harness the power of the moon for your daily life – scientifically based and easy to apply.",
+    "title": "All-in-one MACRS depreciation workspace",
+    "description": "Centralize asset classification, book to tax adjustments and compliance reporting so every schedule is ready for audit review.",
     "image": {
       "src": "/imgs/features/1.png"
     },
     "items": [
       {
-        "title": "12 Specialized Mondkalender Tools",
-        "description": "Mondkalender haare schneiden, hair coloring, garden calendar, cooking calendar, moonrise, health and more – all based on current moon phases.",
-        "icon": "RiMoonClearLine"
+        "icon": "RiApps2Line",
+        "title": "Full MACRS coverage",
+        "description": "Handle GDS, ADS, bonus depreciation and Section 179 for more than 130 IRS property classes in one interface."
       },
       {
-        "title": "Daily Moon Phase Recommendations",
-        "description": "Get personalized tips based on the current moon phase, your location and interests for optimal results throughout 2026.",
-        "icon": "RiUserHeartLine"
+        "icon": "RiBarChart2Line",
+        "title": "Audit ready schedules",
+        "description": "Generate monthly, quarterly or annual depreciation schedules with book, tax and AMT views aligned for every asset."
       },
       {
-        "title": "Mondkalender 2026 zum Ausdrucken",
-        "description": "Download the complete Mondkalender 2026 as PDF – perfect for home, office or as a gift with all moon phases printed.",
-        "icon": "RiRocketLine"
+        "icon": "RiFileDownloadLine",
+        "title": "Instant compliance exports",
+        "description": "Export Form 4562 support, journal entries and CSV templates ready for ERP import with consistent formatting."
       }
     ]
   },
   "benefit": {
     "name": "benefit",
-    "title": "Why Mondkalender is the Best Choice",
     "label": "Benefits",
-    "description": "Use the proven power of moon phases for your daily life. With Mondkalender, make decisions at the optimal time – for hair, garden, health and more.",
+    "title": "Why finance teams choose MACRS Depreciation Calculator",
+    "description": "Automate depreciation calculations, reduce review cycles and stay aligned with the latest IRS requirements.",
     "items": [
       {
-        "title": "Complete Mondkalender Toolkit",
-        "description": "From haare schneiden nach Mondkalender to gardening – plan and optimize all important areas of life in harmony with moon phases.",
+        "title": "End-to-end asset lifecycle",
+        "description": "Track placed in service dates, partial transfers and dispositions with workflows purpose built for compliance teams.",
         "icon": "RiApps2Line",
         "image": {
-          "src": "/imgs/features/2.png",
-          "alt": "Tool ecosystem before"
+          "alt": "Asset lifecycle before",
+          "src": "/imgs/features/2.png"
         },
         "afterImage": {
-          "src": "/imgs/features/2-after.png",
-          "alt": "Tool ecosystem after"
+          "alt": "Asset lifecycle after",
+          "src": "/imgs/features/2-after.png"
         }
       },
       {
-        "title": "Precise Moon Phase Data for 2026",
-        "description": "Based on astronomical Swiss Ephemeris calculations, get day-accurate moon phases, zodiac signs and optimal time windows for your activities.",
+        "title": "IRS updates baked in",
+        "description": "Convention rules, depreciation factors and bonus depreciation rates update automatically whenever legislation shifts.",
         "icon": "RiTimerFlashLine",
         "image": {
-          "src": "/imgs/features/3.png",
-          "alt": "Recommendations before"
+          "alt": "IRS data before",
+          "src": "/imgs/features/3.png"
         },
         "afterImage": {
-          "src": "/imgs/features/3-after.png",
-          "alt": "Recommendations after"
+          "alt": "IRS data after",
+          "src": "/imgs/features/3-after.png"
         }
       },
       {
-        "title": "Location-Based Calculations",
-        "description": "Moonrise and moonset for your location, multilingual interface (EN/DE/中文) and personalized Mondkalender recommendations for your region.",
-        "icon": "RiTranslate2",
+        "title": "Collaborative review controls",
+        "description": "Assign reviewers, leave notes and lock periods with an audit trail that satisfies internal controls and external auditors.",
+        "icon": "RiShieldCheckLine",
         "image": {
-          "src": "/imgs/features/4.png",
-          "alt": "Internationalisation before"
+          "alt": "Review controls before",
+          "src": "/imgs/features/4.png"
         },
         "afterImage": {
-          "src": "/imgs/features/4-after.png",
-          "alt": "Internationalisation after"
+          "alt": "Review controls after",
+          "src": "/imgs/features/4-after.png"
         }
       }
     ]
   },
   "usage": {
     "name": "usage",
-    "title": "From fork to launch in four steps",
-    "description": "Everything you need is packaged—just follow the workflow and deploy your lunar platform.",
+    "title": "From asset import to IRS ready schedules",
+    "description": "Follow a guided workflow designed for accountants and controllers.",
     "image": {
       "src": "/imgs/features/1.png"
     },
@@ -211,29 +211,29 @@
     "text_align": "center",
     "items": [
       {
-        "title": "Clone & configure",
-        "description": "Clone the repo, install dependencies, copy the env template. Demo seeds populate each tool instantly.",
+        "title": "Collect asset data",
+        "description": "Pull balances from your ERP or fixed asset register, then map fields with our template validator.",
         "image": {
           "src": "/imgs/features/5.png"
         }
       },
       {
-        "title": "Connect data sources",
-        "description": "Plug in Supabase, Stripe, OpenAI/Kling and optional storage—everything is controlled via environment variables.",
+        "title": "Assign MACRS details",
+        "description": "Select property class, recovery period, convention and bonus rules with safeguards that prevent classification errors.",
         "image": {
           "src": "/imgs/features/6.png"
         }
       },
       {
-        "title": "Adjust content",
-        "description": "Edit MDX pages, landing copy and translation JSONs. Feature flags help you turn tools on or off per launch.",
+        "title": "Review schedules",
+        "description": "Compare book, tax and AMT depreciation side by side, then adjust overrides with full version history.",
         "image": {
           "src": "/imgs/features/7.png"
         }
       },
       {
-        "title": "Deploy & grow",
-        "description": "Use the prebuilt Vercel/Cloudflare pipelines, enable billing, onboard your community and scale confidently.",
+        "title": "Share and file",
+        "description": "Export Form 4562 support packages, journal entries and PDF summaries ready for clients or auditors.",
         "image": {
           "src": "/imgs/features/8.png"
         }
@@ -242,116 +242,116 @@
   },
   "feature": {
     "name": "feature",
-    "title": "All Mondkalender Features at a Glance",
-    "description": "Discover the diverse possibilities of our Mondkalender – from hair care to gardening.",
+    "title": "Core capabilities",
+    "description": "Everything you need to manage MACRS depreciation at scale.",
     "items": [
       {
-        "title": "Mondkalender Haare Schneiden & Färben",
-        "description": "Find optimal days for haare schneiden nach Mondkalender. Includes hair coloring calendar with moon phase recommendations for healthy, strong hair.",
-        "icon": "RiMoonLine"
+        "title": "Asset import and classification",
+        "description": "Upload CSV or Excel files, map custom fields and standardize property class assignments in minutes.",
+        "icon": "RiUploadCloud2Line"
       },
       {
-        "title": "Mondkalender Garden 2026",
-        "description": "Plan sowing, planting and harvest by moon phases. The garden calendar shows the best days for all gardening activities in 2026.",
-        "icon": "RiProfileLine"
+        "title": "Scenario modeling",
+        "description": "Model tax versus book scenarios, bonus elections and mid quarter adjustments before finalizing schedules.",
+        "icon": "RiLineChartLine"
       },
       {
-        "title": "Daily Mondkalender",
-        "description": "Current moon phase, zodiac sign and personalized recommendations for today. Stay updated with Mond Heute (Moon Today).",
-        "icon": "RiDatabase2Line"
+        "title": "Depreciation dashboard",
+        "description": "Track basis, accumulated depreciation, net book value and projected expense across entities.",
+        "icon": "RiDashboardLine"
       },
       {
-        "title": "Mondkalender 2026 zum Ausdrucken",
-        "description": "Download the complete year calendar 2026 as PDF – with all moon phases, full moon and new moon dates for printing.",
-        "icon": "RiSecurePaymentLine"
+        "title": "Form 4562 outputs",
+        "description": "Generate worksheets, statement attachments and roll forward schedules formatted for IRS filing.",
+        "icon": "RiFileList3Line"
       },
       {
-        "title": "Moonrise & Moonset Times",
-        "description": "Precise times for moonrise and moonset at your location – important for photography, rituals and nature observation.",
-        "icon": "RiBarChart2Line"
+        "title": "Audit trail and notes",
+        "description": "Capture reviewer comments, approvals and automated logs to support internal control testing.",
+        "icon": "RiShieldCheckLine"
       },
       {
-        "title": "Cooking by Mondkalender",
-        "description": "Nutrition planning in rhythm with the elements. Recipes and cooking tips aligned with current moon phase for better wellbeing.",
-        "icon": "RiRobot2Line"
+        "title": "Integrations and API",
+        "description": "Sync with Supabase, Stripe, QuickBooks and other systems using secure webhooks and API endpoints.",
+        "icon": "RiNodeTree"
       }
     ]
   },
   "stats": {
     "name": "stats",
     "label": "Metrics",
-    "title": "Trust in Proven Mondkalender Expertise",
-    "description": "Thousands of users plan their lives by Mondkalender – for health, beauty and wellbeing.",
-    "icon": "FaRegHeart",
+    "title": "Trusted by modern accounting teams",
+    "description": "Built for firms and finance departments managing complex fixed asset portfolios.",
+    "icon": "FaRegChartBar",
     "items": [
       {
-        "title": "Active Users",
-        "label": "10,000+",
-        "description": "trust our Mondkalender"
+        "title": "Assets processed daily",
+        "label": "8,500+",
+        "description": "tracked across every industry category"
       },
       {
-        "title": "Mondkalender Tools",
-        "label": "12",
-        "description": "specialized applications"
+        "title": "IRS property classes supported",
+        "label": "130+",
+        "description": "including GDS and ADS schedules"
       },
       {
-        "title": "Moon Phases 2026",
-        "label": "365",
-        "description": "days fully covered"
+        "title": "Time saved each close",
+        "label": "12 hrs",
+        "description": "average reduction per entity"
       }
     ]
   },
   "testimonial": {
     "name": "testimonial",
     "label": "Testimonials",
-    "title": "Loved by lunar entrepreneurs",
-    "description": "Astrology coaches, wellness brands and content creators use Mondkalender to serve their communities.",
+    "title": "Finance leaders who rely on our schedules",
+    "description": "Controllers, tax managers and fractional CFOs streamline depreciation with MACRS Depreciation Calculator.",
     "icon": "GoThumbsup",
     "items": [
       {
-        "title": "Leonie Fischer",
-        "label": "Astrology Coach",
-        "description": "“Moon Today and the haircut planner let me send personalised guidance every morning—without hiring developers.”",
+        "title": "Elena Brooks",
+        "label": "Controller, Series B SaaS",
+        "description": "We replaced three spreadsheets and a manual review chain. The MACRS calculator keeps our month end close consistent.",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
-        "title": "Dr. Markus Held",
-        "label": "Wellness Clinic Director",
-        "description": "“Stripe, Supabase and the admin dashboards saved us weeks. We focus on programs while the template handles operations.”",
+        "title": "Marcus Chen",
+        "label": "Tax Manager, Regional CPA Firm",
+        "description": "Bonus depreciation and Section 179 elections take minutes now. The Form 4562 export drops straight into our workpapers.",
         "image": {
           "src": "/imgs/users/2.png"
         }
       },
       {
-        "title": "Aylin Kaya",
-        "label": "Content Creator",
-        "description": "“LunaColor makes it easy to share creative colour rituals. My audience loves the before/after storytelling.”",
+        "title": "Priya Desai",
+        "label": "Fractional CFO",
+        "description": "Scenario modeling lets me share multiple recovery plans before we lock filings. Clients understand the impact instantly.",
         "image": {
           "src": "/imgs/users/3.png"
         }
       },
       {
-        "title": "Jonas Weber",
-        "label": "Founder LunarEats",
-        "description": "“The cooking tool delivers fresh menus daily. We built a paid membership in two days.”",
+        "title": "Noah Williams",
+        "label": "Director of Accounting",
+        "description": "The review notes and approval locks make our auditors confident. Everything stays documented without extra effort.",
         "image": {
           "src": "/imgs/users/4.png"
         }
       },
       {
-        "title": "Sofia Mendes",
-        "label": "Product Manager",
-        "description": "“The moon sign calculator plus onboarding drives huge activation. Great UX and rock-solid code.”",
+        "title": "Sofia Ramirez",
+        "label": "Senior Tax Analyst",
+        "description": "Property class suggestions and validation rules catch mistakes before they reach partner review.",
         "image": {
           "src": "/imgs/users/5.png"
         }
       },
       {
-        "title": "Nina Baumann",
-        "label": "Holistic Coach",
-        "description": "“I forked Mondkalender, branded it and launched in a week. My clients love the personalised dashboards.”",
+        "title": "Daniel Osei",
+        "label": "Partner, Advisory Services",
+        "description": "We branded the template, trained our teams in a day and now deliver depreciation support with every engagement.",
         "image": {
           "src": "/imgs/users/6.png"
         }
@@ -362,44 +362,45 @@
     "name": "faq",
     "label": "FAQ",
     "title": "Frequently asked questions",
-    "description": "Need more details? Reach out via Discord or email—our team is happy to help.",
+    "description": "Need more detail? Reach out via email or chat and our team will walk you through the workflow.",
     "items": [
       {
-        "title": "What’s included in the template?",
-        "description": "All lunar tools, admin dashboards, authentication, Stripe billing, content structures, AI workflows and i18n building blocks."
+        "title": "What is included with MACRS Depreciation Calculator?",
+        "description": "You get the full Next.js application with dashboards, asset workflows, Supabase schema, Stripe billing and localization already wired."
       },
       {
-        "title": "Do I need advanced technical skills?",
-        "description": "Basic TypeScript knowledge is enough. Clear docs, scripts and seeds make the setup straightforward."
+        "title": "Can non technical teams maintain the tool?",
+        "description": "Yes. Guided forms, documentation and templates help accountants update assets without writing code."
       },
       {
-        "title": "Can I add new tools?",
-        "description": "Yes. The architecture is modular—duplicate the existing pattern to launch your own lunar features."
+        "title": "Do you support custom depreciation methods?",
+        "description": "Alongside MACRS we support straight line, declining balance and custom overrides with audit tracking."
       },
       {
-        "title": "How accurate is the data?",
-        "description": "Astronomical calculations use the Swiss Ephemeris. You can enable caching or plug in alternative sources if needed."
+        "title": "How accurate are the calculations?",
+        "description": "We use IRS tables, mid quarter tests and rounding guidance that mirror Form 4562 instructions. Automated tests cover every property class."
       },
       {
-        "title": "Do you offer launch support?",
-        "description": "The Pro package includes an onboarding call and premium support. All plans include lifetime updates."
+        "title": "Is there onboarding help?",
+        "description": "Professional and higher tiers include implementation support plus best practice playbooks for firms."
       }
     ]
   },
   "cta": {
     "name": "cta",
-    "title": "Start Today with Mondkalender 2026",
-    "description": "Harness the power of moon phases for your daily life. Whether haare schneiden, gardening or health – find the optimal time with our Mondkalender.",
+    "title": "Start your next depreciation schedule today",
+    "description": "Automate MACRS calculations, collaborate with reviewers and export audit ready workpapers in minutes.",
     "buttons": [
       {
-        "title": "Open Mondkalender 2026",
-        "url": "/mondkalender-2026",
+        "title": "Launch MACRS Calculator",
+        "icon": "RiCalculatorLine",
+        "url": "/tools/macrs-depreciation-calculator",
         "target": "_self",
-        "icon": "RiCalendar2Line"
+        "variant": "default"
       },
       {
-        "title": "Discover All Tools",
-        "url": "/tools",
+        "title": "View pricing plans",
+        "url": "/#pricing",
         "target": "_self",
         "variant": "outline"
       }
@@ -409,7 +410,7 @@
     "name": "pricing",
     "label": "Pricing",
     "title": "Flexible licensing",
-    "description": "Pay once and launch unlimited moon products—or opt into subscriptions for continuous support.",
+    "description": "Choose the package that matches your workload and support needs.",
     "groups": [
       {
         "name": "one-time",
@@ -428,144 +429,147 @@
     ],
     "items": [
       {
-        "title": "Starter",
-        "description": "Ideal for creators and boutique studios.",
-        "features_title": "Includes",
-        "features": [
-          "Access to all lunar tools",
-          "Supabase + Drizzle ORM setup",
-          "Stripe checkout & billing",
-          "Internationalised landing page",
-          "MDX documentation & content",
-          "One year of updates"
-        ],
-        "interval": "one-time",
-        "amount": 11900,
+        "title": "Essentials",
+        "description": "Ideal for solo practitioners and boutique firms.",
+        "amount": 12900,
         "currency": "USD",
-        "price": "$119",
-        "original_price": "$149",
+        "price": "$129",
+        "original_price": "$159",
         "unit": "one time",
+        "interval": "one-time",
         "is_featured": false,
-        "tip": "Fork, customise, launch",
+        "group": "one-time",
+        "label": null,
+        "tip": "Launch in an afternoon",
         "button": {
-          "title": "Choose Starter",
+          "title": "Choose Essentials",
           "url": "/#pricing",
           "icon": "RiFlashlightFill"
         },
-        "product_id": "starter-usd",
-        "product_name": "Mondkalender Starter",
+        "product_id": "essentials-usd",
+        "product_name": "MACRS Essentials",
         "credits": 100,
         "valid_months": 12,
-        "group": "one-time"
+        "features_title": "Includes",
+        "features": [
+          "MACRS, ADS and Section 179 calculators",
+          "Supabase and Drizzle ORM schema",
+          "Stripe checkout and client billing",
+          "Localized landing page copy",
+          "MDX documentation starter",
+          "One year of updates"
+        ]
       },
       {
-        "title": "Pro",
-        "description": "For growing brands with premium expectations.",
-        "label": "Recommended",
-        "features_title": "Everything in Starter plus",
-        "features": [
-          "Premium support (48h SLA)",
-          "60 min onboarding call",
-          "Extended admin dashboards",
-          "AI credits & sample flows",
-          "White-label email templates",
-          "Lifetime updates"
-        ],
-        "interval": "one-time",
-        "amount": 19900,
+        "title": "Professional",
+        "description": "Built for growing teams that manage multiple entities.",
+        "amount": 21900,
         "currency": "USD",
-        "price": "$199",
-        "original_price": "$259",
+        "price": "$219",
+        "original_price": "$279",
         "unit": "one time",
+        "interval": "one-time",
         "is_featured": true,
-        "tip": "Launch with expert guidance",
+        "group": "one-time",
+        "label": "Recommended",
+        "tip": "Onboard with our experts",
         "button": {
-          "title": "Upgrade to Pro",
+          "title": "Upgrade to Professional",
           "url": "/#pricing",
           "icon": "RiFlashlightFill"
         },
-        "product_id": "pro-usd",
-        "product_name": "Mondkalender Pro",
-        "credits": 200,
+        "product_id": "professional-usd",
+        "product_name": "MACRS Professional",
+        "credits": 220,
         "valid_months": 24,
-        "group": "one-time"
+        "features_title": "Everything in Essentials plus",
+        "features": [
+          "Premium support with 48 hour SLA",
+          "Ninety minute onboarding workshop",
+          "Advanced admin and approval flows",
+          "AI assisted asset classification",
+          "White label email templates",
+          "Lifetime updates"
+        ]
       },
       {
-        "title": "Business",
-        "description": "Enterprise-grade support and feature co-creation.",
-        "features_title": "Designed for scale",
-        "features": [
-          "Priority roadmap requests",
-          "Multi-tenant capabilities",
-          "Audit logging & compliance guides",
-          "SAML/SCIM integrations",
-          "Custom SLA & workshops",
-          "Joint tool development"
-        ],
-        "interval": "month",
-        "amount": 4500,
+        "title": "Firm",
+        "description": "Enterprise grade support and co-development options.",
+        "amount": 5200,
         "currency": "USD",
-        "price": "$45",
-        "original_price": "$59",
+        "price": "$52",
+        "original_price": "$69",
         "unit": "per month",
+        "interval": "month",
         "is_featured": true,
+        "group": "monthly",
+        "label": null,
         "tip": "Cancel any time",
         "button": {
           "title": "Talk to sales",
           "url": "/pricing",
           "icon": "RiCustomerService2Line"
         },
-        "product_id": "business-monthly",
-        "product_name": "Mondkalender Business",
-        "credits": 400,
+        "product_id": "firm-monthly",
+        "product_name": "MACRS Firm",
+        "credits": 450,
         "valid_months": 1,
-        "group": "monthly"
+        "features_title": "Designed for scale",
+        "features": [
+          "Priority roadmap influence",
+          "Multi entity and consolidation support",
+          "Audit logging and compliance guides",
+          "SAML and SCIM integrations",
+          "Custom SLA and enablement sessions",
+          "Joint asset template creation"
+        ]
       },
       {
-        "title": "Pro Annual",
-        "description": "Save 20% and access exclusive beta features.",
-        "features_title": "Best value",
-        "features": [
-          "Everything in Pro",
-          "12 months premium support",
-          "Exclusive template drops",
-          "Beta feature access",
-          "Launch checklist & playbooks",
-          "Partner listing on mondkalender.app"
-        ],
-        "interval": "year",
-        "amount": 179900,
+        "title": "Enterprise Annual",
+        "description": "Save twenty percent and unlock exclusive beta access.",
+        "amount": 185900,
         "currency": "USD",
-        "price": "$179 / month",
-        "original_price": "$219 / month",
+        "price": "$185 / month",
+        "original_price": "$229 / month",
         "unit": "billed yearly",
+        "interval": "year",
         "is_featured": true,
-        "tip": "20% cheaper than monthly",
+        "group": "yearly",
+        "label": null,
+        "tip": "Best value for advisory teams",
         "button": {
           "title": "Choose annual plan",
           "url": "/pricing",
           "icon": "RiSparklingLine"
         },
-        "product_id": "pro-yearly",
-        "product_name": "Mondkalender Pro Annual",
-        "credits": 2400,
+        "product_id": "enterprise-yearly",
+        "product_name": "MACRS Enterprise Annual",
+        "credits": 2600,
         "valid_months": 12,
-        "group": "yearly"
+        "features_title": "Best value",
+        "features": [
+          "Everything in Professional",
+          "Twelve months premium support",
+          "Exclusive template drops",
+          "Beta access to automation features",
+          "Launch checklist and playbooks",
+          "Partner listing on macrsdepreciationcalculator.com"
+        ]
       }
     ]
   },
   "footer": {
     "name": "footer",
     "brand": {
-      "title": "Mondkalender",
-      "description": "Your comprehensive Mondkalender 2026 with tools for haare schneiden, gardening, cooking and health by moon phases. Precise calculations for every day.",
+      "title": "MACRS Depreciation Calculator",
+      "description": "Build accurate MACRS and ADS schedules, automate Form 4562 support and keep every fixed asset audit ready with our all in one workspace.",
       "logo": {
         "src": "/logo.png",
-        "alt": "Mondkalender 2026"
+        "alt": "MACRS Depreciation Calculator"
       },
       "url": "/"
     },
-    "copyright": "© 2025 • Mondkalender – Your Moon Phase Guide",
+    "copyright": "Copyright 2025 MACRS Depreciation Calculator - Built for tax professionals",
     "nav": {
       "items": [
         {
@@ -577,7 +581,7 @@
               "target": "_self"
             },
             {
-              "title": "Tools",
+              "title": "Calculators",
               "url": "/tools",
               "target": "_self"
             },
@@ -589,25 +593,41 @@
           ]
         },
         {
-          "title": "Tools",
-          "children": []
-        },
-        {
-          "title": "Network",
+          "title": "Resources",
           "children": [
             {
-              "title": "Partner Program",
+              "title": "Knowledge base",
+              "url": "/docs",
+              "target": "_self"
+            },
+            {
+              "title": "MACRS classes",
+              "url": "/glossary",
+              "target": "_self"
+            },
+            {
+              "title": "Blog",
+              "url": "/posts",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "Company",
+          "children": [
+            {
+              "title": "Partner program",
               "url": "/partners",
               "target": "_self"
             },
             {
               "title": "Support",
-              "url": "mailto:support@mondkalender.codes",
+              "url": "mailto:support@macrsdepreciationcalculator.com",
               "target": "_self"
             },
             {
-              "title": "Community",
-              "url": "/discord",
+              "title": "Contact sales",
+              "url": "/pricing",
               "target": "_self"
             }
           ]
@@ -619,25 +639,25 @@
         {
           "title": "X",
           "icon": "RiTwitterXFill",
-          "url": "https://x.com/mondkalenderai",
+          "url": "https://x.com/macrsapp",
           "target": "_blank"
         },
         {
           "title": "GitHub",
           "icon": "RiGithubFill",
-          "url": "https://github.com/mondkalenderai",
+          "url": "https://github.com/macrs-depreciation-calculator",
           "target": "_blank"
         },
         {
-          "title": "Discord",
-          "icon": "RiDiscordFill",
-          "url": "https://discord.gg/HQNnrzjZQS",
+          "title": "LinkedIn",
+          "icon": "RiLinkedinFill",
+          "url": "https://www.linkedin.com/company/macrs-depreciation-calculator",
           "target": "_blank"
         },
         {
           "title": "Email",
           "icon": "RiMailLine",
-          "url": "mailto:support@mondkalender.codes",
+          "url": "mailto:support@macrsdepreciationcalculator.com",
           "target": "_self"
         }
       ]

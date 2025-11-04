@@ -1,9 +1,9 @@
 {
-  "name": "mondkalender",
+  "name": "Macrs Depreciation Calculator",
   "version": "1.0.0",
   "private": true,
-  "author": "mondkalender",
-  "homepage": "https://mondkalender.app",
+  "author": "Macrs Depreciation Calculator",
+  "homepage": "https://macrsdepreciationcalculator.com",
   "engines": {
     "node": "22.x",
     "pnpm": ">=8.0.0"

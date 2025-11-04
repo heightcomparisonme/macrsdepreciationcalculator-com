@@ -22,7 +22,7 @@ export async function generateMetadata({
   const t = await getTranslations();
   const path = locale === defaultLocale ? "/" : `/${locale}`;
   const social = createSocialMetadata({
-    title: t("metadata.title") || "Mondkalender",
+    title: t("metadata.title") || "Macrs Depreciation Calculator",
     description:
       t("metadata.description") ||
       "Mondkalender 2026 - Full Year Moon Planner for daily harmony.",

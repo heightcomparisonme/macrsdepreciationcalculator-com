@@ -67,7 +67,7 @@ export async function GET(request: NextRequest) {
             opacity: 0.9,
           }}
         >
-          <span>Mondkalender.app</span>
+          <span>macrsdepreciationcalculator.com</span>
           <span>Moon phase intelligence for every day</span>
         </div>
       </div>

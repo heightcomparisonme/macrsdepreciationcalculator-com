@@ -155,22 +155,22 @@ export default async function TestCalculatorPage({ params }: Props) {
   const features: FeatureItem[] = [
     {
       icon: "calculator",
-      key: "simple",
+      key: "irs_compliant",
       color: "text-blue-400",
     },
     {
       icon: "zap",
-      key: "fast",
+      key: "multiple_methods",
       color: "text-yellow-400",
     },
     {
       icon: "check",
-      key: "accurate",
+      key: "detailed_schedule",
       color: "text-green-400",
     },
     {
       icon: "globe",
-      key: "multilingual",
+      key: "easy_to_use",
       color: "text-purple-400",
     },
   ];
@@ -178,19 +178,19 @@ export default async function TestCalculatorPage({ params }: Props) {
   const features2: Features2Item[] = [
     {
       icon: "sparkles",
-      key: "easy",
+      key: "accurate",
       beforeImage: "/imgs/features/5.png",
       afterImage: "/imgs/features/6.png",
     },
     {
       icon: "target",
-      key: "precise",
+      key: "comprehensive",
       beforeImage: "/imgs/features/3.png",
       afterImage: "/imgs/features/3-after.png",
     },
     {
       icon: "shield",
-      key: "reliable",
+      key: "flexible",
       beforeImage: "/imgs/features/2.png",
       afterImage: "/imgs/features/2-after.png",
     },

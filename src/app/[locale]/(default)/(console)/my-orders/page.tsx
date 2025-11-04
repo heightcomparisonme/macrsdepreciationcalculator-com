@@ -99,7 +99,7 @@ export default async function MyOrdersPage() {
         {
           title: t("my_orders.read_docs"),
           icon: "RiBookLine",
-          url: "https://docs.mondkalender.app",
+          url: "https://docs.macrsdepreciationcalculator.com",
           target: "_blank",
           variant: "default",
         },

@@ -124,7 +124,7 @@ export default async function YourToolPage({ params }: Props) {
     notFound();
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_WEB_URL ?? "https://mondkalender.app";
+  const baseUrl = process.env.NEXT_PUBLIC_WEB_URL ?? "https://macrsdepreciationcalculator.com";
 
   // Get translations safely
   let title = "Your Tool";
