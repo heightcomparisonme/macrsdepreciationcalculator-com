@@ -1,0 +1,521 @@
+---
+title: AI Integration
+description: Learn how to integrate and use AI services in AIGXT
+icon: "Brain"
+---
+
+# AI Integration
+
+AIGXT provides comprehensive AI integration capabilities, supporting multiple AI providers and services to power your applications.
+
+## Supported AI Providers
+
+### OpenAI Integration
+
+AIGXT supports OpenAI's latest models including GPT-4, GPT-3.5, and more.
+
+#### Configuration
+
+```bash
+OPENAI_API_KEY="sk-your-openai-api-key"
+OPENAI_MODEL="gpt-4"
+```
+
+#### Usage Example
+
+```typescript
+import { openai } from '@ai-sdk/openai';
+import { generateText } from 'ai';
+
+export async function generateContent(prompt: string) {
+  const { text } = await generateText({
+    model: openai('gpt-4'),
+    prompt,
+  });
+  
+  return text;
+}
+```
+
+### Replicate Integration
+
+For specialized AI models and image generation.
+
+#### Configuration
+
+```bash
+REPLICATE_API_TOKEN="r8_your-replicate-token"
+```
+
+#### Image Generation Example
+
+```typescript
+import Replicate from 'replicate';
+
+const replicate = new Replicate({
+  auth: process.env.REPLICATE_API_TOKEN,
+});
+
+export async function generateImage(prompt: string) {
+  const output = await replicate.run(
+    "stability-ai/stable-diffusion:db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf",
+    {
+      input: {
+        prompt,
+        width: 512,
+        height: 512,
+      }
+    }
+  );
+  
+  return output;
+}
+```
+
+### DeepSeek Integration
+
+Alternative AI provider with competitive pricing.
+
+#### Configuration
+
+```bash
+DEEPSEEK_API_KEY="your-deepseek-api-key"
+```
+
+#### Usage Example
+
+```typescript
+import { deepseek } from '@ai-sdk/deepseek';
+import { generateText } from 'ai';
+
+export async function generateWithDeepSeek(prompt: string) {
+  const { text } = await generateText({
+    model: deepseek('deepseek-chat'),
+    prompt,
+  });
+  
+  return text;
+}
+```
+
+## AI Workstation
+
+The AI Workstation is a powerful interface for interacting with AI models.
+
+### Features
+
+- **Multi-model Support**: Switch between different AI providers
+- **Streaming Responses**: Real-time response streaming
+- **Conversation History**: Persistent chat history
+- **File Upload**: Support for document analysis
+- **Custom Prompts**: Save and reuse custom prompts
+
+### Implementation
+
+The AI Workstation is implemented in `src/app/[locale]/(default)/ai-workstation/page.tsx`:
+
+```typescript
+'use client';
+
+import { useState } from 'react';
+import { useChat } from 'ai/react';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+
+export default function AIWorkstation() {
+  const { messages, input, handleInputChange, handleSubmit } = useChat({
+    api: '/api/chat',
+  });
+
+  return (
+    <div className="container mx-auto p-6">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold mb-6">AI Workstation</h1>
+        
+        <div className="space-y-4">
+          {messages.map((message) => (
+            <div key={message.id} className="p-4 border rounded-lg">
+              <div className="font-semibold">
+                {message.role === 'user' ? 'You' : 'AI'}
+              </div>
+              <div className="mt-2">{message.content}</div>
+            </div>
+          ))}
+        </div>
+        
+        <form onSubmit={handleSubmit} className="mt-6">
+          <Textarea
+            value={input}
+            onChange={handleInputChange}
+            placeholder="Ask me anything..."
+            className="w-full"
+          />
+          <Button type="submit" className="mt-2">
+            Send
+          </Button>
+        </form>
+      </div>
+    </div>
+  );
+}
+```
+
+## Chat API Implementation
+
+The chat API handles AI interactions with streaming support.
+
+### API Route
+
+```typescript
+// src/app/api/chat/route.ts
+import { openai } from '@ai-sdk/openai';
+import { streamText } from 'ai';
+
+export async function POST(req: Request) {
+  const { messages } = await req.json();
+
+  const result = await streamText({
+    model: openai('gpt-4'),
+    messages,
+  });
+
+  return result.toDataStreamResponse();
+}
+```
+
+### Error Handling
+
+```typescript
+export async function POST(req: Request) {
+  try {
+    const { messages } = await req.json();
+
+    if (!messages || !Array.isArray(messages)) {
+      return Response.json(
+        { error: 'Invalid messages format' },
+        { status: 400 }
+      );
+    }
+
+    const result = await streamText({
+      model: openai('gpt-4'),
+      messages,
+    });
+
+    return result.toDataStreamResponse();
+  } catch (error) {
+    console.error('Chat API error:', error);
+    return Response.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+```
+
+## Advanced AI Features
+
+### Function Calling
+
+Enable AI models to call functions and tools.
+
+```typescript
+import { openai } from '@ai-sdk/openai';
+import { generateObject } from 'ai';
+import { z } from 'zod';
+
+const weatherSchema = z.object({
+  location: z.string(),
+  temperature: z.number(),
+  condition: z.string(),
+});
+
+export async function getWeatherWithAI(location: string) {
+  const { object } = await generateObject({
+    model: openai('gpt-4'),
+    prompt: `Get weather information for ${location}`,
+    schema: weatherSchema,
+  });
+
+  return object;
+}
+```
+
+### Image Analysis
+
+Analyze images using AI vision models.
+
+```typescript
+import { openai } from '@ai-sdk/openai';
+import { generateText } from 'ai';
+
+export async function analyzeImage(imageUrl: string) {
+  const { text } = await generateText({
+    model: openai('gpt-4-vision-preview'),
+    messages: [
+      {
+        role: 'user',
+        content: [
+          {
+            type: 'text',
+            text: 'Describe this image in detail.',
+          },
+          {
+            type: 'image',
+            image: imageUrl,
+          },
+        ],
+      },
+    ],
+  });
+
+  return text;
+}
+```
+
+### Document Processing
+
+Process and analyze documents.
+
+```typescript
+import { openai } from '@ai-sdk/openai';
+import { generateText } from 'ai';
+
+export async function processDocument(documentText: string) {
+  const { text } = await generateText({
+    model: openai('gpt-4'),
+    prompt: `Analyze the following document and provide a summary:\n\n${documentText}`,
+  });
+
+  return text;
+}
+```
+
+## State Management
+
+### AI Chat Store
+
+Manage AI chat state with Zustand.
+
+```typescript
+// src/stores/ai-chat-store.ts
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+
+interface Message {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: Date;
+}
+
+interface AIChatStore {
+  messages: Message[];
+  addMessage: (message: Omit<Message, 'id' | 'timestamp'>) => void;
+  clearMessages: () => void;
+  isLoading: boolean;
+  setIsLoading: (loading: boolean) => void;
+}
+
+export const useAIChatStore = create<AIChatStore>()(
+  persist(
+    (set) => ({
+      messages: [],
+      addMessage: (message) =>
+        set((state) => ({
+          messages: [
+            ...state.messages,
+            {
+              ...message,
+              id: crypto.randomUUID(),
+              timestamp: new Date(),
+            },
+          ],
+        })),
+      clearMessages: () => set({ messages: [] }),
+      isLoading: false,
+      setIsLoading: (loading) => set({ isLoading: loading }),
+    }),
+    {
+      name: 'ai-chat-storage',
+    }
+  )
+);
+```
+
+## Performance Optimization
+
+### Caching AI Responses
+
+Implement caching for expensive AI operations.
+
+```typescript
+import { Redis } from 'ioredis';
+
+const redis = new Redis(process.env.REDIS_URL);
+
+export async function getCachedAIResponse(prompt: string) {
+  const cacheKey = `ai:${Buffer.from(prompt).toString('base64')}`;
+  
+  // Try to get from cache
+  const cached = await redis.get(cacheKey);
+  if (cached) {
+    return JSON.parse(cached);
+  }
+  
+  // Generate new response
+  const response = await generateAIResponse(prompt);
+  
+  // Cache for 1 hour
+  await redis.setex(cacheKey, 3600, JSON.stringify(response));
+  
+  return response;
+}
+```
+
+### Rate Limiting
+
+Implement rate limiting for AI API calls.
+
+```typescript
+// src/lib/rate-limit.ts
+import { Ratelimit } from '@upstash/ratelimit';
+import { Redis } from '@upstash/redis';
+
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+});
+
+export const ratelimit = new Ratelimit({
+  redis,
+  limiter: Ratelimit.slidingWindow(10, '1 m'), // 10 requests per minute
+});
+
+export async function checkRateLimit(identifier: string) {
+  const { success, limit, reset, remaining } = await ratelimit.limit(identifier);
+  
+  return {
+    success,
+    limit,
+    reset,
+    remaining,
+  };
+}
+```
+
+## Security Considerations
+
+### API Key Management
+
+- Store API keys securely in environment variables
+- Use different keys for development and production
+- Implement key rotation policies
+- Monitor API usage and costs
+
+### Input Validation
+
+```typescript
+import { z } from 'zod';
+
+const chatMessageSchema = z.object({
+  content: z.string().min(1).max(4000),
+  role: z.enum(['user', 'assistant']),
+});
+
+export function validateChatMessage(data: unknown) {
+  return chatMessageSchema.parse(data);
+}
+```
+
+### Content Filtering
+
+```typescript
+export async function filterContent(content: string) {
+  // Implement content filtering logic
+  const inappropriateKeywords = ['spam', 'abuse', 'hate'];
+  
+  const hasInappropriateContent = inappropriateKeywords.some(keyword =>
+    content.toLowerCase().includes(keyword)
+  );
+  
+  if (hasInappropriateContent) {
+    throw new Error('Content contains inappropriate material');
+  }
+  
+  return content;
+}
+```
+
+## Monitoring and Analytics
+
+### Usage Tracking
+
+```typescript
+// src/lib/ai-analytics.ts
+export async function trackAIUsage(
+  provider: string,
+  model: string,
+  tokens: number,
+  cost: number
+) {
+  // Track AI usage for analytics and billing
+  console.log('AI Usage:', {
+    provider,
+    model,
+    tokens,
+    cost,
+    timestamp: new Date(),
+  });
+}
+```
+
+### Error Monitoring
+
+```typescript
+import * as Sentry from '@sentry/nextjs';
+
+export async function handleAIError(error: Error, context: any) {
+  Sentry.captureException(error, {
+    tags: {
+      component: 'ai-integration',
+    },
+    extra: context,
+  });
+  
+  // Log error for debugging
+  console.error('AI Integration Error:', error);
+}
+```
+
+## Best Practices
+
+1. **Model Selection**: Choose appropriate models for your use case
+2. **Error Handling**: Implement comprehensive error handling
+3. **Rate Limiting**: Prevent API abuse and control costs
+4. **Caching**: Cache responses when appropriate
+5. **Security**: Validate inputs and filter content
+6. **Monitoring**: Track usage and monitor for issues
+7. **Cost Management**: Monitor API usage and costs
+8. **Fallbacks**: Implement fallback strategies for API failures
+
+## Troubleshooting
+
+### Common Issues
+
+**API Key Errors:**
+- Verify API keys are correctly set in environment variables
+- Check API key permissions and quotas
+- Ensure keys are not expired
+
+**Rate Limiting:**
+- Implement proper rate limiting
+- Use exponential backoff for retries
+- Consider upgrading API plans
+
+**Model Errors:**
+- Check model availability
+- Verify input format and size limits
+- Handle model-specific errors appropriately
+
+For more help, check the [Troubleshooting Guide](/docs/troubleshooting) or visit our [Support Page](/support).

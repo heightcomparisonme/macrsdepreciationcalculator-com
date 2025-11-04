@@ -1,0 +1,45 @@
+{
+  "glossary": {
+    "metadata": {
+      "title": "术语表 - 核心术语解释",
+      "description": "全面的术语表，包含核心术语和概念。查找清晰的定义和解释。"
+    },
+    "page": {
+      "title": "术语表",
+      "subtitle": "每个重要术语的详细解释。",
+      "searchPlaceholder": "搜索术语...",
+      "noResults": "未找到结果",
+      "searching": "搜索中...",
+      "quickSearch": "快速搜索",
+      "recentPosts": "最新博客文章",
+      "joinCommunity": {
+        "title": "加入我们的社区",
+        "description": "获取提示、新术语和专家更新。",
+        "button": "立即加入"
+      },
+      "readMore": "阅读更多",
+      "synonyms": "同义词"
+    },
+    "admin": {
+      "title": "术语管理",
+      "newTerm": "新建术语",
+      "editTerm": "编辑术语",
+      "status": "状态",
+      "updated": "更新时间",
+      "actions": "操作",
+      "edit": "编辑",
+      "delete": "删除",
+      "save": "保存",
+      "cancel": "取消",
+      "locale": "语言",
+      "slug": "URL标识",
+      "termTitle": "标题",
+      "definition": "定义",
+      "seoTitle": "SEO标题",
+      "seoDescription": "SEO描述",
+      "draft": "草稿",
+      "published": "已发布",
+      "confirmDelete": "确定要删除此术语吗？"
+    }
+  }
+}

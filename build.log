@@ -1,0 +1,528 @@
+
+> cpm-calculator@1.0.0 build D:\workplace\cpmcalcultor
+> next build
+
+ ⚠ Invalid next.config.mjs options detected: 
+ ⚠     Unrecognized key(s) in object: 'turbopack'
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+   ▲ Next.js 15.2.3
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+[MDX] updated map file in 123.30559999999969ms
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+
+Failed to compile.
+
+./src/app/api/ai-workstation/generate/route.ts
+28:7  Error: 'watermark' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+40:70  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+44:82  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+98:18  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+134:16  Error: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+148:17  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+180:68  Error: '_' is defined but never used.  @typescript-eslint/no-unused-vars
+180:71  Error: 'index' is defined but never used.  @typescript-eslint/no-unused-vars
+195:66  Error: '_' is defined but never used.  @typescript-eslint/no-unused-vars
+195:69  Error: 'index' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/[locale]/(admin)/admin/categories/add/page.tsx
+83:39  Error: 'passby' is defined but never used.  @typescript-eslint/no-unused-vars
+83:47  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+128:23  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/[locale]/(admin)/admin/categories/[uuid]/edit/page.tsx
+95:39  Error: 'passby' is defined but never used.  @typescript-eslint/no-unused-vars
+95:47  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+138:23  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/[locale]/(admin)/admin/feedbacks/page.tsx
+21:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+21:13  Warning: img elements must have an alt prop, either with meaningful text, or an empty string for decorative images.  jsx-a11y/alt-text
+
+./src/app/[locale]/(admin)/admin/glossary/page.tsx
+86:31  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/[locale]/(admin)/admin/glossary/[id]/page.tsx
+42:36  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+55:6  Warning: React Hook useEffect has a missing dependency: 'fetchTermData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+60:13  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/[locale]/(admin)/admin/users/page.tsx
+18:9  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+18:9  Warning: img elements must have an alt prop, either with meaningful text, or an empty string for decorative images.  jsx-a11y/alt-text
+
+./src/app/[locale]/(default)/(console)/my-invites/page.tsx
+97:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+97:13  Warning: img elements must have an alt prop, either with meaningful text, or an empty string for decorative images.  jsx-a11y/alt-text
+
+./src/app/[locale]/(default)/glossary/page.tsx
+84:33  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/[locale]/(default)/page.tsx
+20:10  Error: 'getTranslations' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/[locale]/(default)/tools/common/page.tsx
+11:9  Error: 't' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/[locale]/(default)/tools/cpa-calculator/page.tsx
+11:9  Error: 't' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/[locale]/(default)/tools/cpc-calculator/page.tsx
+11:9  Error: 't' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/[locale]/(default)/tools/cpm-calculator/page.tsx
+11:9  Error: 't' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/[locale]/(default)/tools/ctr-calculator/page.tsx
+11:9  Error: 't' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/[locale]/(default)/tools/page.tsx
+29:9  Warning: The 'allTools' array makes the dependencies of useMemo Hook (at line 101) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allTools' in its own useMemo() Hook.  react-hooks/exhaustive-deps
+
+./src/app/[locale]/(default)/tools/roi-calculator/page.tsx
+11:9  Error: 't' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/[locale]/(default)/tools/youtube-cpm-calculator/page.tsx
+11:9  Error: 't' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/[locale]/(docs)/docs/[[...slug]]/page.tsx
+90:59  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+91:10  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/[locale]/(docs)/layout.config.tsx
+5:29  Error: '_locale' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/[locale]/auth/signin/page.tsx
+27:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/blocks/aero/AeroInput.tsx
+152:13  Warning: Image elements must have an alt prop, either with meaningful text, or an empty string for decorative images.  jsx-a11y/alt-text
+
+./src/components/blocks/aero/VideoBackground.tsx
+153:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/blocks/blog/index.tsx
+77:23  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/blocks/branding/index.tsx
+19:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/blocks/comments/index.tsx
+8:19  Error: 'CommentListResponse' is defined but never used.  @typescript-eslint/no-unused-vars
+87:6  Warning: React Hook useEffect has a missing dependency: 'fetchComments'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/components/blocks/data-cards/index.tsx
+1:10  Error: 'IconTrendingDown' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/blocks/discord/QuickRecommendations.tsx
+50:17  Error: 'Icon' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/blocks/empty/index.tsx
+1:1  Warning: Unexpected default export of anonymous function  import/no-anonymous-default-export
+1:16  Error: Component definition is missing display name  react/display-name
+
+./src/components/blocks/feature0/index.tsx
+86:10  Error: 'velocity' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+470:9  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/blocks/feature1/index.tsx
+14:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/blocks/feature3/index.tsx
+55:27  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+78:23  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/blocks/footer/index.tsx
+20:23  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/blocks/form/index.tsx
+70:38  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+81:1  Warning: Unexpected default export of anonymous function  import/no-anonymous-default-export
+81:16  Error: Component definition is missing display name  react/display-name
+89:10  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+90:12  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+137:41  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+139:19  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+182:55  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/blocks/header/index.tsx
+138:43  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+142:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+205:58  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+252:45  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+278:39  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+297:51  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+301:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+323:59  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+327:25  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+361:54  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+387:45  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+410:47  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/blocks/hero/Hero/index.tsx
+31:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+42:52  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+79:45  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/blocks/hero/HeroSection.tsx
+7:28  Error: 'AnimationConfig' is defined but never used.  @typescript-eslint/no-unused-vars
+27:7  Error: 'defaultAnimationConfig' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+74:6  Warning: React Hook React.useEffect has a missing dependency: 'heroSwitcher'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/components/blocks/hero/PreviewCarousel.tsx
+11:33  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/blocks/pricing/index.tsx
+240:29  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/blocks/showcase1/index.tsx
+99:27  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/blocks/stats/index.tsx
+1:10  Error: 'Heart' is defined but never used.  @typescript-eslint/no-unused-vars
+1:17  Error: 'Zap' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/blocks/table/copy.tsx
+7:1  Warning: Unexpected default export of anonymous function  import/no-anonymous-default-export
+7:16  Error: Component definition is missing display name  react/display-name
+
+./src/components/blocks/table/dropdown.tsx
+7:3  Error: 'DropdownMenuRadioGroup' is defined but never used.  @typescript-eslint/no-unused-vars
+8:3  Error: 'DropdownMenuRadioItem' is defined but never used.  @typescript-eslint/no-unused-vars
+9:3  Error: 'DropdownMenuSeparator' is defined but never used.  @typescript-eslint/no-unused-vars
+10:3  Error: 'DropdownMenuShortcut' is defined but never used.  @typescript-eslint/no-unused-vars
+11:3  Error: 'DropdownMenuSub' is defined but never used.  @typescript-eslint/no-unused-vars
+12:3  Error: 'DropdownMenuSubContent' is defined but never used.  @typescript-eslint/no-unused-vars
+13:3  Error: 'DropdownMenuSubTrigger' is defined but never used.  @typescript-eslint/no-unused-vars
+23:1  Warning: Unexpected default export of anonymous function  import/no-anonymous-default-export
+23:16  Error: Component definition is missing display name  react/display-name
+
+./src/components/blocks/table/image.tsx
+3:3  Error: 'options' is defined but never used.  @typescript-eslint/no-unused-vars
+7:13  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+11:5  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/blocks/table/index.tsx
+22:10  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+45:27  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/blocks/table/label.tsx
+9:13  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/blocks/table/time.tsx
+9:13  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/blocks/toolbar/index.tsx
+17:31  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/blocks/tools/ToolCard.tsx
+61:26  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/blocks/tools/ToolHero.tsx
+36:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+47:52  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+84:45  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/blocks/tools/ToolsSearch.tsx
+14:9  Error: 't' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/blocks/tools/TrendingToolsSidebar.tsx
+47:51  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/console/sidebar/nav.tsx
+10:1  Warning: Unexpected default export of anonymous function  import/no-anonymous-default-export
+10:16  Error: Component definition is missing display name  react/display-name
+32:29  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+35:61  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/console/slots/form/index.tsx
+7:1  Warning: Unexpected default export of anonymous function  import/no-anonymous-default-export
+7:16  Error: Component definition is missing display name  react/display-name
+
+./src/components/console/slots/table/index.tsx
+6:1  Warning: Unexpected default export of anonymous function  import/no-anonymous-default-export
+6:16  Error: Component definition is missing display name  react/display-name
+
+./src/components/dashboard/header/index.tsx
+15:1  Warning: Unexpected default export of anonymous function  import/no-anonymous-default-export
+15:16  Error: Component definition is missing display name  react/display-name
+
+./src/components/dashboard/sidebar/bottom_nav.tsx
+29:41  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/dashboard/sidebar/footer.tsx
+3:10  Error: 'SidebarTrigger' is defined but never used.  @typescript-eslint/no-unused-vars
+11:1  Warning: Unexpected default export of anonymous function  import/no-anonymous-default-export
+11:16  Error: Component definition is missing display name  react/display-name
+14:9  Error: 'handleTabChange' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+25:35  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/dashboard/sidebar/header.tsx
+12:1  Warning: Unexpected default export of anonymous function  import/no-anonymous-default-export
+12:16  Error: Component definition is missing display name  react/display-name
+18:37  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+21:42  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/dashboard/sidebar/library.tsx
+5:3  Error: 'IconFolder' is defined but never used.  @typescript-eslint/no-unused-vars
+6:3  Error: 'IconShare3' is defined but never used.  @typescript-eslint/no-unused-vars
+7:3  Error: 'IconTrash' is defined but never used.  @typescript-eslint/no-unused-vars
+12:3  Error: 'DropdownMenuContent' is defined but never used.  @typescript-eslint/no-unused-vars
+13:3  Error: 'DropdownMenuItem' is defined but never used.  @typescript-eslint/no-unused-vars
+14:3  Error: 'DropdownMenuSeparator' is defined but never used.  @typescript-eslint/no-unused-vars
+15:3  Error: 'DropdownMenuTrigger' is defined but never used.  @typescript-eslint/no-unused-vars
+21:3  Error: 'SidebarMenuAction' is defined but never used.  @typescript-eslint/no-unused-vars
+31:11  Error: 'isMobile' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+49:43  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/dashboard/sidebar/nav.tsx
+50:49  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+75:56  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/dashboard/sidebar/user.tsx
+103:45  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/dashboard/slots/form/index.tsx
+6:1  Warning: Unexpected default export of anonymous function  import/no-anonymous-default-export
+6:16  Error: Component definition is missing display name  react/display-name
+
+./src/components/dashboard/slots/table/index.tsx
+7:1  Warning: Unexpected default export of anonymous function  import/no-anonymous-default-export
+7:16  Error: Component definition is missing display name  react/display-name
+
+./src/components/examples/multi-payment-demo.tsx
+5:10  Error: 'Button' is defined but never used.  @typescript-eslint/no-unused-vars
+43:41  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+48:38  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+117:61  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/feedback/index.tsx
+7:3  Error: 'DialogFooter' is defined but never used.  @typescript-eslint/no-unused-vars
+12:10  Error: 'Github' is defined but never used.  @typescript-eslint/no-unused-vars
+12:18  Error: 'Mail' is defined but never used.  @typescript-eslint/no-unused-vars
+12:39  Error: 'Twitter' is defined but never used.  @typescript-eslint/no-unused-vars
+76:14  Error: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/glossary/QuickSearch.tsx
+43:33  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/glossary/RecentPosts.tsx
+12:56  Error: 'locale' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/icon/index.tsx
+41:38  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/invite/index.tsx
+3:16  Error: 'CardContent' is defined but never used.  @typescript-eslint/no-unused-vars
+10:10  Error: 'User' is defined but never used.  @typescript-eslint/no-unused-vars
+15:56  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/invite/modal.tsx
+10:3  Error: 'DialogTrigger' is defined but never used.  @typescript-eslint/no-unused-vars
+15:10  Error: 'Label' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/locale/toggle.tsx
+14:1  Warning: Unexpected default export of anonymous function  import/no-anonymous-default-export
+14:16  Error: Component definition is missing display name  react/display-name
+
+./src/components/navigation/mobile-navigation.tsx
+4:30  Error: 'Settings' is defined but never used.  @typescript-eslint/no-unused-vars
+5:28  Error: 'navigationPresets' is defined but never used.  @typescript-eslint/no-unused-vars
+6:36  Error: 'advancedPresets' is defined but never used.  @typescript-eslint/no-unused-vars
+108:33  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+129:25  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+141:25  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/payment/provider-selector.tsx
+172:24  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+173:21  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/payment/unified-payment.tsx
+17:24  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+18:21  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+45:41  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+50:38  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+168:24  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+169:21  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/paypal/provider.tsx
+93:36  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+93:50  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+94:27  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+94:41  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+95:25  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/paypal/subscribe-button.tsx
+13:21  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+67:38  Error: 'data' is defined but never used.  @typescript-eslint/no-unused-vars
+67:44  Error: 'actions' is defined but never used.  @typescript-eslint/no-unused-vars
+101:35  Error: 'actions' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/sign/modal.tsx
+11:3  Error: 'DialogTrigger' is defined but never used.  @typescript-eslint/no-unused-vars
+21:3  Error: 'DrawerTrigger' is defined but never used.  @typescript-eslint/no-unused-vars
+23:20  Error: 'SiGmail' is defined but never used.  @typescript-eslint/no-unused-vars
+36:10  Error: 'open' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+36:16  Error: 'setOpen' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/sign/user.tsx
+61:41  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/theme/toggle.tsx
+9:11  Error: 'theme' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/ui/advanced-bottom-navigation.tsx
+11:3  Error: 'MessageCircle' is defined but never used.  @typescript-eslint/no-unused-vars
+55:51  Error: 'event' is defined but never used.  @typescript-eslint/no-unused-vars
+99:32  Error: 'item' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/ui/ai-workstation.tsx
+34:47  Error: 'split' is defined but never used.  @typescript-eslint/no-unused-vars
+34:54  Error: 'onSplitChange' is defined but never used.  @typescript-eslint/no-unused-vars
+115:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+142:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+225:46  Error: 'onApplyTemplate' is defined but never used.  @typescript-eslint/no-unused-vars
+277:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+300:3  Error: 'isPro' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+301:3  Error: 'isRecharged' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+445:14  Error: 'e' is defined but never used.  @typescript-eslint/no-unused-vars
+450:6  Warning: React Hook useCallback has a missing dependency: 't'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+575:21  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+583:6  Warning: React Hook useCallback has missing dependencies: 'creditsError', 'isGenerating', 'lastGenerationTime', and 't'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/components/ui/before-after-slider.tsx
+74:7  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+88:9  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/contexts/app.tsx
+18:25  Error: 'isGoogleOneTapEnabled' is defined but never used.  @typescript-eslint/no-unused-vars
+55:14  Error: 'e' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/db/index.ts
+8:7  Error: 'databaseUrl' is never reassigned. Use 'const' instead.  prefer-const
+
+./src/db/schema.ts
+3:3  Error: 'serial' is defined but never used.  @typescript-eslint/no-unused-vars
+9:3  Error: 'unique' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/hooks/useActiveTab.ts
+3:10  Error: 'TabContent' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/hooks/useHeroSwitcher.ts
+4:38  Error: 'HeroSwitcherState' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/hooks/useOneTapLogin.tsx
+8:1  Warning: Unexpected default export of anonymous function  import/no-anonymous-default-export
+8:16  Error: Component definition is missing display name  react/display-name
+9:17  Error: 'session' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+21:38  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+49:6  Warning: React Hook useEffect has a missing dependency: 'oneTapLogin'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/i18n/locale.ts
+1:10  Error: 'Pathnames' is defined but never used.  @typescript-eslint/no-unused-vars
+6:27  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/i18n/request.ts
+6:54  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+14:43  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+23:27  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+68:12  Error: 'e' is defined but never used.  @typescript-eslint/no-unused-vars
+73:35  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/integrations/paypal/index.ts
+188:33  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/lib/cache.ts
+5:7  Error: 'valueWithExpires' is never reassigned. Use 'const' instead.  prefer-const
+10:7  Error: 'valueArr' is never reassigned. Use 'const' instead.  prefer-const
+
+./src/lib/replicate-utils.ts
+8:18  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+16:79  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+105:45  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/lib/resp.ts
+1:32  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+13:64  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+14:7  Error: 'json' is never reassigned. Use 'const' instead.  prefer-const
+
+./src/lib/storage.ts
+34:5  Error: 'onProgress' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/lib/time.ts
+6:7  Error: 'time' is never reassigned. Use 'const' instead.  prefer-const
+12:7  Error: 'time' is never reassigned. Use 'const' instead.  prefer-const
+
+./src/models/category.ts
+1:22  Error: 'posts' is defined but never used.  @typescript-eslint/no-unused-vars
+3:15  Error: 'asc' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/models/order.ts
+107:21  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+230:3  Error: 'status' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/scripts/test-database.ts
+7:10  Error: 'orders' is defined but never used.  @typescript-eslint/no-unused-vars
+7:18  Error: 'users' is defined but never used.  @typescript-eslint/no-unused-vars
+7:25  Error: 'credits' is defined but never used.  @typescript-eslint/no-unused-vars
+14:12  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+73:41  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+108:38  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/scripts/test-multi-payment.ts
+12:14  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/services/page.ts
+27:12  Error: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/services/paypal.ts
+1:23  Error: 'updateSubOrder' is defined but never used.  @typescript-eslint/no-unused-vars
+2:10  Error: 'newPayPalClient' is defined but never used.  @typescript-eslint/no-unused-vars
+6:62  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+52:50  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+110:58  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+114:11  Error: 'subscriptionId' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+130:58  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+133:11  Error: 'subscriptionId' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+146:58  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+149:11  Error: 'subscriptionId' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+162:56  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+165:11  Error: 'subscriptionId' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+178:50  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+181:11  Error: 'subscriptionId' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+195:56  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+198:11  Error: 'subscriptionId' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+212:48  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/types/blocks/base.d.ts
+1:10  Error: 'ReactNode' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/types/blocks/form.d.ts
+33:31  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+41:14  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+55:10  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/types/blocks/table.d.ts
+5:13  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+7:21  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+7:29  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+12:9  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/types/context.d.ts
+1:10  Error: 'ReactNode' is defined but never used.  @typescript-eslint/no-unused-vars
+4:23  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/types/hero.ts
+65:38  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/types/mdx.d.ts
+3:26  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/types/slots/base.d.ts
+10:10  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+11:12  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+ ELIFECYCLE  Command failed with exit code 1.

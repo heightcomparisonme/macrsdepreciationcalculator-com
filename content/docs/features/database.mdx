@@ -1,0 +1,542 @@
+---
+title: Database
+description: Learn how to work with the database in AIGXT using Drizzle ORM
+icon: "Database"
+---
+
+# Database
+
+AIGXT uses Drizzle ORM with PostgreSQL for robust database management. This guide covers database setup, schema design, and best practices.
+
+## Database Setup
+
+### PostgreSQL Configuration
+
+AIGXT uses PostgreSQL as the primary database. Configure your connection:
+
+```bash
+DATABASE_URL="postgresql://username:password@localhost:5432/aigxt"
+```
+
+### Drizzle ORM Setup
+
+The database schema is defined in `src/db/schema.ts`:
+
+```typescript
+import { pgTable, serial, varchar, timestamp, text, boolean } from 'drizzle-orm/pg-core';
+
+export const users = pgTable('users', {
+  id: serial('id').primaryKey(),
+  email: varchar('email', { length: 255 }).notNull().unique(),
+  name: varchar('name', { length: 255 }),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+});
+
+export const posts = pgTable('posts', {
+  id: serial('id').primaryKey(),
+  title: varchar('title', { length: 255 }).notNull(),
+  content: text('content'),
+  published: boolean('published').default(false),
+  authorId: serial('author_id').references(() => users.id),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+});
+```
+
+## Database Operations
+
+### Connection Setup
+
+```typescript
+// src/db/index.ts
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
+import * as schema from './schema';
+
+const connectionString = process.env.DATABASE_URL!;
+const client = postgres(connectionString);
+export const db = drizzle(client, { schema });
+```
+
+### Basic CRUD Operations
+
+#### Create Records
+
+```typescript
+import { db } from '@/db';
+import { users, posts } from '@/db/schema';
+
+// Create a user
+const newUser = await db.insert(users).values({
+  email: 'user@example.com',
+  name: 'John Doe',
+}).returning();
+
+// Create a post
+const newPost = await db.insert(posts).values({
+  title: 'My First Post',
+  content: 'This is the content of my first post.',
+  authorId: newUser[0].id,
+  published: true,
+}).returning();
+```
+
+#### Read Records
+
+```typescript
+import { eq, and, or, like } from 'drizzle-orm';
+
+// Get all users
+const allUsers = await db.select().from(users);
+
+// Get user by email
+const user = await db.select().from(users).where(eq(users.email, 'user@example.com'));
+
+// Get published posts
+const publishedPosts = await db.select().from(posts).where(eq(posts.published, true));
+
+// Search posts by title
+const searchResults = await db.select().from(posts).where(
+  like(posts.title, '%search term%')
+);
+```
+
+#### Update Records
+
+```typescript
+// Update user
+await db.update(users)
+  .set({ name: 'Jane Doe' })
+  .where(eq(users.id, 1));
+
+// Update post
+await db.update(posts)
+  .set({ 
+    title: 'Updated Title',
+    updatedAt: new Date()
+  })
+  .where(eq(posts.id, 1));
+```
+
+#### Delete Records
+
+```typescript
+// Delete user
+await db.delete(users).where(eq(users.id, 1));
+
+// Delete post
+await db.delete(posts).where(eq(posts.id, 1));
+```
+
+## Relationships and Joins
+
+### Defining Relationships
+
+```typescript
+// src/db/schema.ts
+import { relations } from 'drizzle-orm';
+
+export const usersRelations = relations(users, ({ many }) => ({
+  posts: many(posts),
+}));
+
+export const postsRelations = relations(posts, ({ one }) => ({
+  author: one(users, {
+    fields: [posts.authorId],
+    references: [users.id],
+  }),
+}));
+```
+
+### Querying with Relations
+
+```typescript
+import { db } from '@/db';
+import { users, posts } from '@/db/schema';
+
+// Get user with posts
+const userWithPosts = await db.query.users.findFirst({
+  where: eq(users.id, 1),
+  with: {
+    posts: true,
+  },
+});
+
+// Get post with author
+const postWithAuthor = await db.query.posts.findFirst({
+  where: eq(posts.id, 1),
+  with: {
+    author: true,
+  },
+});
+
+// Get all posts with authors
+const allPostsWithAuthors = await db.query.posts.findMany({
+  with: {
+    author: true,
+  },
+});
+```
+
+## Migrations
+
+### Generating Migrations
+
+When you modify the schema, generate migration files:
+
+```bash
+pnpm db:generate
+```
+
+This creates migration files in `src/db/migrations/`.
+
+### Applying Migrations
+
+Apply pending migrations to the database:
+
+```bash
+pnpm db:migrate
+```
+
+### Development Mode
+
+For development, you can push schema changes directly:
+
+```bash
+pnpm db:push
+```
+
+**Note**: Only use `db:push` in development. Always use migrations in production.
+
+## Advanced Queries
+
+### Complex Where Conditions
+
+```typescript
+import { and, or, not, inArray, between } from 'drizzle-orm';
+
+// Multiple conditions
+const complexQuery = await db.select().from(posts).where(
+  and(
+    eq(posts.published, true),
+    or(
+      like(posts.title, '%AI%'),
+      like(posts.content, '%machine learning%')
+    ),
+    not(eq(posts.authorId, 1))
+  )
+);
+
+// IN clause
+const specificPosts = await db.select().from(posts).where(
+  inArray(posts.id, [1, 2, 3, 4, 5])
+);
+
+// BETWEEN clause
+const recentPosts = await db.select().from(posts).where(
+  between(posts.createdAt, new Date('2024-01-01'), new Date('2024-12-31'))
+);
+```
+
+### Aggregations
+
+```typescript
+import { count, sum, avg, max, min } from 'drizzle-orm';
+
+// Count posts by user
+const postCounts = await db
+  .select({
+    userId: posts.authorId,
+    postCount: count(),
+  })
+  .from(posts)
+  .groupBy(posts.authorId);
+
+// Get statistics
+const stats = await db
+  .select({
+    totalPosts: count(),
+    publishedPosts: count(posts.published),
+  })
+  .from(posts);
+```
+
+### Pagination
+
+```typescript
+import { desc, asc, limit, offset } from 'drizzle-orm';
+
+// Paginated posts
+const page = 1;
+const pageSize = 10;
+const offsetValue = (page - 1) * pageSize;
+
+const paginatedPosts = await db
+  .select()
+  .from(posts)
+  .orderBy(desc(posts.createdAt))
+  .limit(pageSize)
+  .offset(offsetValue);
+```
+
+## Transactions
+
+### Basic Transactions
+
+```typescript
+import { db } from '@/db';
+
+await db.transaction(async (tx) => {
+  // Create user
+  const newUser = await tx.insert(users).values({
+    email: 'user@example.com',
+    name: 'John Doe',
+  }).returning();
+
+  // Create post for the user
+  await tx.insert(posts).values({
+    title: 'Welcome Post',
+    content: 'Welcome to our platform!',
+    authorId: newUser[0].id,
+    published: true,
+  });
+});
+```
+
+### Error Handling in Transactions
+
+```typescript
+try {
+  await db.transaction(async (tx) => {
+    // Database operations
+    const user = await tx.insert(users).values(userData).returning();
+    await tx.insert(posts).values({
+      ...postData,
+      authorId: user[0].id,
+    });
+  });
+} catch (error) {
+  console.error('Transaction failed:', error);
+  // Handle error appropriately
+}
+```
+
+## Database Indexes
+
+### Creating Indexes
+
+```typescript
+// src/db/schema.ts
+import { index } from 'drizzle-orm/pg-core';
+
+export const users = pgTable('users', {
+  id: serial('id').primaryKey(),
+  email: varchar('email', { length: 255 }).notNull().unique(),
+  name: varchar('name', { length: 255 }),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+}, (table) => ({
+  emailIdx: index('email_idx').on(table.email),
+  createdAtIdx: index('created_at_idx').on(table.createdAt),
+}));
+
+export const posts = pgTable('posts', {
+  id: serial('id').primaryKey(),
+  title: varchar('title', { length: 255 }).notNull(),
+  content: text('content'),
+  published: boolean('published').default(false),
+  authorId: serial('author_id').references(() => users.id),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+}, (table) => ({
+  authorIdIdx: index('author_id_idx').on(table.authorId),
+  publishedIdx: index('published_idx').on(table.published),
+  titleIdx: index('title_idx').on(table.title),
+}));
+```
+
+## Database Studio
+
+### Using Drizzle Studio
+
+Drizzle Studio provides a web interface for database management:
+
+```bash
+pnpm db:studio
+```
+
+This opens a web interface at `http://localhost:4983` where you can:
+
+- View and edit data
+- Run queries
+- Manage tables
+- Export data
+
+## Performance Optimization
+
+### Connection Pooling
+
+```typescript
+// src/db/index.ts
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
+
+const connectionString = process.env.DATABASE_URL!;
+
+// Configure connection pool
+const client = postgres(connectionString, {
+  max: 20, // Maximum number of connections
+  idle_timeout: 20, // Close idle connections after 20 seconds
+  connect_timeout: 10, // Connection timeout
+});
+
+export const db = drizzle(client, { schema });
+```
+
+### Query Optimization
+
+```typescript
+// Use select to limit columns
+const userEmails = await db.select({ email: users.email }).from(users);
+
+// Use prepared statements for repeated queries
+const getUserById = db.select().from(users).where(eq(users.id, placeholder('id'))).prepare();
+
+const user1 = await getUserById.execute({ id: 1 });
+const user2 = await getUserById.execute({ id: 2 });
+```
+
+## Security Best Practices
+
+### SQL Injection Prevention
+
+Drizzle ORM automatically prevents SQL injection through parameterized queries:
+
+```typescript
+// Safe - Drizzle handles parameterization
+const user = await db.select().from(users).where(eq(users.email, userEmail));
+
+// Never do this - direct string concatenation
+// const user = await db.execute(`SELECT * FROM users WHERE email = '${userEmail}'`);
+```
+
+### Input Validation
+
+```typescript
+import { z } from 'zod';
+
+const userSchema = z.object({
+  email: z.string().email(),
+  name: z.string().min(1).max(255),
+});
+
+export async function createUser(userData: unknown) {
+  const validatedData = userSchema.parse(userData);
+  
+  return await db.insert(users).values(validatedData).returning();
+}
+```
+
+## Error Handling
+
+### Database Error Handling
+
+```typescript
+import { PostgresError } from 'postgres';
+
+export async function createUser(userData: any) {
+  try {
+    return await db.insert(users).values(userData).returning();
+  } catch (error) {
+    if (error instanceof PostgresError) {
+      switch (error.code) {
+        case '23505': // Unique violation
+          throw new Error('User with this email already exists');
+        case '23503': // Foreign key violation
+          throw new Error('Referenced record does not exist');
+        default:
+          throw new Error('Database error occurred');
+      }
+    }
+    throw error;
+  }
+}
+```
+
+## Monitoring and Logging
+
+### Query Logging
+
+```typescript
+// src/db/index.ts
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
+
+const client = postgres(connectionString, {
+  debug: process.env.NODE_ENV === 'development',
+  onnotice: (notice) => {
+    console.log('Database notice:', notice);
+  },
+});
+
+export const db = drizzle(client, { 
+  schema,
+  logger: process.env.NODE_ENV === 'development',
+});
+```
+
+### Performance Monitoring
+
+```typescript
+export async function executeWithTiming<T>(
+  operation: () => Promise<T>,
+  operationName: string
+): Promise<T> {
+  const start = Date.now();
+  try {
+    const result = await operation();
+    const duration = Date.now() - start;
+    console.log(`${operationName} completed in ${duration}ms`);
+    return result;
+  } catch (error) {
+    const duration = Date.now() - start;
+    console.error(`${operationName} failed after ${duration}ms:`, error);
+    throw error;
+  }
+}
+```
+
+## Best Practices
+
+1. **Schema Design**: Design normalized schemas with proper relationships
+2. **Indexes**: Add indexes for frequently queried columns
+3. **Migrations**: Always use migrations for schema changes
+4. **Transactions**: Use transactions for related operations
+5. **Error Handling**: Implement comprehensive error handling
+6. **Validation**: Validate data before database operations
+7. **Performance**: Monitor and optimize slow queries
+8. **Security**: Use parameterized queries and validate inputs
+9. **Backup**: Implement regular database backups
+10. **Monitoring**: Monitor database performance and errors
+
+## Troubleshooting
+
+### Common Issues
+
+**Connection Issues:**
+- Verify `DATABASE_URL` is correct
+- Check if PostgreSQL is running
+- Verify network connectivity
+
+**Migration Issues:**
+- Check migration files for syntax errors
+- Ensure database is accessible
+- Verify schema changes are valid
+
+**Performance Issues:**
+- Add appropriate indexes
+- Optimize queries
+- Monitor connection pool usage
+
+For more help, check the [Troubleshooting Guide](/docs/troubleshooting) or visit our [Support Page](/support).

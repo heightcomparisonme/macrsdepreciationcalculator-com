@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "context7": {
+      "type": "sse",
+      "url": "https://mcp.context7.com/sse"
+    },
+    "serena": {
+      "command": "C:\\Users\\abely\\serena\\.venv\\Scripts\\serena-mcp-server.exe",
+      "args": ["--project", "$(pwd)"],
+      "env": {}
+    },
+    "browsermcp": {
+      "command": "cmd",
+      "args": ["/c", "npx", "@browsermcp/mcp@latest"],
+      "env": {}
+    },
+    "n8n-mcp": {
+      "command": "cmd",
+      "args": ["/c", "npx", "n8n-mcp"],
+      "env": {
+        "MCP_MODE": "stdio"
+      }
+    }
+  }
+}

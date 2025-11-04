@@ -1,0 +1,332 @@
+---
+title: 配置指南
+description: 根据您的特定需求和环境配置 AIGXT
+icon: "Settings"
+---
+
+# 配置指南
+
+本指南涵盖了 AIGXT 的基本配置选项，帮助您根据特定需求自定义应用程序。
+
+## 环境变量
+
+### 数据库配置
+
+```bash
+# PostgreSQL 数据库 URL
+DATABASE_URL="postgresql://username:password@localhost:5432/aigxt"
+
+# 数据库连接池设置
+DB_POOL_MIN=2
+DB_POOL_MAX=10
+```
+
+### 身份验证设置
+
+```bash
+# NextAuth.js 配置
+NEXTAUTH_SECRET="your-super-secret-key-here"
+NEXTAUTH_URL="http://localhost:3000"
+
+# OAuth 提供商 (可选)
+GOOGLE_CLIENT_ID="your-google-client-id"
+GOOGLE_CLIENT_SECRET="your-google-client-secret"
+```
+
+### AI 服务配置
+
+```bash
+# OpenAI 配置
+OPENAI_API_KEY="sk-your-openai-api-key"
+OPENAI_MODEL="gpt-4"
+
+# Replicate 配置
+REPLICATE_API_TOKEN="r8_your-replicate-token"
+
+# DeepSeek 配置 (替代方案)
+DEEPSEEK_API_KEY="your-deepseek-api-key"
+```
+
+### 支付集成
+
+```bash
+# Stripe 配置
+STRIPE_PUBLISHABLE_KEY="pk_test_your-publishable-key"
+STRIPE_SECRET_KEY="sk_test_your-secret-key"
+STRIPE_WEBHOOK_SECRET="whsec_your-webhook-secret"
+```
+
+### 文件存储
+
+```bash
+# AWS S3 配置
+AWS_ACCESS_KEY_ID="your-access-key"
+AWS_SECRET_ACCESS_KEY="your-secret-key"
+AWS_REGION="us-east-1"
+AWS_S3_BUCKET="your-bucket-name"
+```
+
+## 应用程序设置
+
+### 主题配置
+
+应用程序支持明暗主题。您可以在 `src/lib/theme.ts` 中自定义主题：
+
+```typescript
+export const themeConfig = {
+  defaultTheme: "system", // "light" | "dark" | "system"
+  enableSystem: true,
+  themes: ["light", "dark"],
+};
+```
+
+### 国际化
+
+在 `src/lib/source.ts` 中配置支持的语言：
+
+```typescript
+export const i18n: I18nConfig = {
+  defaultLanguage: "en",
+  languages: ["en", "zh"], // 根据需要添加更多语言
+};
+```
+
+### API 速率限制
+
+在 API 路由中配置速率限制：
+
+```typescript
+// src/lib/rate-limit.ts
+export const rateLimitConfig = {
+  windowMs: 15 * 60 * 1000, // 15 分钟
+  max: 100, // 每个 IP 在 windowMs 内最多 100 个请求
+};
+```
+
+## 数据库架构自定义
+
+### 添加新表
+
+1. 在 `src/db/schema.ts` 中定义您的架构：
+
+```typescript
+export const customTable = pgTable("custom_table", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+```
+
+2. 生成并应用迁移：
+
+```bash
+pnpm db:generate
+pnpm db:migrate
+```
+
+### 修改现有表
+
+1. 更新架构定义
+2. 生成迁移：`pnpm db:generate`
+3. 查看生成的迁移文件
+4. 应用迁移：`pnpm db:migrate`
+
+## 自定义组件
+
+### 添加自定义 UI 组件
+
+在 `src/components/ui/` 中创建新组件：
+
+```typescript
+// src/components/ui/custom-button.tsx
+import { Button } from "@/components/ui/button";
+
+interface CustomButtonProps {
+  variant?: "default" | "custom";
+  children: React.ReactNode;
+}
+
+export function CustomButton({ variant = "default", children }: CustomButtonProps) {
+  return (
+    <Button 
+      className={variant === "custom" ? "bg-gradient-to-r from-blue-500 to-purple-600" : ""}
+    >
+      {children}
+    </Button>
+  );
+}
+```
+
+### 自定义 MDX 组件
+
+在 `src/mdx-components.tsx` 中为文档添加自定义组件：
+
+```typescript
+export const customComponents = {
+  // MDX 的自定义组件
+  Callout: ({ children, type = "info" }) => (
+    <div className={`p-4 rounded-lg border-l-4 ${
+      type === "warning" ? "border-yellow-400 bg-yellow-50" : "border-blue-400 bg-blue-50"
+    }`}>
+      {children}
+    </div>
+  ),
+};
+```
+
+## 性能优化
+
+### 图像优化
+
+在 `next.config.mjs` 中配置图像优化：
+
+```javascript
+const nextConfig = {
+  images: {
+    domains: ['your-domain.com'],
+    formats: ['image/webp', 'image/avif'],
+  },
+};
+```
+
+### 缓存策略
+
+为 API 路由实现缓存：
+
+```typescript
+// src/app/api/data/route.ts
+export async function GET() {
+  const data = await fetchData();
+  
+  return Response.json(data, {
+    headers: {
+      'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+    },
+  });
+}
+```
+
+## 安全配置
+
+### CORS 设置
+
+在 API 路由中配置 CORS：
+
+```typescript
+// src/lib/cors.ts
+export const corsConfig = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? ['https://yourdomain.com'] 
+    : ['http://localhost:3000'],
+  credentials: true,
+};
+```
+
+### 内容安全策略
+
+在 `next.config.mjs` 中添加 CSP 头：
+
+```javascript
+const nextConfig = {
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline';",
+          },
+        ],
+      },
+    ];
+  },
+};
+```
+
+## 监控和分析
+
+### 错误跟踪
+
+使用 Sentry 配置错误跟踪：
+
+```typescript
+// src/lib/sentry.ts
+import * as Sentry from "@sentry/nextjs";
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  environment: process.env.NODE_ENV,
+});
+```
+
+### 性能监控
+
+添加性能监控：
+
+```typescript
+// src/lib/analytics.ts
+export const trackEvent = (event: string, properties?: Record<string, any>) => {
+  if (typeof window !== 'undefined') {
+    // 您的分析跟踪代码
+    console.log('Event:', event, properties);
+  }
+};
+```
+
+## 部署配置
+
+### 生产环境
+
+对于生产部署，确保您有：
+
+1. **环境变量**：设置所有必需的环境变量
+2. **数据库**：配置并迁移生产数据库
+3. **SSL 证书**：启用 HTTPS
+4. **域名**：配置自定义域名
+5. **监控**：启用错误跟踪和分析
+
+### Docker 配置
+
+如果使用 Docker，配置您的 `Dockerfile`：
+
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "start"]
+```
+
+## 最佳实践
+
+1. **环境变量**：永远不要将敏感数据提交到版本控制
+2. **数据库迁移**：始终先在开发环境中测试迁移
+3. **错误处理**：实现适当的错误边界和日志记录
+4. **性能**：监控和优化关键路径
+5. **安全**：保持依赖项更新并遵循安全最佳实践
+6. **文档**：保持配置文档最新
+
+## 故障排除
+
+### 常见配置问题
+
+**环境变量未加载：**
+- 检查文件命名（`.env.local` 而不是 `.env.local.txt`）
+- 更改后重启开发服务器
+- 验证变量名称是否完全匹配
+
+**数据库连接问题：**
+- 验证 `DATABASE_URL` 格式
+- 检查数据库服务器状态
+- 确保适当的权限
+
+**构建失败：**
+- 检查缺少的环境变量
+- 验证所有依赖项是否已安装
+- 查看构建日志以获取具体错误
+
+如需更多帮助，请查看[故障排除指南](/docs/troubleshooting)或访问我们的[支持页面](/support)。

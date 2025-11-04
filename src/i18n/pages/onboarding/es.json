@@ -1,0 +1,71 @@
+{
+  "onboarding": {
+    "step1": {
+      "title": "What interests you most?",
+      "description": "Select your primary interests to personalize your moon calendar experience",
+      "interests": {
+        "gardening": "Gardening",
+        "health": "Health & Wellness",
+        "housework": "Housework",
+        "business": "Business & Entrepreneurship"
+      },
+      "next_button": "Continue",
+      "skip_button": "Skip for now"
+    },
+    "step2": {
+      "title": "Personalize your settings",
+      "description": "Configure your preferences for the best experience",
+      "timezone_label": "Timezone",
+      "timezone_auto_detected": "Auto-detected",
+      "language_label": "Language",
+      "location_label": "Location (optional)",
+      "location_placeholder": "e.g., Berlin, Germany",
+      "location_hint": "Used for weather and local moon phase times",
+      "back_button": "Back",
+      "next_button": "Continue"
+    },
+    "step3": {
+      "title": "Choose your plan",
+      "description": "Select the subscription that fits your needs",
+      "free_plan": {
+        "title": "Free Trial",
+        "description": "Explore basic moon calendar features",
+        "features": [
+          "Daily moon phases",
+          "Basic recommendations",
+          "Limited access"
+        ],
+        "button": "Start Free"
+      },
+      "premium_plan": {
+        "title": "Premium Monthly",
+        "price": "€4.99/month",
+        "description": "Full access to all moon calendar features",
+        "features": [
+          "All moon phases & details",
+          "Personalized recommendations",
+          "Advanced planning tools",
+          "Weather integration",
+          "No ads"
+        ],
+        "button": "Subscribe Monthly"
+      },
+      "lifetime_plan": {
+        "title": "Lifetime Access",
+        "price": "€69.99 one-time",
+        "description": "Pay once, use forever",
+        "features": [
+          "Everything in Premium",
+          "Lifetime updates",
+          "Priority support",
+          "Future features included"
+        ],
+        "button": "Get Lifetime Access"
+      },
+      "back_button": "Back"
+    },
+    "progress": {
+      "step": "Step {{current}} of {{total}}"
+    }
+  }
+}

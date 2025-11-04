@@ -1,0 +1,279 @@
+
+> mondkalender@1.0.0 dev D:\workplace\build-luolink
+> cross-env NODE_NO_WARNINGS=1 next dev
+
+
+[31m✘[39m next.js v16.0.1 is [31mnot yet supported[39m in the Community edition of [33mConsole Ninja[39m.
+We are working hard on it for you [36mhttps://tinyurl.com/3h9mtwra[39m.
+
+Estimated release dates:
+  - Community users: [36maround 28th December, 2025 [1m(subject to team availability)[22m[39m
+[33m  - PRO users[39m:       [1m[32mpriority access is available now[39m[22m
+
+[MDX] updated map file in 14.131600000000162ms
+[MDX] started dev server
+   ▲ Next.js 16.0.1 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://198.18.0.1:3000
+   - Environments: .env.local
+   - Experiments (use with caution):
+     ✓ mdxRs
+
+ ✓ Starting...
+ ✓ Ready in 2.5s
+ ○ Compiling /[locale] ...
+Error: MISSING_MESSAGE: Could not resolve `tools.test-calculator.metadata.title` in messages for locale `en`.
+    at safeGetTranslation (src\services\navigation.ts:26:12)
+    at async generateToolsNavigation (src\services\navigation.ts:63:19)
+    at async getLandingPage (src\services\page.ts:14:31)
+    at async DefaultLayout (src\app\[locale]\(default)\layout.tsx:16:16)
+  24 |   try {
+  25 |     const t = await getTranslations({ locale, namespace });
+> 26 |     return t(key);
+     |            ^
+  27 |   } catch (error) {
+  28 |     return fallback;
+  29 |   } {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `tools.test-calculator.metadata.title` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `tools.test-calculator.metadata.title` in messages for locale `en`.
+    at safeGetTranslation (src\services\navigation.ts:26:12)
+    at async generateToolsNavigation (src\services\navigation.ts:63:19)
+    at async getLandingPage (src\services\page.ts:14:31)
+    at async LandingPage (src\app\[locale]\(default)\page.tsx:57:16)
+  24 |   try {
+  25 |     const t = await getTranslations({ locale, namespace });
+> 26 |     return t(key);
+     |            ^
+  27 |   } catch (error) {
+  28 |     return fallback;
+  29 |   } {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `tools.test-calculator.metadata.title` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `tools.test-calculator.metadata.description` in messages for locale `en`.
+    at safeGetTranslation (src\services\navigation.ts:26:12)
+    at async generateToolsNavigation (src\services\navigation.ts:64:25)
+    at async getLandingPage (src\services\page.ts:14:31)
+    at async DefaultLayout (src\app\[locale]\(default)\layout.tsx:16:16)
+  24 |   try {
+  25 |     const t = await getTranslations({ locale, namespace });
+> 26 |     return t(key);
+     |            ^
+  27 |   } catch (error) {
+  28 |     return fallback;
+  29 |   } {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `tools.test-calculator.metadata.description` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `tools.test-calculator.metadata.description` in messages for locale `en`.
+    at safeGetTranslation (src\services\navigation.ts:26:12)
+    at async generateToolsNavigation (src\services\navigation.ts:64:25)
+    at async getLandingPage (src\services\page.ts:14:31)
+    at async LandingPage (src\app\[locale]\(default)\page.tsx:57:16)
+  24 |   try {
+  25 |     const t = await getTranslations({ locale, namespace });
+> 26 |     return t(key);
+     |            ^
+  27 |   } catch (error) {
+  28 |     return fallback;
+  29 |   } {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `tools.test-calculator.metadata.description` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `tools.test-calculator.metadata.title` in messages for locale `en`.
+    at safeGetTranslation (src\services\navigation.ts:26:12)
+    at async generateToolsNavigation (src\services\navigation.ts:63:19)
+    at async getLandingPage (src\services\page.ts:26:31)
+    at async DefaultLayout (src\app\[locale]\(default)\layout.tsx:16:16)
+  24 |   try {
+  25 |     const t = await getTranslations({ locale, namespace });
+> 26 |     return t(key);
+     |            ^
+  27 |   } catch (error) {
+  28 |     return fallback;
+  29 |   } {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `tools.test-calculator.metadata.title` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `tools.test-calculator.metadata.title` in messages for locale `en`.
+    at safeGetTranslation (src\services\navigation.ts:26:12)
+    at async generateToolsNavigation (src\services\navigation.ts:63:19)
+    at async getLandingPage (src\services\page.ts:26:31)
+    at async LandingPage (src\app\[locale]\(default)\page.tsx:57:16)
+  24 |   try {
+  25 |     const t = await getTranslations({ locale, namespace });
+> 26 |     return t(key);
+     |            ^
+  27 |   } catch (error) {
+  28 |     return fallback;
+  29 |   } {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `tools.test-calculator.metadata.title` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `tools.test-calculator.metadata.description` in messages for locale `en`.
+    at safeGetTranslation (src\services\navigation.ts:26:12)
+    at async generateToolsNavigation (src\services\navigation.ts:64:25)
+    at async getLandingPage (src\services\page.ts:26:31)
+    at async DefaultLayout (src\app\[locale]\(default)\layout.tsx:16:16)
+  24 |   try {
+  25 |     const t = await getTranslations({ locale, namespace });
+> 26 |     return t(key);
+     |            ^
+  27 |   } catch (error) {
+  28 |     return fallback;
+  29 |   } {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `tools.test-calculator.metadata.description` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `tools.test-calculator.metadata.description` in messages for locale `en`.
+    at safeGetTranslation (src\services\navigation.ts:26:12)
+    at async generateToolsNavigation (src\services\navigation.ts:64:25)
+    at async getLandingPage (src\services\page.ts:26:31)
+    at async LandingPage (src\app\[locale]\(default)\page.tsx:57:16)
+  24 |   try {
+  25 |     const t = await getTranslations({ locale, namespace });
+> 26 |     return t(key);
+     |            ^
+  27 |   } catch (error) {
+  28 |     return fallback;
+  29 |   } {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `tools.test-calculator.metadata.description` in messages for locale `en`.'
+}
+ GET / 200 in 8.9s (compile: 7.2s, proxy.ts: 295ms, render: 1407ms)
+ GET /api/auth/session 200 in 2.5s (compile: 2.5s, render: 28ms)
+ GET /api/auth/session 200 in 27ms (compile: 15ms, render: 12ms)
+ ⨯ upstream image response failed for https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face 404
+Error: MISSING_MESSAGE: Could not resolve `tools.test-calculator.metadata.title` in messages for locale `en`.
+    at safeGetTranslation (src\services\navigation.ts:26:12)
+    at async generateToolsNavigation (src\services\navigation.ts:63:19)
+    at async getLandingPage (src\services\page.ts:14:31)
+    at async DefaultLayout (src\app\[locale]\(default)\layout.tsx:16:16)
+  24 |   try {
+  25 |     const t = await getTranslations({ locale, namespace });
+> 26 |     return t(key);
+     |            ^
+  27 |   } catch (error) {
+  28 |     return fallback;
+  29 |   } {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `tools.test-calculator.metadata.title` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `tools.test-calculator.metadata.title` in messages for locale `en`.
+    at safeGetTranslation (src\services\navigation.ts:26:12)
+    at async generateToolsNavigation (src\services\navigation.ts:63:19)
+    at async getLandingPage (src\services\page.ts:14:31)
+    at async LandingPage (src\app\[locale]\(default)\page.tsx:57:16)
+  24 |   try {
+  25 |     const t = await getTranslations({ locale, namespace });
+> 26 |     return t(key);
+     |            ^
+  27 |   } catch (error) {
+  28 |     return fallback;
+  29 |   } {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `tools.test-calculator.metadata.title` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `tools.test-calculator.metadata.description` in messages for locale `en`.
+    at safeGetTranslation (src\services\navigation.ts:26:12)
+    at async generateToolsNavigation (src\services\navigation.ts:64:25)
+    at async getLandingPage (src\services\page.ts:14:31)
+    at async DefaultLayout (src\app\[locale]\(default)\layout.tsx:16:16)
+  24 |   try {
+  25 |     const t = await getTranslations({ locale, namespace });
+> 26 |     return t(key);
+     |            ^
+  27 |   } catch (error) {
+  28 |     return fallback;
+  29 |   } {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `tools.test-calculator.metadata.description` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `tools.test-calculator.metadata.description` in messages for locale `en`.
+    at safeGetTranslation (src\services\navigation.ts:26:12)
+    at async generateToolsNavigation (src\services\navigation.ts:64:25)
+    at async getLandingPage (src\services\page.ts:14:31)
+    at async LandingPage (src\app\[locale]\(default)\page.tsx:57:16)
+  24 |   try {
+  25 |     const t = await getTranslations({ locale, namespace });
+> 26 |     return t(key);
+     |            ^
+  27 |   } catch (error) {
+  28 |     return fallback;
+  29 |   } {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `tools.test-calculator.metadata.description` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `tools.test-calculator.metadata.title` in messages for locale `en`.
+    at safeGetTranslation (src\services\navigation.ts:26:12)
+    at async generateToolsNavigation (src\services\navigation.ts:63:19)
+    at async getLandingPage (src\services\page.ts:26:31)
+    at async DefaultLayout (src\app\[locale]\(default)\layout.tsx:16:16)
+  24 |   try {
+  25 |     const t = await getTranslations({ locale, namespace });
+> 26 |     return t(key);
+     |            ^
+  27 |   } catch (error) {
+  28 |     return fallback;
+  29 |   } {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `tools.test-calculator.metadata.title` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `tools.test-calculator.metadata.title` in messages for locale `en`.
+    at safeGetTranslation (src\services\navigation.ts:26:12)
+    at async generateToolsNavigation (src\services\navigation.ts:63:19)
+    at async getLandingPage (src\services\page.ts:26:31)
+    at async LandingPage (src\app\[locale]\(default)\page.tsx:57:16)
+  24 |   try {
+  25 |     const t = await getTranslations({ locale, namespace });
+> 26 |     return t(key);
+     |            ^
+  27 |   } catch (error) {
+  28 |     return fallback;
+  29 |   } {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `tools.test-calculator.metadata.title` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `tools.test-calculator.metadata.description` in messages for locale `en`.
+    at safeGetTranslation (src\services\navigation.ts:26:12)
+    at async generateToolsNavigation (src\services\navigation.ts:64:25)
+    at async getLandingPage (src\services\page.ts:26:31)
+    at async DefaultLayout (src\app\[locale]\(default)\layout.tsx:16:16)
+  24 |   try {
+  25 |     const t = await getTranslations({ locale, namespace });
+> 26 |     return t(key);
+     |            ^
+  27 |   } catch (error) {
+  28 |     return fallback;
+  29 |   } {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `tools.test-calculator.metadata.description` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `tools.test-calculator.metadata.description` in messages for locale `en`.
+    at safeGetTranslation (src\services\navigation.ts:26:12)
+    at async generateToolsNavigation (src\services\navigation.ts:64:25)
+    at async getLandingPage (src\services\page.ts:26:31)
+    at async LandingPage (src\app\[locale]\(default)\page.tsx:57:16)
+  24 |   try {
+  25 |     const t = await getTranslations({ locale, namespace });
+> 26 |     return t(key);
+     |            ^
+  27 |   } catch (error) {
+  28 |     return fallback;
+  29 |   } {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `tools.test-calculator.metadata.description` in messages for locale `en`.'
+}
+ GET / 200 in 693ms (compile: 81ms, proxy.ts: 20ms, render: 592ms)
+ ⨯ A conflicting public file and page file was found for path /sitemap.xml https://nextjs.org/docs/messages/conflicting-public-file-page
+ GET /sitemap.xml 500 in 2.0s (compile: 1652ms, render: 392ms)
+ ⨯ A conflicting public file and page file was found for path /sitemap.xml https://nextjs.org/docs/messages/conflicting-public-file-page
+ GET /sitemap.xml 500 in 23ms (compile: 9ms, render: 14ms)
+ GET / 200 in 453ms (compile: 251ms, proxy.ts: 11ms, render: 191ms)
+ GET / 200 in 390ms (compile: 240ms, proxy.ts: 8ms, render: 142ms)
+ GET / 200 in 642ms (compile: 353ms, proxy.ts: 13ms, render: 276ms)
+[?25h
+[MDX] closing dev server
+ ELIFECYCLE  Command failed with exit code 1.

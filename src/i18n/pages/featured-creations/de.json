@@ -1,0 +1,25 @@
+{
+  "featuredCreations": {
+    "title": "Weitere Mondkalender-Tools",
+    "description": "Entdecken Sie erstaunliche Projekte, die mit unserer Plattform erstellt wurden. Lassen Sie sich inspirieren und beginnen Sie mit der Entwicklung Ihrer eigenen Kreationen.",
+    "viewAllText": "Alle Werke anzeigen",
+    "viewAllHref": "/showcase",
+    "scrollInstruction": "Scrollen oder ziehen Sie, um zu stöbern",
+    "mobileInstruction": "Zum Durchblättern wischen",
+    "keyboardInstruction": "Verwenden Sie die Pfeiltasten zur Navigation",
+    "badges": {
+      "featured": "Hervorgehoben",
+      "new": "Neu"
+    },
+    "stats": {
+      "rating": "Bewertung",
+      "views": "Aufrufe",
+      "downloads": "Downloads",
+      "likes": "Gefällt mir"
+    },
+    "actions": {
+      "view": "Ansehen",
+      "preview": "Vorschau"
+    }
+  }
+}

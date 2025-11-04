@@ -1,0 +1,33 @@
+{
+  "comingsoon": {
+    "metadata": {
+      "title": "Coming Soon - Amazing Things Are Coming",
+      "description": "We're building something revolutionary that will transform your digital life experience."
+    },
+    "page": {
+      "badge": "Coming Soon",
+      "title": "Amazing Things Are Coming",
+      "subtitle": "We're building a revolutionary application that will transform your digital life experience",
+      "countdown": {
+        "days": "Days",
+        "hours": "Hours", 
+        "minutes": "Minutes",
+        "seconds": "Seconds"
+      },
+      "newsletter": {
+        "title": "Get notified when we launch",
+        "placeholder": "Enter your email",
+        "subscribe": "Subscribe",
+        "subscribed": "Subscribed!",
+        "success": "Thank you for subscribing! We'll notify you soon."
+      },
+      "social": {
+        "twitter": "Twitter",
+        "instagram": "Instagram", 
+        "linkedin": "LinkedIn",
+        "github": "GitHub"
+      },
+      "footer": "© 2025 Amazing App. All rights reserved."
+    }
+  }
+}

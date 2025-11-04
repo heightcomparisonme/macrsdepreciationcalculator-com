@@ -1,0 +1,332 @@
+---
+title: Configuration
+description: Configure AIGXT for your specific needs and environment
+icon: "Settings"
+---
+
+# Configuration
+
+This guide covers the essential configuration options for AIGXT to help you customize the application for your specific needs.
+
+## Environment Variables
+
+### Database Configuration
+
+```bash
+# PostgreSQL Database URL
+DATABASE_URL="postgresql://username:password@localhost:5432/aigxt"
+
+# Database connection pool settings
+DB_POOL_MIN=2
+DB_POOL_MAX=10
+```
+
+### Authentication Setup
+
+```bash
+# NextAuth.js Configuration
+NEXTAUTH_SECRET="your-super-secret-key-here"
+NEXTAUTH_URL="http://localhost:3000"
+
+# OAuth Providers (optional)
+GOOGLE_CLIENT_ID="your-google-client-id"
+GOOGLE_CLIENT_SECRET="your-google-client-secret"
+```
+
+### AI Services Configuration
+
+```bash
+# OpenAI Configuration
+OPENAI_API_KEY="sk-your-openai-api-key"
+OPENAI_MODEL="gpt-4"
+
+# Replicate Configuration
+REPLICATE_API_TOKEN="r8_your-replicate-token"
+
+# DeepSeek Configuration (alternative)
+DEEPSEEK_API_KEY="your-deepseek-api-key"
+```
+
+### Payment Integration
+
+```bash
+# Stripe Configuration
+STRIPE_PUBLISHABLE_KEY="pk_test_your-publishable-key"
+STRIPE_SECRET_KEY="sk_test_your-secret-key"
+STRIPE_WEBHOOK_SECRET="whsec_your-webhook-secret"
+```
+
+### File Storage
+
+```bash
+# AWS S3 Configuration
+AWS_ACCESS_KEY_ID="your-access-key"
+AWS_SECRET_ACCESS_KEY="your-secret-key"
+AWS_REGION="us-east-1"
+AWS_S3_BUCKET="your-bucket-name"
+```
+
+## Application Settings
+
+### Theme Configuration
+
+The application supports light and dark themes. You can customize the theme in `src/lib/theme.ts`:
+
+```typescript
+export const themeConfig = {
+  defaultTheme: "system", // "light" | "dark" | "system"
+  enableSystem: true,
+  themes: ["light", "dark"],
+};
+```
+
+### Internationalization
+
+Configure supported languages in `src/lib/source.ts`:
+
+```typescript
+export const i18n: I18nConfig = {
+  defaultLanguage: "en",
+  languages: ["en", "zh"], // Add more languages as needed
+};
+```
+
+### API Rate Limiting
+
+Configure rate limiting in your API routes:
+
+```typescript
+// src/lib/rate-limit.ts
+export const rateLimitConfig = {
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+};
+```
+
+## Database Schema Customization
+
+### Adding New Tables
+
+1. Define your schema in `src/db/schema.ts`:
+
+```typescript
+export const customTable = pgTable("custom_table", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+```
+
+2. Generate and apply migrations:
+
+```bash
+pnpm db:generate
+pnpm db:migrate
+```
+
+### Modifying Existing Tables
+
+1. Update the schema definition
+2. Generate migration: `pnpm db:generate`
+3. Review the generated migration file
+4. Apply migration: `pnpm db:migrate`
+
+## Custom Components
+
+### Adding Custom UI Components
+
+Create new components in `src/components/ui/`:
+
+```typescript
+// src/components/ui/custom-button.tsx
+import { Button } from "@/components/ui/button";
+
+interface CustomButtonProps {
+  variant?: "default" | "custom";
+  children: React.ReactNode;
+}
+
+export function CustomButton({ variant = "default", children }: CustomButtonProps) {
+  return (
+    <Button 
+      className={variant === "custom" ? "bg-gradient-to-r from-blue-500 to-purple-600" : ""}
+    >
+      {children}
+    </Button>
+  );
+}
+```
+
+### Custom MDX Components
+
+Add custom components for documentation in `src/mdx-components.tsx`:
+
+```typescript
+export const customComponents = {
+  // Custom components for MDX
+  Callout: ({ children, type = "info" }) => (
+    <div className={`p-4 rounded-lg border-l-4 ${
+      type === "warning" ? "border-yellow-400 bg-yellow-50" : "border-blue-400 bg-blue-50"
+    }`}>
+      {children}
+    </div>
+  ),
+};
+```
+
+## Performance Optimization
+
+### Image Optimization
+
+Configure image optimization in `next.config.mjs`:
+
+```javascript
+const nextConfig = {
+  images: {
+    domains: ['your-domain.com'],
+    formats: ['image/webp', 'image/avif'],
+  },
+};
+```
+
+### Caching Strategy
+
+Implement caching for API routes:
+
+```typescript
+// src/app/api/data/route.ts
+export async function GET() {
+  const data = await fetchData();
+  
+  return Response.json(data, {
+    headers: {
+      'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+    },
+  });
+}
+```
+
+## Security Configuration
+
+### CORS Settings
+
+Configure CORS in your API routes:
+
+```typescript
+// src/lib/cors.ts
+export const corsConfig = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? ['https://yourdomain.com'] 
+    : ['http://localhost:3000'],
+  credentials: true,
+};
+```
+
+### Content Security Policy
+
+Add CSP headers in `next.config.mjs`:
+
+```javascript
+const nextConfig = {
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline';",
+          },
+        ],
+      },
+    ];
+  },
+};
+```
+
+## Monitoring and Analytics
+
+### Error Tracking
+
+Configure error tracking with Sentry:
+
+```typescript
+// src/lib/sentry.ts
+import * as Sentry from "@sentry/nextjs";
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  environment: process.env.NODE_ENV,
+});
+```
+
+### Performance Monitoring
+
+Add performance monitoring:
+
+```typescript
+// src/lib/analytics.ts
+export const trackEvent = (event: string, properties?: Record<string, any>) => {
+  if (typeof window !== 'undefined') {
+    // Your analytics tracking code
+    console.log('Event:', event, properties);
+  }
+};
+```
+
+## Deployment Configuration
+
+### Production Environment
+
+For production deployment, ensure you have:
+
+1. **Environment Variables**: All required environment variables set
+2. **Database**: Production database configured and migrated
+3. **SSL Certificate**: HTTPS enabled
+4. **Domain**: Custom domain configured
+5. **Monitoring**: Error tracking and analytics enabled
+
+### Docker Configuration
+
+If using Docker, configure your `Dockerfile`:
+
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "start"]
+```
+
+## Best Practices
+
+1. **Environment Variables**: Never commit sensitive data to version control
+2. **Database Migrations**: Always test migrations in development first
+3. **Error Handling**: Implement proper error boundaries and logging
+4. **Performance**: Monitor and optimize critical paths
+5. **Security**: Keep dependencies updated and follow security best practices
+6. **Documentation**: Keep configuration documentation up to date
+
+## Troubleshooting
+
+### Common Configuration Issues
+
+**Environment variables not loading:**
+- Check file naming (`.env.local` not `.env.local.txt`)
+- Restart development server after changes
+- Verify variable names match exactly
+
+**Database connection issues:**
+- Verify `DATABASE_URL` format
+- Check database server status
+- Ensure proper permissions
+
+**Build failures:**
+- Check for missing environment variables
+- Verify all dependencies are installed
+- Review build logs for specific errors
+
+For more help, check the [Troubleshooting Guide](/docs/troubleshooting) or visit our [Support Page](/support).

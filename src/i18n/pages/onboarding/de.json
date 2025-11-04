@@ -1,0 +1,71 @@
+{
+  "onboarding": {
+    "step1": {
+      "title": "您最感兴趣什么?",
+      "description": "选择您的主要兴趣以个性化您的月相日历体验",
+      "interests": {
+        "gardening": "园艺",
+        "health": "健康养生",
+        "housework": "家务",
+        "business": "商务/创业"
+      },
+      "next_button": "继续",
+      "skip_button": "暂时跳过"
+    },
+    "step2": {
+      "title": "个性化设置",
+      "description": "配置您的偏好以获得最佳体验",
+      "timezone_label": "时区",
+      "timezone_auto_detected": "自动检测",
+      "language_label": "语言",
+      "location_label": "位置（可选）",
+      "location_placeholder": "例如：北京，中国",
+      "location_hint": "用于天气和本地月相时间",
+      "back_button": "返回",
+      "next_button": "继续"
+    },
+    "step3": {
+      "title": "选择您的订阅",
+      "description": "选择适合您需求的订阅计划",
+      "free_plan": {
+        "title": "免费体验",
+        "description": "探索基本月相日历功能",
+        "features": [
+          "每日月相",
+          "基本建议",
+          "有限访问"
+        ],
+        "button": "开始免费体验"
+      },
+      "premium_plan": {
+        "title": "高级订阅",
+        "price": "€4.99/月",
+        "description": "全面访问所有月相日历功能",
+        "features": [
+          "所有月相和详细信息",
+          "个性化推荐",
+          "高级规划工具",
+          "天气集成",
+          "无广告"
+        ],
+        "button": "订阅月度会员"
+      },
+      "lifetime_plan": {
+        "title": "终身会员",
+        "price": "€69.99 一次性付费",
+        "description": "一次付费，永久使用",
+        "features": [
+          "包含高级订阅所有功能",
+          "终身更新",
+          "优先支持",
+          "包含未来新功能"
+        ],
+        "button": "获取终身会员"
+      },
+      "back_button": "返回"
+    },
+    "progress": {
+      "step": "第 {{current}} 步，共 {{total}} 步"
+    }
+  }
+}

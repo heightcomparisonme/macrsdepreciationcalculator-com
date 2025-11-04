@@ -1,0 +1,688 @@
+---
+title: Docker Deployment
+description: Deploy AIGXT using Docker containers
+icon: "Container"
+---
+
+# Docker Deployment
+
+This guide covers deploying AIGXT using Docker containers for containerized deployment scenarios.
+
+## Prerequisites
+
+Before deploying with Docker, ensure you have:
+
+- Docker installed on your system
+- Docker Compose (optional, for multi-container setups)
+- Your AIGXT project ready
+- Database accessible from containers
+
+## Docker Setup
+
+### Dockerfile
+
+The project includes a `Dockerfile` for containerization:
+
+```dockerfile
+FROM node:18-alpine AS base
+
+# Install dependencies only when needed
+FROM base AS deps
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+
+# Install dependencies based on the preferred package manager
+COPY package.json pnpm-lock.yaml* ./
+RUN corepack enable pnpm && pnpm i --frozen-lockfile
+
+# Rebuild the source code only when needed
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+# Build the application
+RUN corepack enable pnpm && pnpm build
+
+# Production image, copy all the files and run next
+FROM base AS runner
+WORKDIR /app
+
+ENV NODE_ENV production
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+COPY --from=builder /app/public ./public
+
+# Set the correct permission for prerender cache
+RUN mkdir .next
+RUN chown nextjs:nodejs .next
+
+# Automatically leverage output traces to reduce image size
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
+EXPOSE 3000
+
+ENV PORT 3000
+ENV HOSTNAME "0.0.0.0"
+
+CMD ["node", "server.js"]
+```
+
+### Docker Compose
+
+Create a `docker-compose.yml` for multi-container deployment:
+
+```yaml
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://postgres:password@db:5432/aigxt
+      - NEXTAUTH_SECRET=your-secret-key
+      - NEXTAUTH_URL=http://localhost:3000
+      - OPENAI_API_KEY=your-openai-key
+      - REPLICATE_API_TOKEN=your-replicate-token
+    depends_on:
+      - db
+    volumes:
+      - ./uploads:/app/uploads
+    restart: unless-stopped
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=aigxt
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+```
+
+## Building and Running
+
+### Build Docker Image
+
+```bash
+# Build the Docker image
+docker build -t aigxt:latest .
+
+# Or using Docker Compose
+docker-compose build
+```
+
+### Run Container
+
+```bash
+# Run single container
+docker run -p 3000:3000 \
+  -e DATABASE_URL="postgresql://user:pass@host:5432/db" \
+  -e NEXTAUTH_SECRET="your-secret" \
+  -e OPENAI_API_KEY="your-key" \
+  aigxt:latest
+
+# Or using Docker Compose
+docker-compose up -d
+```
+
+### Environment Variables
+
+Create a `.env.docker` file for Docker-specific environment variables:
+
+```bash
+# Database
+DATABASE_URL="postgresql://postgres:password@db:5432/aigxt"
+
+# Authentication
+NEXTAUTH_SECRET="your-production-secret-key"
+NEXTAUTH_URL="http://localhost:3000"
+
+# AI Services
+OPENAI_API_KEY="sk-your-openai-api-key"
+REPLICATE_API_TOKEN="r8_your-replicate-token"
+DEEPSEEK_API_KEY="your-deepseek-api-key"
+
+# Stripe
+STRIPE_PUBLISHABLE_KEY="pk_live_your-publishable-key"
+STRIPE_SECRET_KEY="sk_live_your-secret-key"
+STRIPE_WEBHOOK_SECRET="whsec_your-webhook-secret"
+
+# File Storage
+AWS_ACCESS_KEY_ID="your-access-key"
+AWS_SECRET_ACCESS_KEY="your-secret-key"
+AWS_REGION="us-east-1"
+AWS_S3_BUCKET="your-bucket-name"
+
+# Redis (if using)
+REDIS_URL="redis://redis:6379"
+```
+
+## Production Deployment
+
+### Multi-Stage Build Optimization
+
+The Dockerfile uses multi-stage builds for optimization:
+
+```dockerfile
+# Stage 1: Dependencies
+FROM node:18-alpine AS deps
+WORKDIR /app
+COPY package.json pnpm-lock.yaml* ./
+RUN corepack enable pnpm && pnpm i --frozen-lockfile
+
+# Stage 2: Builder
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+RUN corepack enable pnpm && pnpm build
+
+# Stage 3: Runner
+FROM node:18-alpine AS runner
+WORKDIR /app
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
+EXPOSE 3000
+CMD ["node", "server.js"]
+```
+
+### Production Docker Compose
+
+```yaml
+version: '3.8'
+
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env.docker
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - app_uploads:/app/uploads
+      - app_logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=aigxt
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/nginx/ssl
+    depends_on:
+      - app
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+  app_uploads:
+  app_logs:
+```
+
+## Nginx Configuration
+
+### Reverse Proxy Setup
+
+Create `nginx.conf` for reverse proxy:
+
+```nginx
+events {
+    worker_connections 1024;
+}
+
+http {
+    upstream app {
+        server app:3000;
+    }
+
+    server {
+        listen 80;
+        server_name your-domain.com;
+
+        # Redirect HTTP to HTTPS
+        return 301 https://$server_name$request_uri;
+    }
+
+    server {
+        listen 443 ssl http2;
+        server_name your-domain.com;
+
+        ssl_certificate /etc/nginx/ssl/cert.pem;
+        ssl_certificate_key /etc/nginx/ssl/key.pem;
+
+        # Security headers
+        add_header X-Frame-Options "SAMEORIGIN" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header X-XSS-Protection "1; mode=block" always;
+
+        # Gzip compression
+        gzip on;
+        gzip_vary on;
+        gzip_min_length 1024;
+        gzip_types text/plain text/css text/xml text/javascript application/javascript application/xml+rss application/json;
+
+        location / {
+            proxy_pass http://app;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_cache_bypass $http_upgrade;
+        }
+
+        # Static files
+        location /_next/static {
+            proxy_pass http://app;
+            proxy_cache_valid 200 1y;
+            add_header Cache-Control "public, immutable";
+        }
+    }
+}
+```
+
+## Database Migration
+
+### Migration Script
+
+Create a migration script for Docker deployment:
+
+```bash
+#!/bin/bash
+# migrate.sh
+
+echo "Waiting for database to be ready..."
+until pg_isready -h db -p 5432 -U postgres; do
+  echo "Database is unavailable - sleeping"
+  sleep 1
+done
+
+echo "Database is ready - running migrations"
+cd /app
+pnpm db:migrate
+
+echo "Migrations completed"
+```
+
+### Docker Compose with Migration
+
+```yaml
+services:
+  migrate:
+    build: .
+    command: sh -c "sleep 10 && pnpm db:migrate"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/aigxt
+    depends_on:
+      - db
+    restart: "no"
+```
+
+## Health Checks
+
+### Application Health Check
+
+Create a health check endpoint:
+
+```typescript
+// src/app/api/health/route.ts
+import { NextResponse } from 'next/server';
+import { db } from '@/db';
+
+export async function GET() {
+  try {
+    // Check database connection
+    await db.execute('SELECT 1');
+    
+    return NextResponse.json({
+      status: 'healthy',
+      timestamp: new Date().toISOString(),
+      services: {
+        database: 'connected',
+        application: 'running',
+      },
+    });
+  } catch (error) {
+    return NextResponse.json(
+      {
+        status: 'unhealthy',
+        timestamp: new Date().toISOString(),
+        error: error instanceof Error ? error.message : 'Unknown error',
+      },
+      { status: 500 }
+    );
+  }
+}
+```
+
+### Docker Health Check
+
+```dockerfile
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:3000/api/health || exit 1
+```
+
+## Monitoring and Logging
+
+### Logging Configuration
+
+```typescript
+// src/lib/logger.ts
+import winston from 'winston';
+
+const logger = winston.createLogger({
+  level: process.env.LOG_LEVEL || 'info',
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.errors({ stack: true }),
+    winston.format.json()
+  ),
+  transports: [
+    new winston.transports.File({ filename: '/app/logs/error.log', level: 'error' }),
+    new winston.transports.File({ filename: '/app/logs/combined.log' }),
+  ],
+});
+
+if (process.env.NODE_ENV !== 'production') {
+  logger.add(new winston.transports.Console({
+    format: winston.format.simple()
+  }));
+}
+
+export default logger;
+```
+
+### Docker Logging
+
+```yaml
+services:
+  app:
+    # ... other config
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+```
+
+## Security Considerations
+
+### Docker Security
+
+```dockerfile
+# Use non-root user
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+USER nextjs
+
+# Remove unnecessary packages
+RUN apk del build-dependencies
+
+# Use specific versions
+FROM node:18-alpine@sha256:...
+```
+
+### Environment Security
+
+```bash
+# Use Docker secrets for sensitive data
+echo "your-secret-key" | docker secret create nextauth_secret -
+echo "your-db-password" | docker secret create db_password -
+```
+
+```yaml
+services:
+  app:
+    secrets:
+      - nextauth_secret
+      - db_password
+    environment:
+      - NEXTAUTH_SECRET_FILE=/run/secrets/nextauth_secret
+      - DB_PASSWORD_FILE=/run/secrets/db_password
+
+secrets:
+  nextauth_secret:
+    external: true
+  db_password:
+    external: true
+```
+
+## Scaling
+
+### Horizontal Scaling
+
+```yaml
+services:
+  app:
+    # ... other config
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+```
+
+### Load Balancer
+
+```yaml
+services:
+  nginx:
+    # ... other config
+    volumes:
+      - ./nginx-lb.conf:/etc/nginx/nginx.conf
+
+  app1:
+    build: .
+    environment:
+      - INSTANCE_ID=1
+
+  app2:
+    build: .
+    environment:
+      - INSTANCE_ID=2
+
+  app3:
+    build: .
+    environment:
+      - INSTANCE_ID=3
+```
+
+## Backup and Recovery
+
+### Database Backup
+
+```bash
+#!/bin/bash
+# backup.sh
+
+BACKUP_DIR="/app/backups"
+DATE=$(date +%Y%m%d_%H%M%S)
+BACKUP_FILE="$BACKUP_DIR/aigxt_backup_$DATE.sql"
+
+mkdir -p $BACKUP_DIR
+
+pg_dump -h db -U postgres aigxt > $BACKUP_FILE
+
+# Keep only last 7 days of backups
+find $BACKUP_DIR -name "*.sql" -mtime +7 -delete
+
+echo "Backup completed: $BACKUP_FILE"
+```
+
+### Automated Backups
+
+```yaml
+services:
+  backup:
+    image: postgres:15-alpine
+    volumes:
+      - ./backups:/backups
+      - ./backup.sh:/backup.sh
+    environment:
+      - PGPASSWORD=password
+    command: sh -c "chmod +x /backup.sh && crontab -l | { cat; echo '0 2 * * * /backup.sh'; } | crontab - && crond -f"
+    depends_on:
+      - db
+```
+
+## Troubleshooting
+
+### Common Issues
+
+#### Container Won't Start
+
+```bash
+# Check container logs
+docker logs <container-id>
+
+# Check if port is already in use
+netstat -tulpn | grep :3000
+```
+
+#### Database Connection Issues
+
+```bash
+# Test database connectivity
+docker exec -it <container-id> pg_isready -h db -p 5432
+
+# Check database logs
+docker logs <db-container-id>
+```
+
+#### Performance Issues
+
+```bash
+# Monitor resource usage
+docker stats
+
+# Check container health
+docker inspect <container-id> | grep Health
+```
+
+### Debugging
+
+#### Interactive Shell
+
+```bash
+# Access running container
+docker exec -it <container-id> sh
+
+# Run new container for debugging
+docker run -it --rm aigxt:latest sh
+```
+
+#### Log Analysis
+
+```bash
+# Follow logs in real-time
+docker-compose logs -f app
+
+# Filter logs by service
+docker-compose logs app | grep ERROR
+```
+
+## Best Practices
+
+1. **Multi-stage Builds**: Use multi-stage builds for smaller images
+2. **Non-root User**: Run containers as non-root user
+3. **Health Checks**: Implement health checks for all services
+4. **Resource Limits**: Set appropriate resource limits
+5. **Secrets Management**: Use Docker secrets for sensitive data
+6. **Logging**: Implement structured logging
+7. **Backup**: Regular database backups
+8. **Monitoring**: Set up monitoring and alerting
+9. **Security**: Keep base images updated
+10. **Documentation**: Document all configuration changes
+
+## Production Checklist
+
+- [ ] Docker images built and tested
+- [ ] Environment variables configured
+- [ ] Database migrations applied
+- [ ] Health checks implemented
+- [ ] Logging configured
+- [ ] Monitoring set up
+- [ ] Backup strategy in place
+- [ ] Security measures implemented
+- [ ] Load balancer configured
+- [ ] SSL certificates installed
+
+Your AIGXT application is now ready for Docker deployment! 🐳

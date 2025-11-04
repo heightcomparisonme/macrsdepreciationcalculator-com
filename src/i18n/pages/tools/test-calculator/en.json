@@ -1,0 +1,168 @@
+{
+  "metadata": {
+    "title": "Test Calculator - Simple Addition Tool",
+    "description": "A simple test calculator to verify the dynamic tool creation workflow. Add two numbers together."
+  },
+  "title": "Test Calculator",
+  "subtitle": "Simple Addition Calculator for Testing",
+  "input": {
+    "title": "Input Numbers",
+    "description": "Enter two numbers to add together",
+    "number1": "First Number",
+    "number2": "Second Number"
+  },
+  "button": {
+    "calculate": "Calculate Sum"
+  },
+  "result": {
+    "title": "Calculation Result",
+    "description": "The sum of your numbers is:"
+  },
+  "info": {
+    "title": "About This Test Tool",
+    "description": "This is a test calculator created to verify that the dynamic tool discovery system works correctly. It demonstrates automatic tool registration, translation loading, and component rendering."
+  },
+  "hero": {
+    "badge": "Test Tool",
+    "title": "Test Calculator",
+    "subtitle": "Simple addition calculator for testing dynamic tool creation",
+    "description": "This calculator demonstrates the automated tool discovery system. Simply enter two numbers and see the result.",
+    "cta_primary": "Try Calculator",
+    "cta_secondary": "Learn More"
+  },
+  "features": {
+    "title": "Calculator Features",
+    "description": "A simple yet effective tool for testing our dynamic tool system",
+    "simple": {
+      "title": "Simple Interface",
+      "description": "Clean and intuitive design that anyone can use"
+    },
+    "fast": {
+      "title": "Lightning Fast",
+      "description": "Instant calculation results with no delays"
+    },
+    "accurate": {
+      "title": "100% Accurate",
+      "description": "Reliable calculations you can trust"
+    },
+    "multilingual": {
+      "title": "Multi-language Support",
+      "description": "Available in English, German, and Spanish"
+    }
+  },
+  "showcase": {
+    "badge": "How it works",
+    "title": "Simple and effective calculation",
+    "description": "This test calculator demonstrates the dynamic tool system with instant results and a clean interface.",
+    "image_url": "/imgs/showcases/7.png",
+    "image_alt": "Test Calculator interface",
+    "benefits": [
+      "Enter two numbers with an intuitive input interface",
+      "Get instant calculation results with no delays",
+      "Experience a clean, responsive design across all devices",
+      "Test the dynamic tool discovery and registration system",
+      "Verify multi-language support with full translation coverage"
+    ]
+  },
+  "features2": {
+    "label": "Experience the simplicity",
+    "title": "From numbers to results in seconds",
+    "description": "See how the test calculator provides instant feedback with a beautiful interface.",
+    "hover_tip": "Select a card to preview the before/after slider",
+    "slider_before_alt": "Before calculation",
+    "slider_after_alt": "After calculation",
+    "slider_hover_title": "Drag to compare",
+    "slider_hover_description": "Use the slider to see the calculation process in action.",
+    "items": {
+      "easy": {
+        "title": "Easy Input",
+        "description": "Simple number input fields with clear labels and instant validation."
+      },
+      "precise": {
+        "title": "Precise Results",
+        "description": "Accurate calculations displayed immediately with proper formatting."
+      },
+      "reliable": {
+        "title": "Reliable Performance",
+        "description": "Consistent results every time with no errors or delays."
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "description": "What developers say about our test calculator and dynamic tool system.",
+    "stats": {
+      "modelsCreated": "Calculations Made",
+      "averageRating": "Average Rating",
+      "successRate": "Success Rate",
+      "countriesServed": "Countries Served"
+    },
+    "items": [
+      {
+        "name": "John Developer",
+        "role": "Frontend Engineer",
+        "avatar": "https://randomuser.me/api/portraits/men/1.jpg",
+        "quote": "This test calculator perfectly demonstrates the dynamic tool system. Clean code and great architecture!",
+        "rating": "5"
+      },
+      {
+        "name": "Sarah Designer",
+        "role": "UI/UX Designer",
+        "avatar": "https://randomuser.me/api/portraits/women/2.jpg",
+        "quote": "The interface is beautiful and responsive. Great example of modern web design.",
+        "rating": "5"
+      },
+      {
+        "name": "Mike Ops",
+        "role": "DevOps Engineer",
+        "avatar": "https://randomuser.me/api/portraits/men/3.jpg",
+        "quote": "Setup was seamless and performance is solid. Great for validating tooling.",
+        "rating": "5"
+      },
+      {
+        "name": "Emma PM",
+        "role": "Product Manager",
+        "avatar": "https://randomuser.me/api/portraits/women/4.jpg",
+        "quote": "Clear UX and fast feedback loop. Ideal demo for stakeholders.",
+        "rating": "5"
+      },
+      {
+        "name": "Liam Analyst",
+        "role": "Data Analyst",
+        "avatar": "https://randomuser.me/api/portraits/men/5.jpg",
+        "quote": "Accurate and reliable—exactly what we need for quick checks.",
+        "rating": "5"
+      }
+    ]
+  },
+  "faq": {
+    "title": "FAQ",
+    "description": "Common questions about the test calculator tool.",
+    "items": [
+      {
+        "title": "What is this calculator for?",
+        "description": "This is a test calculator to demonstrate the dynamic tool discovery and registration system. It performs simple addition to verify the workflow."
+      },
+      {
+        "title": "How do I create my own tool?",
+        "description": "Create a new folder in src/app/[locale]/(default)/tools with a page.tsx file and translation files. The system will automatically discover it."
+      },
+      {
+        "title": "Can I customize the styling?",
+        "description": "Yes! You can customize the icon, color, category, and tags in src/lib/tools-config.ts for each tool."
+      },
+      {
+        "title": "Is it multilingual?",
+        "description": "Absolutely! Add translation files in src/i18n/pages/tools/[tool-name] for each language you want to support."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to build your own tools?",
+    "description": "Use this template to create amazing tools with dynamic discovery, multi-language support, and beautiful UI.",
+    "primary_button": "Explore More Tools",
+    "secondary_button": "Read Documentation",
+    "primary_link": "/tools",
+    "secondary_link": "/docs"
+  }
+}

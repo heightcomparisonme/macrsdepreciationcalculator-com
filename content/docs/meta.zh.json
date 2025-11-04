@@ -1,0 +1,15 @@
+{
+  "title": "文档",
+  "pages": [
+    "index",
+    "quickstart",
+    "---计算器",
+    "calculators",
+    "---参考",
+    "reference",
+    "---入门指南",
+    "getting-started",
+    "features",
+    "deployment"
+  ]
+}

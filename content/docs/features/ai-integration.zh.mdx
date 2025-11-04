@@ -1,0 +1,521 @@
+---
+title: AI 集成
+description: 学习如何在 AIGXT 中集成和使用 AI 服务
+icon: "Brain"
+---
+
+# AI 集成
+
+AIGXT 提供全面的 AI 集成功能，支持多个 AI 提供商和服务来为您的应用程序提供动力。
+
+## 支持的 AI 提供商
+
+### OpenAI 集成
+
+AIGXT 支持 OpenAI 的最新模型，包括 GPT-4、GPT-3.5 等。
+
+#### 配置
+
+```bash
+OPENAI_API_KEY="sk-your-openai-api-key"
+OPENAI_MODEL="gpt-4"
+```
+
+#### 使用示例
+
+```typescript
+import { openai } from '@ai-sdk/openai';
+import { generateText } from 'ai';
+
+export async function generateContent(prompt: string) {
+  const { text } = await generateText({
+    model: openai('gpt-4'),
+    prompt,
+  });
+  
+  return text;
+}
+```
+
+### Replicate 集成
+
+用于专门的 AI 模型和图像生成。
+
+#### 配置
+
+```bash
+REPLICATE_API_TOKEN="r8_your-replicate-token"
+```
+
+#### 图像生成示例
+
+```typescript
+import Replicate from 'replicate';
+
+const replicate = new Replicate({
+  auth: process.env.REPLICATE_API_TOKEN,
+});
+
+export async function generateImage(prompt: string) {
+  const output = await replicate.run(
+    "stability-ai/stable-diffusion:db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf",
+    {
+      input: {
+        prompt,
+        width: 512,
+        height: 512,
+      }
+    }
+  );
+  
+  return output;
+}
+```
+
+### DeepSeek 集成
+
+具有竞争性定价的替代 AI 提供商。
+
+#### 配置
+
+```bash
+DEEPSEEK_API_KEY="your-deepseek-api-key"
+```
+
+#### 使用示例
+
+```typescript
+import { deepseek } from '@ai-sdk/deepseek';
+import { generateText } from 'ai';
+
+export async function generateWithDeepSeek(prompt: string) {
+  const { text } = await generateText({
+    model: deepseek('deepseek-chat'),
+    prompt,
+  });
+  
+  return text;
+}
+```
+
+## AI 工作站
+
+AI 工作站是与 AI 模型交互的强大界面。
+
+### 功能
+
+- **多模型支持**：在不同 AI 提供商之间切换
+- **流式响应**：实时响应流
+- **对话历史**：持久化聊天历史
+- **文件上传**：支持文档分析
+- **自定义提示**：保存和重用自定义提示
+
+### 实现
+
+AI 工作站在 `src/app/[locale]/(default)/ai-workstation/page.tsx` 中实现：
+
+```typescript
+'use client';
+
+import { useState } from 'react';
+import { useChat } from 'ai/react';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+
+export default function AIWorkstation() {
+  const { messages, input, handleInputChange, handleSubmit } = useChat({
+    api: '/api/chat',
+  });
+
+  return (
+    <div className="container mx-auto p-6">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold mb-6">AI 工作站</h1>
+        
+        <div className="space-y-4">
+          {messages.map((message) => (
+            <div key={message.id} className="p-4 border rounded-lg">
+              <div className="font-semibold">
+                {message.role === 'user' ? '您' : 'AI'}
+              </div>
+              <div className="mt-2">{message.content}</div>
+            </div>
+          ))}
+        </div>
+        
+        <form onSubmit={handleSubmit} className="mt-6">
+          <Textarea
+            value={input}
+            onChange={handleInputChange}
+            placeholder="问我任何问题..."
+            className="w-full"
+          />
+          <Button type="submit" className="mt-2">
+            发送
+          </Button>
+        </form>
+      </div>
+    </div>
+  );
+}
+```
+
+## 聊天 API 实现
+
+聊天 API 处理 AI 交互并提供流式支持。
+
+### API 路由
+
+```typescript
+// src/app/api/chat/route.ts
+import { openai } from '@ai-sdk/openai';
+import { streamText } from 'ai';
+
+export async function POST(req: Request) {
+  const { messages } = await req.json();
+
+  const result = await streamText({
+    model: openai('gpt-4'),
+    messages,
+  });
+
+  return result.toDataStreamResponse();
+}
+```
+
+### 错误处理
+
+```typescript
+export async function POST(req: Request) {
+  try {
+    const { messages } = await req.json();
+
+    if (!messages || !Array.isArray(messages)) {
+      return Response.json(
+        { error: '无效的消息格式' },
+        { status: 400 }
+      );
+    }
+
+    const result = await streamText({
+      model: openai('gpt-4'),
+      messages,
+    });
+
+    return result.toDataStreamResponse();
+  } catch (error) {
+    console.error('聊天 API 错误:', error);
+    return Response.json(
+      { error: '内部服务器错误' },
+      { status: 500 }
+    );
+  }
+}
+```
+
+## 高级 AI 功能
+
+### 函数调用
+
+使 AI 模型能够调用函数和工具。
+
+```typescript
+import { openai } from '@ai-sdk/openai';
+import { generateObject } from 'ai';
+import { z } from 'zod';
+
+const weatherSchema = z.object({
+  location: z.string(),
+  temperature: z.number(),
+  condition: z.string(),
+});
+
+export async function getWeatherWithAI(location: string) {
+  const { object } = await generateObject({
+    model: openai('gpt-4'),
+    prompt: `获取 ${location} 的天气信息`,
+    schema: weatherSchema,
+  });
+
+  return object;
+}
+```
+
+### 图像分析
+
+使用 AI 视觉模型分析图像。
+
+```typescript
+import { openai } from '@ai-sdk/openai';
+import { generateText } from 'ai';
+
+export async function analyzeImage(imageUrl: string) {
+  const { text } = await generateText({
+    model: openai('gpt-4-vision-preview'),
+    messages: [
+      {
+        role: 'user',
+        content: [
+          {
+            type: 'text',
+            text: '详细描述这张图片。',
+          },
+          {
+            type: 'image',
+            image: imageUrl,
+          },
+        ],
+      },
+    ],
+  });
+
+  return text;
+}
+```
+
+### 文档处理
+
+处理和分析文档。
+
+```typescript
+import { openai } from '@ai-sdk/openai';
+import { generateText } from 'ai';
+
+export async function processDocument(documentText: string) {
+  const { text } = await generateText({
+    model: openai('gpt-4'),
+    prompt: `分析以下文档并提供摘要：\n\n${documentText}`,
+  });
+
+  return text;
+}
+```
+
+## 状态管理
+
+### AI 聊天存储
+
+使用 Zustand 管理 AI 聊天状态。
+
+```typescript
+// src/stores/ai-chat-store.ts
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+
+interface Message {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: Date;
+}
+
+interface AIChatStore {
+  messages: Message[];
+  addMessage: (message: Omit<Message, 'id' | 'timestamp'>) => void;
+  clearMessages: () => void;
+  isLoading: boolean;
+  setIsLoading: (loading: boolean) => void;
+}
+
+export const useAIChatStore = create<AIChatStore>()(
+  persist(
+    (set) => ({
+      messages: [],
+      addMessage: (message) =>
+        set((state) => ({
+          messages: [
+            ...state.messages,
+            {
+              ...message,
+              id: crypto.randomUUID(),
+              timestamp: new Date(),
+            },
+          ],
+        })),
+      clearMessages: () => set({ messages: [] }),
+      isLoading: false,
+      setIsLoading: (loading) => set({ isLoading: loading }),
+    }),
+    {
+      name: 'ai-chat-storage',
+    }
+  )
+);
+```
+
+## 性能优化
+
+### 缓存 AI 响应
+
+为昂贵的 AI 操作实现缓存。
+
+```typescript
+import { Redis } from 'ioredis';
+
+const redis = new Redis(process.env.REDIS_URL);
+
+export async function getCachedAIResponse(prompt: string) {
+  const cacheKey = `ai:${Buffer.from(prompt).toString('base64')}`;
+  
+  // 尝试从缓存获取
+  const cached = await redis.get(cacheKey);
+  if (cached) {
+    return JSON.parse(cached);
+  }
+  
+  // 生成新响应
+  const response = await generateAIResponse(prompt);
+  
+  // 缓存 1 小时
+  await redis.setex(cacheKey, 3600, JSON.stringify(response));
+  
+  return response;
+}
+```
+
+### 速率限制
+
+为 AI API 调用实现速率限制。
+
+```typescript
+// src/lib/rate-limit.ts
+import { Ratelimit } from '@upstash/ratelimit';
+import { Redis } from '@upstash/redis';
+
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+});
+
+export const ratelimit = new Ratelimit({
+  redis,
+  limiter: Ratelimit.slidingWindow(10, '1 m'), // 每分钟 10 个请求
+});
+
+export async function checkRateLimit(identifier: string) {
+  const { success, limit, reset, remaining } = await ratelimit.limit(identifier);
+  
+  return {
+    success,
+    limit,
+    reset,
+    remaining,
+  };
+}
+```
+
+## 安全考虑
+
+### API 密钥管理
+
+- 在环境变量中安全存储 API 密钥
+- 为开发和生产使用不同的密钥
+- 实施密钥轮换策略
+- 监控 API 使用情况和成本
+
+### 输入验证
+
+```typescript
+import { z } from 'zod';
+
+const chatMessageSchema = z.object({
+  content: z.string().min(1).max(4000),
+  role: z.enum(['user', 'assistant']),
+});
+
+export function validateChatMessage(data: unknown) {
+  return chatMessageSchema.parse(data);
+}
+```
+
+### 内容过滤
+
+```typescript
+export async function filterContent(content: string) {
+  // 实施内容过滤逻辑
+  const inappropriateKeywords = ['垃圾邮件', '滥用', '仇恨'];
+  
+  const hasInappropriateContent = inappropriateKeywords.some(keyword =>
+    content.toLowerCase().includes(keyword)
+  );
+  
+  if (hasInappropriateContent) {
+    throw new Error('内容包含不当材料');
+  }
+  
+  return content;
+}
+```
+
+## 监控和分析
+
+### 使用跟踪
+
+```typescript
+// src/lib/ai-analytics.ts
+export async function trackAIUsage(
+  provider: string,
+  model: string,
+  tokens: number,
+  cost: number
+) {
+  // 跟踪 AI 使用情况以进行分析和计费
+  console.log('AI 使用情况:', {
+    provider,
+    model,
+    tokens,
+    cost,
+    timestamp: new Date(),
+  });
+}
+```
+
+### 错误监控
+
+```typescript
+import * as Sentry from '@sentry/nextjs';
+
+export async function handleAIError(error: Error, context: any) {
+  Sentry.captureException(error, {
+    tags: {
+      component: 'ai-integration',
+    },
+    extra: context,
+  });
+  
+  // 记录错误以便调试
+  console.error('AI 集成错误:', error);
+}
+```
+
+## 最佳实践
+
+1. **模型选择**：为您的用例选择合适的模型
+2. **错误处理**：实施全面的错误处理
+3. **速率限制**：防止 API 滥用并控制成本
+4. **缓存**：在适当的时候缓存响应
+5. **安全**：验证输入并过滤内容
+6. **监控**：跟踪使用情况并监控问题
+7. **成本管理**：监控 API 使用情况和成本
+8. **回退**：为 API 失败实施回退策略
+
+## 故障排除
+
+### 常见问题
+
+**API 密钥错误：**
+- 验证 API 密钥是否正确设置在环境变量中
+- 检查 API 密钥权限和配额
+- 确保密钥未过期
+
+**速率限制：**
+- 实施适当的速率限制
+- 对重试使用指数退避
+- 考虑升级 API 计划
+
+**模型错误：**
+- 检查模型可用性
+- 验证输入格式和大小限制
+- 适当处理模型特定错误
+
+如需更多帮助，请查看[故障排除指南](/docs/troubleshooting)或访问我们的[支持页面](/support)。

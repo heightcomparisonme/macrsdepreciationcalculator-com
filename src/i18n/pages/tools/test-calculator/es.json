@@ -1,0 +1,147 @@
+{
+  "metadata": {
+    "title": "Calculadora de Prueba - Herramienta de Suma Simple",
+    "description": "Una calculadora de prueba simple para verificar el flujo de trabajo de creación dinámica de herramientas. Suma dos números."
+  },
+  "title": "Calculadora de Prueba",
+  "subtitle": "Calculadora de Suma Simple para Pruebas",
+  "input": {
+    "title": "Ingresar Números",
+    "description": "Ingrese dos números para sumar",
+    "number1": "Primer Número",
+    "number2": "Segundo Número"
+  },
+  "button": {
+    "calculate": "Calcular Suma"
+  },
+  "result": {
+    "title": "Resultado del Cálculo",
+    "description": "La suma de sus números es:"
+  },
+  "info": {
+    "title": "Acerca de Esta Herramienta de Prueba",
+    "description": "Esta es una calculadora de prueba creada para verificar que el sistema de descubrimiento dinámico de herramientas funcione correctamente. Demuestra el registro automático de herramientas, la carga de traducciones y el renderizado de componentes."
+  },
+  "hero": {
+    "badge": "Herramienta de Prueba",
+    "title": "Calculadora de Prueba",
+    "subtitle": "Calculadora de suma simple para probar la creación dinámica de herramientas",
+    "description": "Esta calculadora demuestra el sistema automatizado de descubrimiento de herramientas. Simplemente ingrese dos números y vea el resultado.",
+    "cta_primary": "Probar Calculadora",
+    "cta_secondary": "Más Información"
+  },
+  "features": {
+    "title": "Características de la Calculadora",
+    "description": "Una herramienta simple pero efectiva para probar nuestro sistema de herramientas dinámicas",
+    "simple": {
+      "title": "Interfaz Simple",
+      "description": "Diseño limpio e intuitivo que cualquiera puede usar"
+    },
+    "fast": {
+      "title": "Rapidísimo",
+      "description": "Resultados de cálculo instantáneos sin demoras"
+    },
+    "accurate": {
+      "title": "100% Preciso",
+      "description": "Cálculos confiables en los que puede confiar"
+    },
+    "multilingual": {
+      "title": "Soporte Multiidioma",
+      "description": "Disponible en inglés, alemán y español"
+    }
+  },
+  "showcase": {
+    "badge": "Cómo funciona",
+    "title": "Cálculo simple y efectivo",
+    "description": "Esta calculadora de prueba demuestra el sistema de herramientas dinámicas con resultados instantáneos y una interfaz limpia.",
+    "image_url": "/imgs/showcases/7.png",
+    "image_alt": "Interfaz de calculadora de prueba",
+    "benefits": [
+      "Ingrese números con una interfaz de entrada intuitiva",
+      "Obtenga resultados de cálculo instantáneos sin demoras",
+      "Experimente un diseño limpio y responsivo en todos los dispositivos",
+      "Pruebe el sistema de descubrimiento y registro dinámico de herramientas",
+      "Verifique el soporte multiidioma con cobertura de traducción completa"
+    ]
+  },
+  "features2": {
+    "label": "Experimente la simplicidad",
+    "title": "De números a resultados en segundos",
+    "description": "Vea cómo la calculadora de prueba proporciona retroalimentación instantánea con una hermosa interfaz.",
+    "hover_tip": "Seleccione una tarjeta para ver el control deslizante antes/después",
+    "slider_before_alt": "Antes del cálculo",
+    "slider_after_alt": "Después del cálculo",
+    "slider_hover_title": "Arrastre para comparar",
+    "slider_hover_description": "Use el control deslizante para ver el proceso de cálculo en acción.",
+    "items": {
+      "easy": {
+        "title": "Entrada Fácil",
+        "description": "Campos de entrada de números simples con etiquetas claras y validación instantánea."
+      },
+      "precise": {
+        "title": "Resultados Precisos",
+        "description": "Cálculos precisos mostrados inmediatamente con el formato adecuado."
+      },
+      "reliable": {
+        "title": "Rendimiento Confiable",
+        "description": "Resultados consistentes cada vez sin errores ni demoras."
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Testimonios",
+    "description": "Lo que los desarrolladores dicen sobre nuestra calculadora de prueba y el sistema de herramientas dinámicas.",
+    "stats": {
+      "modelsCreated": "Cálculos Realizados",
+      "averageRating": "Calificación Promedio",
+      "successRate": "Tasa de Éxito",
+      "countriesServed": "Países Atendidos"
+    },
+    "items": [
+      {
+        "name": "John Desarrollador",
+        "role": "Ingeniero Frontend",
+        "avatar": "https://randomuser.me/api/portraits/men/1.jpg",
+        "quote": "Esta calculadora de prueba demuestra perfectamente el sistema de herramientas dinámicas. ¡Código limpio y gran arquitectura!",
+        "rating": "5"
+      },
+      {
+        "name": "Sarah Diseñadora",
+        "role": "Diseñadora UI/UX",
+        "avatar": "https://randomuser.me/api/portraits/women/2.jpg",
+        "quote": "La interfaz es hermosa y responsiva. Gran ejemplo de diseño web moderno.",
+        "rating": "5"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "description": "Preguntas comunes sobre la herramienta de calculadora de prueba.",
+    "items": [
+      {
+        "title": "¿Para qué es esta calculadora?",
+        "description": "Esta es una calculadora de prueba para demostrar el sistema de descubrimiento y registro dinámico de herramientas. Realiza sumas simples para verificar el flujo de trabajo."
+      },
+      {
+        "title": "¿Cómo creo mi propia herramienta?",
+        "description": "Cree una nueva carpeta en src/app/[locale]/(default)/tools con un archivo page.tsx y archivos de traducción. El sistema la detectará automáticamente."
+      },
+      {
+        "title": "¿Puedo personalizar el estilo?",
+        "description": "¡Sí! Puede personalizar el icono, color, categoría y etiquetas en src/lib/tools-config.ts para cada herramienta."
+      },
+      {
+        "title": "¿Es multiidioma?",
+        "description": "¡Absolutamente! Agregue archivos de traducción en src/i18n/pages/tools/[tool-name] para cada idioma que desee admitir."
+      }
+    ]
+  },
+  "cta": {
+    "title": "¿Listo para crear sus propias herramientas?",
+    "description": "Use esta plantilla para crear herramientas increíbles con descubrimiento dinámico, soporte multiidioma y hermosa interfaz.",
+    "primary_button": "Explorar Más Herramientas",
+    "secondary_button": "Leer Documentación",
+    "primary_link": "/tools",
+    "secondary_link": "/docs"
+  }
+}

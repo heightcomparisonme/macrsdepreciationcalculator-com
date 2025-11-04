@@ -1,0 +1,147 @@
+{
+  "metadata": {
+    "title": "Test-Rechner - Einfaches Additions-Tool",
+    "description": "Ein einfacher Test-Rechner zur Überprüfung des dynamischen Tool-Erstellungsworkflows. Addieren Sie zwei Zahlen."
+  },
+  "title": "Test-Rechner",
+  "subtitle": "Einfacher Additions-Rechner zum Testen",
+  "input": {
+    "title": "Zahlen eingeben",
+    "description": "Geben Sie zwei Zahlen ein, die addiert werden sollen",
+    "number1": "Erste Zahl",
+    "number2": "Zweite Zahl"
+  },
+  "button": {
+    "calculate": "Summe berechnen"
+  },
+  "result": {
+    "title": "Berechnungsergebnis",
+    "description": "Die Summe Ihrer Zahlen ist:"
+  },
+  "info": {
+    "title": "Über dieses Test-Tool",
+    "description": "Dies ist ein Test-Rechner, der erstellt wurde, um zu überprüfen, ob das dynamische Tool-Discovery-System korrekt funktioniert. Es demonstriert die automatische Tool-Registrierung, das Laden von Übersetzungen und das Rendern von Komponenten."
+  },
+  "hero": {
+    "badge": "Test-Tool",
+    "title": "Test-Rechner",
+    "subtitle": "Einfacher Additions-Rechner zum Testen der dynamischen Tool-Erstellung",
+    "description": "Dieser Rechner demonstriert das automatisierte Tool-Discovery-System. Geben Sie einfach zwei Zahlen ein und sehen Sie das Ergebnis.",
+    "cta_primary": "Rechner testen",
+    "cta_secondary": "Mehr erfahren"
+  },
+  "features": {
+    "title": "Rechner-Funktionen",
+    "description": "Ein einfaches, aber effektives Tool zum Testen unseres dynamischen Tool-Systems",
+    "simple": {
+      "title": "Einfache Benutzeroberfläche",
+      "description": "Klares und intuitives Design, das jeder nutzen kann"
+    },
+    "fast": {
+      "title": "Blitzschnell",
+      "description": "Sofortige Berechnungsergebnisse ohne Verzögerungen"
+    },
+    "accurate": {
+      "title": "100% Genau",
+      "description": "Zuverlässige Berechnungen, denen Sie vertrauen können"
+    },
+    "multilingual": {
+      "title": "Mehrsprachige Unterstützung",
+      "description": "Verfügbar in Englisch, Deutsch und Spanisch"
+    }
+  },
+  "showcase": {
+    "badge": "So funktioniert es",
+    "title": "Einfache und effektive Berechnung",
+    "description": "Dieser Test-Rechner demonstriert das dynamische Tool-System mit sofortigen Ergebnissen und einer sauberen Benutzeroberfläche.",
+    "image_url": "/imgs/showcases/7.png",
+    "image_alt": "Test-Rechner Benutzeroberfläche",
+    "benefits": [
+      "Zahlen mit einer intuitiven Eingabeoberfläche eingeben",
+      "Sofortige Berechnungsergebnisse ohne Verzögerungen erhalten",
+      "Ein sauberes, responsives Design auf allen Geräten erleben",
+      "Das dynamische Tool-Discovery- und Registrierungssystem testen",
+      "Mehrsprachige Unterstützung mit vollständiger Übersetzungsabdeckung überprüfen"
+    ]
+  },
+  "features2": {
+    "label": "Erleben Sie die Einfachheit",
+    "title": "Von Zahlen zu Ergebnissen in Sekunden",
+    "description": "Sehen Sie, wie der Test-Rechner sofortiges Feedback mit einer schönen Benutzeroberfläche bietet.",
+    "hover_tip": "Wählen Sie eine Karte, um den Vorher-Nachher-Slider anzuzeigen",
+    "slider_before_alt": "Vor der Berechnung",
+    "slider_after_alt": "Nach der Berechnung",
+    "slider_hover_title": "Ziehen Sie zum Vergleichen",
+    "slider_hover_description": "Verwenden Sie den Slider, um den Berechnungsprozess in Aktion zu sehen.",
+    "items": {
+      "easy": {
+        "title": "Einfache Eingabe",
+        "description": "Einfache Zahleneingabefelder mit klaren Beschriftungen und sofortiger Validierung."
+      },
+      "precise": {
+        "title": "Präzise Ergebnisse",
+        "description": "Genaue Berechnungen werden sofort mit ordnungsgemäßer Formatierung angezeigt."
+      },
+      "reliable": {
+        "title": "Zuverlässige Leistung",
+        "description": "Konsistente Ergebnisse jedes Mal ohne Fehler oder Verzögerungen."
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "description": "Was Entwickler über unseren Test-Rechner und das dynamische Tool-System sagen.",
+    "stats": {
+      "modelsCreated": "Durchgeführte Berechnungen",
+      "averageRating": "Durchschnittliche Bewertung",
+      "successRate": "Erfolgsquote",
+      "countriesServed": "Bediente Länder"
+    },
+    "items": [
+      {
+        "name": "John Entwickler",
+        "role": "Frontend-Ingenieur",
+        "avatar": "https://randomuser.me/api/portraits/men/1.jpg",
+        "quote": "Dieser Test-Rechner demonstriert perfekt das dynamische Tool-System. Sauberer Code und großartige Architektur!",
+        "rating": "5"
+      },
+      {
+        "name": "Sarah Designer",
+        "role": "UI/UX-Designerin",
+        "avatar": "https://randomuser.me/api/portraits/women/2.jpg",
+        "quote": "Die Benutzeroberfläche ist schön und responsiv. Großartiges Beispiel für modernes Webdesign.",
+        "rating": "5"
+      }
+    ]
+  },
+  "faq": {
+    "title": "FAQ",
+    "description": "Häufige Fragen zum Test-Rechner-Tool.",
+    "items": [
+      {
+        "title": "Wofür ist dieser Rechner?",
+        "description": "Dies ist ein Test-Rechner, um das dynamische Tool-Discovery- und Registrierungssystem zu demonstrieren. Er führt einfache Additionen durch, um den Workflow zu überprüfen."
+      },
+      {
+        "title": "Wie erstelle ich mein eigenes Tool?",
+        "description": "Erstellen Sie einen neuen Ordner in src/app/[locale]/(default)/tools mit einer page.tsx-Datei und Übersetzungsdateien. Das System erkennt es automatisch."
+      },
+      {
+        "title": "Kann ich das Styling anpassen?",
+        "description": "Ja! Sie können das Symbol, die Farbe, die Kategorie und die Tags in src/lib/tools-config.ts für jedes Tool anpassen."
+      },
+      {
+        "title": "Ist es mehrsprachig?",
+        "description": "Absolut! Fügen Sie Übersetzungsdateien in src/i18n/pages/tools/[tool-name] für jede Sprache hinzu, die Sie unterstützen möchten."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Bereit, Ihre eigenen Tools zu erstellen?",
+    "description": "Verwenden Sie diese Vorlage, um erstaunliche Tools mit dynamischer Erkennung, mehrsprachiger Unterstützung und schöner Benutzeroberfläche zu erstellen.",
+    "primary_button": "Weitere Tools erkunden",
+    "secondary_button": "Dokumentation lesen",
+    "primary_link": "/tools",
+    "secondary_link": "/docs"
+  }
+}

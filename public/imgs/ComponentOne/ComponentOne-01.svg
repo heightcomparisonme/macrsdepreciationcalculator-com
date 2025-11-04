@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    aria-hidden="true" role="img" width="1024" height="1024" viewBox="0 0 1024 1024">
+    <g fill="none" transform="translate(256, 0) scale(2)">
+        <path fill="url(#iconifyReact50)"
+            d="m145.82 466.117-106.469-50.1V141.86c0-13.017 5.696-27.465 14.901-36.67l24.619-24.617 107.623 350.191c7.569 24.452-17.512 46.252-40.674 35.353"></path>
+        <path fill="url(#iconifyReact51)"
+            d="M294.231 192.636 172.796 59.066c-18.852-20.736-51.21-21.506-71.027-1.69L54.253 105.19c-9.07 10.365-14.252 21.262-14.252 34.28v274.157l243.164-145.89c26.56-15.935 31.901-52.185 11.066-75.102"></path>
+        <defs>
+            <linearGradient id="iconifyReact50" x1="-154.021" x2="184.641" y1="141.162" y2="465.119"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#FE9E58"></stop>
+                <stop offset=".396" stop-color="#E470EC"></stop>
+                <stop offset="1" stop-color="#442FBA"></stop>
+            </linearGradient>
+            <linearGradient id="iconifyReact51" x1="233.374" x2="-105.287" y1="138.773" y2="462.73"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#FFA052"></stop>
+                <stop offset=".396" stop-color="#E36CFA" stop-opacity=".8"></stop>
+                <stop offset="1" stop-color="#442FBA" stop-opacity=".7"></stop>
+            </linearGradient>
+            <linearGradient id="iconifyReact52" x1="1159.64" x2="1159.64" y1="178.712" y2="393.587"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#F3F3F3"></stop>
+                <stop offset="1" stop-color="#E2E2E2"></stop>
+            </linearGradient>
+            <linearGradient id="iconifyReact53" x1="1159.64" x2="1159.64" y1="178.712" y2="393.587"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#F3F3F3"></stop>
+                <stop offset="1" stop-color="#E2E2E2"></stop>
+            </linearGradient>
+            <linearGradient id="iconifyReact54" x1="1159.64" x2="1159.64" y1="178.712" y2="393.587"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#F3F3F3"></stop>
+                <stop offset="1" stop-color="#E2E2E2"></stop>
+            </linearGradient>
+            <linearGradient id="iconifyReact55" x1="1159.64" x2="1159.64" y1="178.712" y2="393.587"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#F3F3F3"></stop>
+                <stop offset="1" stop-color="#E2E2E2"></stop>
+            </linearGradient>
+            <linearGradient id="iconifyReact56" x1="1159.64" x2="1159.64" y1="178.712" y2="393.587"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#F3F3F3"></stop>
+                <stop offset="1" stop-color="#E2E2E2"></stop>
+            </linearGradient>
+            <linearGradient id="iconifyReact57" x1="1159.64" x2="1159.64" y1="178.712" y2="393.587"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#F3F3F3"></stop>
+                <stop offset="1" stop-color="#E2E2E2"></stop>
+            </linearGradient>
+            <linearGradient id="iconifyReact58" x1="1159.64" x2="1159.64" y1="178.712" y2="393.587"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#F3F3F3"></stop>
+                <stop offset="1" stop-color="#E2E2E2"></stop>
+            </linearGradient>
+            <linearGradient id="iconifyReact59" x1="1159.64" x2="1159.64" y1="178.712" y2="393.587"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#F3F3F3"></stop>
+                <stop offset="1" stop-color="#E2E2E2"></stop>
+            </linearGradient>
+        </defs>
+    </g>
+</svg>

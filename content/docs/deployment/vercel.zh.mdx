@@ -1,0 +1,543 @@
+---
+title: Vercel 部署
+description: 通过分步说明将 AIGXT 部署到 Vercel
+icon: "Zap"
+---
+
+# Vercel 部署
+
+本指南将引导您将 AIGXT 部署到 Vercel，这是一个用于部署 Next.js 应用程序的现代平台。
+
+## 前置要求
+
+在部署到 Vercel 之前，请确保您有：
+
+- Vercel 账户（[在此注册](https://vercel.com)）
+- 准备好部署的 AIGXT 项目
+- 所有环境变量已配置
+- 数据库已设置且可访问
+
+## 部署方法
+
+### 方法 1：Vercel CLI（推荐）
+
+#### 1. 安装 Vercel CLI
+
+```bash
+npm i -g vercel
+```
+
+#### 2. 登录 Vercel
+
+```bash
+vercel login
+```
+
+#### 3. 从项目目录部署
+
+```bash
+cd your-aigxt-project
+vercel
+```
+
+按照提示操作：
+- 设置并部署？**是**
+- 选择范围？选择您的账户
+- 链接到现有项目？**否**（首次部署）
+- 项目名称：`aigxt`（或您喜欢的名称）
+- 目录：`./`（当前目录）
+- 覆盖设置？**否**
+
+#### 4. 生产部署
+
+```bash
+vercel --prod
+```
+
+### 方法 2：GitHub 集成
+
+#### 1. 推送到 GitHub
+
+```bash
+git add .
+git commit -m "准备部署"
+git push origin main
+```
+
+#### 2. 在 Vercel 中导入项目
+
+1. 转到 [Vercel 仪表板](https://vercel.com/dashboard)
+2. 点击 **"新建项目"**
+3. 导入您的 GitHub 仓库
+4. 配置项目设置
+
+#### 3. 配置构建设置
+
+Vercel 会自动检测 Next.js 设置，但请验证：
+
+- **框架预设**：Next.js
+- **构建命令**：`pnpm build`
+- **输出目录**：`.next`
+- **安装命令**：`pnpm install`
+
+## 环境变量
+
+### 必需的环境变量
+
+在 Vercel 项目设置中设置这些：
+
+```bash
+# 数据库
+DATABASE_URL="postgresql://username:password@host:port/database"
+
+# 身份验证
+NEXTAUTH_SECRET="your-production-secret-key"
+NEXTAUTH_URL="https://your-domain.vercel.app"
+
+# AI 服务
+OPENAI_API_KEY="sk-your-openai-api-key"
+REPLICATE_API_TOKEN="r8_your-replicate-token"
+DEEPSEEK_API_KEY="your-deepseek-api-key"
+
+# Stripe
+STRIPE_PUBLISHABLE_KEY="pk_live_your-publishable-key"
+STRIPE_SECRET_KEY="sk_live_your-secret-key"
+STRIPE_WEBHOOK_SECRET="whsec_your-webhook-secret"
+
+# 文件存储
+AWS_ACCESS_KEY_ID="your-access-key"
+AWS_SECRET_ACCESS_KEY="your-secret-key"
+AWS_REGION="us-east-1"
+AWS_S3_BUCKET="your-bucket-name"
+
+# 分析（可选）
+SENTRY_DSN="your-sentry-dsn"
+```
+
+### 设置环境变量
+
+#### 通过 Vercel 仪表板
+
+1. 转到 Vercel 仪表板中的项目
+2. 点击 **设置** → **环境变量**
+3. 添加每个变量及其适当的值
+4. 设置环境范围（生产、预览、开发）
+
+#### 通过 Vercel CLI
+
+```bash
+vercel env add DATABASE_URL
+vercel env add NEXTAUTH_SECRET
+vercel env add OPENAI_API_KEY
+# ... 添加所有必需的变量
+```
+
+## 数据库设置
+
+### 生产数据库
+
+对于生产环境，使用托管的 PostgreSQL 服务：
+
+#### 选项 1：Vercel Postgres
+
+```bash
+# 安装 Vercel Postgres
+vercel storage create postgres
+
+# 链接到您的项目
+vercel storage link postgres
+```
+
+#### 选项 2：外部数据库
+
+热门选项：
+- [Neon](https://neon.tech)
+- [Supabase](https://supabase.com)
+- [PlanetScale](https://planetscale.com)
+- [Railway](https://railway.app)
+
+### 数据库迁移
+
+在生产数据库上运行迁移：
+
+```bash
+# 设置生产 DATABASE_URL
+export DATABASE_URL="your-production-database-url"
+
+# 运行迁移
+pnpm db:migrate
+```
+
+## 域名配置
+
+### 自定义域名
+
+#### 1. 在 Vercel 中添加域名
+
+1. 转到项目设置
+2. 点击 **域名**
+3. 添加您的自定义域名
+4. 按照 DNS 配置说明操作
+
+#### 2. 更新环境变量
+
+```bash
+NEXTAUTH_URL="https://your-custom-domain.com"
+```
+
+#### 3. SSL 证书
+
+Vercel 自动为自定义域名提供 SSL 证书。
+
+## 构建配置
+
+### Vercel 配置文件
+
+在项目根目录创建 `vercel.json`：
+
+```json
+{
+  "buildCommand": "pnpm build",
+  "outputDirectory": ".next",
+  "installCommand": "pnpm install",
+  "framework": "nextjs",
+  "functions": {
+    "src/app/api/**/*.ts": {
+      "maxDuration": 30
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/docs",
+      "destination": "/docs/getting-started/installation",
+      "permanent": false
+    }
+  ]
+}
+```
+
+### Next.js 配置
+
+确保您的 `next.config.mjs` 针对生产环境进行了优化：
+
+```javascript
+import bundleAnalyzer from "@next/bundle-analyzer";
+import createNextIntlPlugin from "next-intl/plugin";
+import { createMDX } from "fumadocs-mdx/next";
+
+const withMDX = createMDX();
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
+const withNextIntl = createNextIntlPlugin();
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: "standalone",
+  reactStrictMode: true,
+  pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "*",
+      },
+    ],
+  },
+  experimental: {
+    mdxRs: true,
+  },
+};
+
+export default withBundleAnalyzer(withNextIntl(withMDX(nextConfig)));
+```
+
+## 性能优化
+
+### 图像优化
+
+```javascript
+// next.config.mjs
+const nextConfig = {
+  images: {
+    domains: ['your-domain.com'],
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 60,
+  },
+};
+```
+
+### 包分析
+
+```bash
+# 分析包大小
+ANALYZE=true pnpm build
+```
+
+### Edge 函数
+
+为了获得更好的性能，考虑为 API 路由使用 Edge Runtime：
+
+```typescript
+// src/app/api/example/route.ts
+export const runtime = 'edge';
+
+export async function GET() {
+  return Response.json({ message: 'Hello from Edge!' });
+}
+```
+
+## 监控和分析
+
+### Vercel 分析
+
+在您的项目中启用 Vercel 分析：
+
+```bash
+vercel analytics
+```
+
+### 错误监控
+
+使用 Sentry 设置错误监控：
+
+```typescript
+// src/lib/sentry.ts
+import * as Sentry from "@sentry/nextjs";
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  environment: process.env.NODE_ENV,
+  tracesSampleRate: 1.0,
+});
+```
+
+### 性能监控
+
+```typescript
+// src/lib/analytics.ts
+export function trackPageView(url: string) {
+  if (typeof window !== 'undefined') {
+    // 您的分析跟踪代码
+    console.log('页面访问:', url);
+  }
+}
+```
+
+## 安全配置
+
+### 安全头
+
+在 `next.config.mjs` 中添加安全头：
+
+```javascript
+const nextConfig = {
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'origin-when-cross-origin',
+          },
+        ],
+      },
+    ];
+  },
+};
+```
+
+### 内容安全策略
+
+```javascript
+const nextConfig = {
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;",
+          },
+        ],
+      },
+    ];
+  },
+};
+```
+
+## CI/CD 管道
+
+### GitHub Actions
+
+创建 `.github/workflows/deploy.yml`：
+
+```yaml
+name: Deploy to Vercel
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          
+      - name: Install dependencies
+        run: pnpm install
+        
+      - name: Run linting
+        run: pnpm lint
+        
+      - name: Run type check
+        run: pnpm tsc --noEmit
+        
+      - name: Build application
+        run: pnpm build
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.ORG_ID }}
+          vercel-project-id: ${{ secrets.PROJECT_ID }}
+          vercel-args: '--prod'
+```
+
+## 故障排除
+
+### 常见部署问题
+
+#### 构建失败
+
+**问题**：依赖项错误导致构建失败
+**解决方案**：
+```bash
+# 清除缓存并重新安装
+rm -rf node_modules pnpm-lock.yaml
+pnpm install
+```
+
+**问题**：TypeScript 错误
+**解决方案**：首先在本地修复 TypeScript 错误：
+```bash
+pnpm tsc --noEmit
+```
+
+#### 运行时错误
+
+**问题**：环境变量未加载
+**解决方案**：
+- 验证变量是否在 Vercel 仪表板中设置
+- 检查变量名称是否完全匹配
+- 确保适当的环境范围
+
+**问题**：数据库连接错误
+**解决方案**：
+- 验证 `DATABASE_URL` 是否正确
+- 检查数据库是否可从 Vercel 访问
+- 确保为数据库连接启用了 SSL
+
+#### 性能问题
+
+**问题**：页面加载缓慢
+**解决方案**：
+- 启用 Vercel 分析
+- 优化图像
+- 为 API 路由使用 Edge Runtime
+- 实施缓存策略
+
+### 调试
+
+#### 启用调试模式
+
+```bash
+vercel logs --follow
+```
+
+#### 检查函数日志
+
+```bash
+vercel logs [deployment-url]
+```
+
+## 最佳实践
+
+1. **环境变量**：使用 Vercel 的环境变量系统
+2. **数据库**：在生产环境中使用托管数据库服务
+3. **监控**：设置错误跟踪和分析
+4. **安全**：实施适当的安全头
+5. **性能**：优化图像并使用 Edge Runtime
+6. **CI/CD**：使用 GitHub Actions 进行自动部署
+7. **备份**：定期数据库备份
+8. **SSL**：在生产环境中始终使用 HTTPS
+
+## 部署后检查清单
+
+- [ ] 应用程序无错误加载
+- [ ] 所有环境变量已设置
+- [ ] 数据库可访问且已迁移
+- [ ] 自定义域名已配置（如适用）
+- [ ] SSL 证书已激活
+- [ ] 分析和监控正常工作
+- [ ] 错误跟踪已设置
+- [ ] 性能可接受
+- [ ] 安全头已就位
+- [ ] CI/CD 管道正常工作
+
+## 支持
+
+对于部署问题：
+
+1. 查看 [Vercel 文档](https://vercel.com/docs)
+2. 查看 [Next.js 部署指南](https://nextjs.org/docs/deployment)
+3. 访问我们的[支持页面](/support)
+4. 查看[故障排除指南](/docs/troubleshooting)
+
+您的 AIGXT 应用程序现在应该已成功部署到 Vercel！🚀

@@ -1,0 +1,25 @@
+{
+  "featuredCreations": {
+    "title": "Other Mondkalender Tools",
+    "description": "Mondkalender | cpa-calculator | cpc-calculator | ctr-calculator | roi-calculator | youtube-cpm-calculator",
+    "viewAllText": "View All Creations",
+    "viewAllHref": "/tools",
+    "scrollInstruction": "Scroll or drag to browse",
+    "mobileInstruction": "Swipe to browse",
+    "keyboardInstruction": "Use arrow keys to navigate",
+    "badges": {
+      "featured": "Featured",
+      "new": "New"
+    },
+    "stats": {
+      "rating": "Rating",
+      "views": "Views",
+      "downloads": "Downloads",
+      "likes": "Likes"
+    },
+    "actions": {
+      "view": "View",
+      "preview": "Preview"
+    }
+  }
+}

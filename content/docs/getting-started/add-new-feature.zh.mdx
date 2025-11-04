@@ -1,0 +1,837 @@
+---
+title: 添加新功能
+description: 完整指南：如何向应用程序添加新功能，以壁纸功能为完整示例
+icon: "Plus"
+---
+
+# 添加新功能
+
+本指南演示如何向应用程序添加新功能，以壁纸功能作为完整示例。请将这些步骤作为任何新功能开发的模板。
+
+## 概述
+
+添加新功能时，需要按以下层次进行开发：
+1. **数据库层** - 定义表结构和迁移
+2. **类型层** - 创建 TypeScript 接口
+3. **模型层** - 实现数据操作（增删改查）
+4. **API 层** - 创建 REST 端点
+5. **组件层** - 构建可复用的 UI 组件
+6. **页面层** - 将组件集成到页面中
+7. **配置层** - 更新常量和设置
+8. **存储层** - 配置文件上传/下载
+
+## 分步实施
+
+### 1. 数据库表结构设计
+
+**文件: `src/db/schema.ts`**
+
+添加新的表定义：
+
+```typescript
+export const wallpapers = pgTable("wallpapers", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  uuid: varchar({ length: 255 }).notNull().unique(),
+  created_at: timestamp({ withTimezone: true }),
+  updated_at: timestamp({ withTimezone: true }),
+  title: varchar({ length: 255 }).notNull(),
+  description: text(),
+  image_url: varchar({ length: 500 }).notNull(),
+  thumbnail_url: varchar({ length: 500 }),
+  category_uuid: varchar({ length: 255 }),
+  tags: text(), // JSON字符串存储标签数组
+  resolution: varchar({ length: 50 }), // 如 "1920x1080"
+  file_size: integer(), // 文件大小（字节）
+  download_count: integer().notNull().default(0),
+  view_count: integer().notNull().default(0),
+  status: varchar({ length: 50 }).notNull().default("active"),
+  user_uuid: varchar({ length: 255 }), // 上传者
+  is_featured: boolean().notNull().default(false),
+  credits_required: integer().notNull().default(0), // 下载所需积分
+});
+```
+
+### 2. TypeScript 接口定义
+
+**文件: `src/types/wallpaper.d.ts`**
+
+创建完整的类型定义：
+
+```typescript
+export interface Wallpaper {
+  id: number;
+  uuid: string;
+  created_at?: Date | string;
+  updated_at?: Date | string;
+  title: string;
+  description?: string;
+  image_url: string;
+  thumbnail_url?: string;
+  category_uuid?: string;
+  tags?: string[];
+  resolution?: string;
+  file_size?: number;
+  download_count: number;
+  view_count: number;
+  status: string;
+  user_uuid?: string;
+  is_featured: boolean;
+  credits_required: number;
+}
+
+export interface WallpaperFilter {
+  category?: string;
+  tags?: string[];
+  resolution?: string;
+  featured?: boolean;
+  search?: string;
+}
+
+export interface WallpaperUpload {
+  title: string;
+  description?: string;
+  category_uuid?: string;
+  tags?: string[];
+  credits_required?: number;
+}
+
+export interface WallpaperGridProps {
+  wallpapers: Wallpaper[];
+  onSelect?: (wallpaper: Wallpaper) => void;
+  isLoading?: boolean;
+}
+
+export interface WallpaperCardProps {
+  wallpaper: Wallpaper;
+  onDownload?: (wallpaper: Wallpaper) => void;
+  onView?: (wallpaper: Wallpaper) => void;
+}
+```
+
+### 3. 数据库迁移
+
+将表结构更改推送到数据库：
+
+```bash
+# 直接推送更改（开发环境）
+pnpm db:push
+
+# 或生成迁移文件（生产环境）
+pnpm db:generate
+pnpm db:migrate
+
+# 在 Drizzle Studio 中验证
+pnpm db:studio
+```
+
+### 4. 在 Supabase 中验证
+
+1. 登录你的 Supabase 控制台
+2. 导航到 **表编辑器**
+3. 验证新表已创建
+4. 检查列类型和约束
+5. 确保索引设置正确
+
+### 5. 数据操作模型
+
+**文件: `src/models/wallpaper.ts`**
+
+实现 CRUD 操作：
+
+```typescript
+import { db } from "@/db";
+import { wallpapers } from "@/db/schema";
+import { desc, eq, like, and, sql } from "drizzle-orm";
+
+export type WallpaperRow = typeof wallpapers.$inferSelect;
+export type NewWallpaper = typeof wallpapers.$inferInsert;
+
+// 增加 - 添加新壁纸
+export async function createWallpaper(input: NewWallpaper): Promise<WallpaperRow> {
+  const database = db();
+  const [row] = await database
+    .insert(wallpapers)
+    .values(input)
+    .returning();
+  return row;
+}
+
+// 查询 - 获取带分页和筛选的壁纸列表
+export async function listWallpapers(
+  page: number = 1,
+  limit: number = 20,
+  filter?: WallpaperFilter
+): Promise<WallpaperRow[]> {
+  const database = db();
+  const offset = (page - 1) * limit;
+  
+  let query = database
+    .select()
+    .from(wallpapers)
+    .where(eq(wallpapers.status, "active"));
+
+  if (filter?.category) {
+    query = query.where(eq(wallpapers.category_uuid, filter.category));
+  }
+  
+  if (filter?.search) {
+    query = query.where(like(wallpapers.title, `%${filter.search}%`));
+  }
+
+  return query
+    .orderBy(desc(wallpapers.created_at))
+    .limit(limit)
+    .offset(offset);
+}
+
+// 查询 - 根据 UUID 获取单个壁纸
+export async function getWallpaperByUuid(uuid: string): Promise<WallpaperRow | null> {
+  const database = db();
+  const rows = await database
+    .select()
+    .from(wallpapers)
+    .where(eq(wallpapers.uuid, uuid))
+    .limit(1);
+  return rows[0] ?? null;
+}
+
+// 修改 - 更新壁纸信息
+export async function updateWallpaper(
+  uuid: string,
+  updates: Partial<NewWallpaper>
+): Promise<WallpaperRow | null> {
+  const database = db();
+  const [row] = await database
+    .update(wallpapers)
+    .set(updates)
+    .where(eq(wallpapers.uuid, uuid))
+    .returning();
+  return row ?? null;
+}
+
+// 删除 - 移除壁纸
+export async function deleteWallpaper(uuid: string): Promise<number> {
+  const database = db();
+  const result = await database
+    .delete(wallpapers)
+    .where(eq(wallpapers.uuid, uuid));
+  return (result as unknown as { rowCount?: number }).rowCount ?? 0;
+}
+
+// 工具函数 - 增加浏览数
+export async function incrementViewCount(uuid: string) {
+  const database = db();
+  await database
+    .update(wallpapers)
+    .set({ view_count: sql`${wallpapers.view_count} + 1` })
+    .where(eq(wallpapers.uuid, uuid));
+}
+
+// 工具函数 - 增加下载数
+export async function incrementDownloadCount(uuid: string) {
+  const database = db();
+  await database
+    .update(wallpapers)
+    .set({ download_count: sql`${wallpapers.download_count} + 1` })
+    .where(eq(wallpapers.uuid, uuid));
+}
+```
+
+### 6. OSS 存储配置
+
+存储系统已在 `src/lib/storage.ts` 中配置好。使用它进行文件上传：
+
+**环境变量 (`.env.local`)**：
+```bash
+STORAGE_ENDPOINT="https://your-endpoint.r2.cloudflarestorage.com"
+STORAGE_ACCESS_KEY="your-access-key"
+STORAGE_SECRET_KEY="your-secret-key"
+STORAGE_BUCKET="your-bucket"
+STORAGE_DOMAIN="your-domain.com"
+```
+
+**使用示例**：
+```typescript
+import { newStorage } from "@/lib/storage";
+
+const storage = newStorage();
+const result = await storage.uploadFile({
+  body: buffer,
+  key: `wallpapers/${filename}`,
+  contentType: "image/jpeg",
+  disposition: "inline"
+});
+```
+
+### 7. AI 集成的 API 路由设计
+
+在 `src/app/api/wallpapers/` 中创建 RESTful API 端点：
+
+#### 基础 CRUD 操作
+
+**文件: `src/app/api/wallpapers/route.ts`**
+```typescript
+import { NextRequest } from "next/server";
+import { respData, respErr } from "@/lib/resp";
+import { listWallpapers, createWallpaper } from "@/models/wallpaper";
+import { getUuid } from "@/lib/hash";
+
+// GET /api/wallpapers - 获取壁纸列表
+export async function GET(request: NextRequest) {
+  try {
+    const searchParams = request.nextUrl.searchParams;
+    const page = parseInt(searchParams.get("page") || "1");
+    const limit = parseInt(searchParams.get("limit") || "20");
+    const category = searchParams.get("category") || undefined;
+    const search = searchParams.get("search") || undefined;
+
+    const wallpapers = await listWallpapers(page, limit, {
+      category,
+      search
+    });
+
+    return respData(wallpapers);
+  } catch (error) {
+    console.error("获取壁纸失败:", error);
+    return respErr("获取壁纸失败");
+  }
+}
+
+// POST /api/wallpapers - 创建壁纸
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { title, description, image_url, category_uuid, tags, credits_required } = body;
+
+    if (!title || !image_url) {
+      return respErr("标题和图片地址是必需的");
+    }
+
+    const wallpaper = await createWallpaper({
+      uuid: getUuid(),
+      title,
+      description,
+      image_url,
+      category_uuid,
+      tags: tags ? JSON.stringify(tags) : null,
+      credits_required: credits_required || 0,
+      created_at: new Date(),
+    });
+
+    return respData(wallpaper);
+  } catch (error) {
+    console.error("创建壁纸失败:", error);
+    return respErr("创建壁纸失败");
+  }
+}
+```
+
+#### AI 驱动的壁纸生成
+
+**文件: `src/app/api/wallpapers/generate/route.ts`**
+```typescript
+import { NextRequest } from "next/server";
+import { respData, respErr } from "@/lib/resp";
+import { generateText2Image } from "@/aisdk/generate-text2image";
+import { kling } from "@/aisdk/kling";
+import { openai } from "@ai-sdk/openai";
+import { replicate } from "@ai-sdk/replicate";
+import { newStorage } from "@/lib/storage";
+import { getUuid } from "@/lib/hash";
+import { createWallpaper } from "@/models/wallpaper";
+import { getUserCredits, deductCredits } from "@/models/credit";
+import { getSession } from "@/auth/session";
+
+export async function POST(request: NextRequest) {
+  try {
+    const session = await getSession();
+    if (!session?.user?.uuid) {
+      return respErr("需要身份验证");
+    }
+
+    const body = await request.json();
+    const { 
+      prompt, 
+      provider = "kling",
+      model,
+      size = { width: 1024, height: 1024 },
+      aspectRatio = "1:1",
+      style,
+      negativePrompt,
+      steps = 20,
+      guidanceScale = 7.5,
+      category_uuid,
+      title,
+      description 
+    } = body;
+
+    if (!prompt) {
+      return respErr("提示词是必需的");
+    }
+
+    // 检查用户积分
+    const userCredits = await getUserCredits(session.user.uuid);
+    const requiredCredits = 10; // 每次生成的积分成本
+    
+    if (userCredits < requiredCredits) {
+      return respErr("积分不足");
+    }
+
+    // 根据提供商选择 AI 模型
+    let imageModel;
+    let providerOptions = {};
+
+    switch (provider) {
+      case "kling":
+        imageModel = kling.image(model || "kling-v1");
+        providerOptions = {
+          kling: {
+            style: style || "realistic",
+          }
+        };
+        break;
+        
+      case "openai":
+        imageModel = openai.image(model || "dall-e-3");
+        providerOptions = {
+          openai: {
+            quality: "hd",
+            style: style || "natural",
+          }
+        };
+        break;
+        
+      case "replicate":
+        imageModel = replicate.image(model || "stability-ai/sdxl");
+        providerOptions = {
+          replicate: {
+            output_quality: 90,
+          }
+        };
+        break;
+        
+      default:
+        return respErr("不支持的提供商");
+    }
+
+    // 使用 AI SDK 生成壁纸
+    const result = await generateText2Image({
+      model: imageModel,
+      prompt,
+      negativePrompt,
+      n: 1,
+      steps,
+      guidanceScale,
+      size,
+      aspectRatio,
+      providerOptions,
+    });
+
+    if (result.warnings.length > 0) {
+      console.log("生成警告:", result.warnings);
+    }
+
+    if (!result.image) {
+      return respErr("生成图片失败");
+    }
+
+    // 上传到存储
+    const storage = newStorage();
+    const batch = getUuid();
+    const filename = `wallpaper_${provider}_${batch}.png`;
+    const key = `wallpapers/generated/${filename}`;
+    
+    let imageBuffer: Buffer;
+    
+    // 处理 AI SDK 返回的不同图片格式
+    if (typeof result.image === 'string' && result.image.startsWith('http')) {
+      // URL 格式 - 下载图片
+      const response = await fetch(result.image);
+      imageBuffer = Buffer.from(await response.arrayBuffer());
+    } else {
+      // Base64 格式
+      const base64Data = typeof result.image === 'string' 
+        ? result.image 
+        : result.image.base64;
+      imageBuffer = Buffer.from(base64Data, "base64");
+    }
+
+    // 上传到 OSS
+    const uploadResult = await storage.uploadFile({
+      body: imageBuffer,
+      key,
+      contentType: "image/png",
+      disposition: "inline",
+    });
+
+    // 生成缩略图（可选）
+    const thumbnailKey = `wallpapers/thumbnails/${filename}`;
+    // 你可以在这里添加缩略图生成逻辑
+
+    // 保存到数据库
+    const wallpaper = await createWallpaper({
+      uuid: getUuid(),
+      title: title || `AI 生成 - ${prompt.substring(0, 50)}...`,
+      description: description || `使用 ${provider} 生成: ${prompt}`,
+      image_url: uploadResult.url,
+      thumbnail_url: uploadResult.url, // 使用相同 URL 或生成缩略图
+      category_uuid,
+      tags: JSON.stringify([provider, "ai-generated", style].filter(Boolean)),
+      resolution: `${size.width}x${size.height}`,
+      file_size: imageBuffer.length,
+      user_uuid: session.user.uuid,
+      credits_required: 5, // 下载所需积分
+      status: "active",
+      created_at: new Date(),
+    });
+
+    // 扣除用户积分
+    await deductCredits(session.user.uuid, requiredCredits, {
+      type: "wallpaper_generation",
+      description: `生成壁纸: ${wallpaper.title}`,
+      related_uuid: wallpaper.uuid,
+    });
+
+    return respData({
+      wallpaper,
+      credits_used: requiredCredits,
+      generation_info: {
+        provider,
+        model,
+        prompt,
+        size,
+        aspectRatio,
+      }
+    });
+
+  } catch (error) {
+    console.error("壁纸生成失败:", error);
+    return respErr("生成壁纸失败");
+  }
+}
+```
+
+#### AI 增强路由
+
+**文件: `src/app/api/wallpapers/enhance/route.ts`**
+```typescript
+import { NextRequest } from "next/server";
+import { respData, respErr } from "@/lib/resp";
+import { generateImage2Image } from "@/aisdk/generate-image2image";
+import { stableDiffusion } from "@/aisdk/stable-diffusion";
+
+export async function POST(request: NextRequest) {
+  try {
+    const session = await getSession();
+    if (!session?.user?.uuid) {
+      return respErr("需要身份验证");
+    }
+
+    const body = await request.json();
+    const { 
+      wallpaper_uuid,
+      enhancement_type, // "upscale", "style_transfer", "colorize"
+      prompt,
+      strength = 0.7,
+    } = body;
+
+    const originalWallpaper = await getWallpaperByUuid(wallpaper_uuid);
+    if (!originalWallpaper) {
+      return respErr("未找到壁纸");
+    }
+
+    // 下载原始图片
+    const imageResponse = await fetch(originalWallpaper.image_url);
+    const imageBuffer = Buffer.from(await imageResponse.arrayBuffer());
+
+    // 使用图生图功能进行增强
+    const model = stableDiffusion.image2image("stable-diffusion-xl");
+    
+    const result = await generateImage2Image({
+      model,
+      image: imageBuffer,
+      prompt: prompt || `增强这张壁纸，使其更加${enhancement_type}`,
+      strength,
+      n: 1,
+      providerOptions: {
+        "stable-diffusion": {
+          scheduler: "DPMSolverMultistep",
+        }
+      }
+    });
+
+    // 上传增强版本
+    const storage = newStorage();
+    const enhancedFilename = `enhanced_${getUuid()}.png`;
+    const enhancedKey = `wallpapers/enhanced/${enhancedFilename}`;
+    
+    const uploadResult = await storage.uploadFile({
+      body: Buffer.from(result.image.base64, "base64"),
+      key: enhancedKey,
+      contentType: "image/png",
+    });
+
+    // 为增强版本创建新的壁纸记录
+    const enhancedWallpaper = await createWallpaper({
+      uuid: getUuid(),
+      title: `增强版 - ${originalWallpaper.title}`,
+      description: `AI 增强版本: ${enhancement_type}`,
+      image_url: uploadResult.url,
+      thumbnail_url: uploadResult.url,
+      category_uuid: originalWallpaper.category_uuid,
+      tags: JSON.stringify([...JSON.parse(originalWallpaper.tags || "[]"), "ai-enhanced", enhancement_type]),
+      resolution: originalWallpaper.resolution,
+      file_size: Buffer.from(result.image.base64, "base64").length,
+      user_uuid: session.user.uuid,
+      credits_required: 8,
+      created_at: new Date(),
+    });
+
+    return respData({
+      original: originalWallpaper,
+      enhanced: enhancedWallpaper,
+      enhancement_type,
+    });
+
+  } catch (error) {
+    console.error("增强失败:", error);
+    return respErr("增强壁纸失败");
+  }
+}
+```
+
+#### AI 提供商管理
+
+**AI 提供商的环境变量:**
+```bash
+# Kling AI
+KLING_ACCESS_KEY="your-kling-access-key"
+KLING_SECRET_KEY="your-kling-secret-key"
+
+# OpenAI
+OPENAI_API_KEY="your-openai-api-key"
+
+# Replicate
+REPLICATE_API_TOKEN="your-replicate-token"
+
+# Stable Diffusion
+STABILITY_API_KEY="your-stability-key"
+```
+
+**提供商配置:**
+```typescript
+// src/services/constant.ts
+export const AIProviderConfig = {
+  Providers: {
+    kling: {
+      name: "Kling AI",
+      name_zh: "快影 AI",
+      models: ["kling-v1", "kling-v1.5"],
+      features: ["text2image", "image2image", "video"],
+      cost_per_generation: 10,
+    },
+    openai: {
+      name: "OpenAI DALL-E",
+      name_zh: "OpenAI DALL-E",
+      models: ["dall-e-3", "dall-e-2"],
+      features: ["text2image"],
+      cost_per_generation: 15,
+    },
+    replicate: {
+      name: "Replicate",
+      name_zh: "Replicate",
+      models: ["stability-ai/sdxl", "midjourney/v4"],
+      features: ["text2image", "image2image"],
+      cost_per_generation: 8,
+    },
+  },
+  
+  Styles: [
+    { value: "realistic", label: "写实", label_zh: "写实风格" },
+    { value: "artistic", label: "艺术", label_zh: "艺术风格" },
+    { value: "anime", label: "动漫", label_zh: "动漫风格" },
+    { value: "digital-art", label: "数字艺术", label_zh: "数字艺术" },
+    { value: "photography", label: "摄影", label_zh: "摄影风格" },
+    { value: "cinematic", label: "电影", label_zh: "电影风格" },
+    { value: "fantasy", label: "奇幻", label_zh: "奇幻风格" },
+    { value: "minimalist", label: "极简", label_zh: "极简风格" },
+  ],
+  
+  AspectRatios: [
+    { label: "正方形", label_en: "Square", value: "1:1", size: { width: 1024, height: 1024 } },
+    { label: "竖屏", label_en: "Portrait", value: "9:16", size: { width: 768, height: 1344 } },
+    { label: "横屏", label_en: "Landscape", value: "16:9", size: { width: 1344, height: 768 } },
+    { label: "超宽屏", label_en: "Ultrawide", value: "21:9", size: { width: 1536, height: 640 } },
+  ]
+};
+```
+
+### 8. 配置常量
+
+**文件: `src/services/constant.ts`**
+
+添加功能特定的常量：
+
+```typescript
+export const WallpaperConfig = {
+  Categories: [
+    { uuid: "nature", name: "Nature", name_zh: "自然风景", sort: 1 },
+    { uuid: "abstract", name: "Abstract", name_zh: "抽象艺术", sort: 2 },
+    { uuid: "minimal", name: "Minimal", name_zh: "极简风格", sort: 3 },
+    { uuid: "technology", name: "Technology", name_zh: "科技", sort: 4 },
+  ],
+  
+  Resolutions: [
+    "1920x1080",
+    "2560x1440", 
+    "3840x2160",
+    "1080x1920"
+  ],
+  
+  Credits: {
+    FreeDownloads: 3,       // 免费下载次数
+    PremiumCost: 10,        // 高级壁纸积分成本
+    UploadReward: 50,       // 上传奖励积分
+  },
+
+  Status: {
+    Active: "active",       // 激活状态
+    Inactive: "inactive",   // 非激活状态
+    Pending: "pending",     // 待审核状态
+  }
+};
+```
+
+### 9. 前端组件设计
+
+在 `src/components/blocks/wallpaper/` 中创建可复用组件：
+
+**文件: `src/components/blocks/wallpaper/WallpaperCard.tsx`**
+```typescript
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Download, Eye } from "lucide-react";
+import type { Wallpaper } from "@/types/wallpaper";
+
+interface WallpaperCardProps {
+  wallpaper: Wallpaper;
+  onDownload?: (wallpaper: Wallpaper) => void;
+  onView?: (wallpaper: Wallpaper) => void;
+}
+
+export function WallpaperCard({ wallpaper, onDownload, onView }: WallpaperCardProps) {
+  return (
+    <Card className="group overflow-hidden hover:shadow-lg transition-shadow">
+      <div className="relative aspect-video overflow-hidden">
+        <img
+          src={wallpaper.thumbnail_url || wallpaper.image_url}
+          alt={wallpaper.title}
+          className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+        />
+        {wallpaper.is_featured && (
+          <Badge className="absolute top-2 left-2" variant="secondary">
+            精选
+          </Badge>
+        )}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+          <div className="flex gap-2">
+            <Button
+              size="sm"
+              variant="secondary"
+              onClick={() => onView?.(wallpaper)}
+            >
+              <Eye className="w-4 h-4" />
+            </Button>
+            <Button
+              size="sm"
+              onClick={() => onDownload?.(wallpaper)}
+            >
+              <Download className="w-4 h-4" />
+            </Button>
+          </div>
+        </div>
+      </div>
+      <CardContent className="p-4">
+        <h3 className="font-semibold truncate">{wallpaper.title}</h3>
+        {wallpaper.description && (
+          <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
+            {wallpaper.description}
+          </p>
+        )}
+        <div className="flex items-center justify-between mt-3 text-xs text-muted-foreground">
+          <span>{wallpaper.resolution}</span>
+          <div className="flex items-center gap-3">
+            <span>{wallpaper.view_count} 浏览</span>
+            <span>{wallpaper.download_count} 下载</span>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+### 10. 页面集成
+
+**文件: `src/app/[locale]/(default)/wallpapers/page.tsx`**
+```typescript
+import { WallpaperGrid } from "@/components/blocks/wallpaper/WallpaperGrid";
+import { WallpaperFilter } from "@/components/blocks/wallpaper/WallpaperFilter";
+
+export default function WallpapersPage() {
+  return (
+    <div className="container mx-auto py-8">
+      <div className="flex flex-col lg:flex-row gap-8">
+        <aside className="lg:w-64">
+          <WallpaperFilter />
+        </aside>
+        <main className="flex-1">
+          <WallpaperGrid />
+        </main>
+      </div>
+    </div>
+  );
+}
+```
+
+## 最佳实践
+
+### 数据库设计
+- 始终为面向公众的 ID 使用 UUID
+- 包含 `created_at` 和 `updated_at` 时间戳
+- 使用适当的数据类型和约束
+- 为经常查询的字段考虑建立索引
+
+### TypeScript
+- 定义完整的接口
+- 为所有函数使用正确的类型
+- 将数据库类型与 UI 组件类型分开
+
+### API 设计
+- 遵循 RESTful 约定
+- 使用适当的 HTTP 状态码
+- 实现错误处理
+- 添加输入验证
+
+### 组件架构
+- 保持组件小而专注
+- 使用组合而不是继承
+- 使组件可复用
+- 遵循现有的 UI 模式
+
+### 文件组织
+- 将相关文件组织在一起
+- 使用一致的命名约定
+- 遵循既定的文件夹结构
+- 将业务逻辑与 UI 逻辑分离
+
+## 测试你的实现
+
+1. **数据库**：使用 `pnpm db:studio` 验证表结构
+2. **API**：使用 Postman 等工具测试端点
+3. **组件**：如果可用，在 Storybook 中测试
+4. **集成**：测试完整的用户流程
+5. **性能**：监控查询性能和包大小
+
+通过遵循相同的分层方法并保持与现有代码库架构的一致性，此模板可以适用于任何新功能。

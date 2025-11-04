@@ -1,0 +1,15 @@
+{
+  "title": "Documentation",
+  "pages": [
+    "index",
+    "quickstart",
+    "---Calculators",
+    "calculators",
+    "---Reference",
+    "reference",
+    "---Getting Started",
+    "getting-started",
+    "features",
+    "deployment"
+  ]
+}

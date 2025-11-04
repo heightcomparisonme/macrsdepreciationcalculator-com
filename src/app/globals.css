@@ -1,0 +1,471 @@
+@import "tailwindcss";
+@import "./theme.css";
+
+@plugin "tailwindcss-animate";
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background:
+      radial-gradient(
+        circle at 20% 18%,
+        color-mix(in oklch, var(--primary) 24%, transparent) 0,
+        transparent 55%
+      ),
+      radial-gradient(
+        circle at 78% 12%,
+        color-mix(in oklch, var(--secondary) 20%, transparent) 0,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 50% 100%,
+        color-mix(in oklch, var(--accent) 14%, transparent) 0,
+        transparent 65%
+      ),
+      var(--background);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+}
+
+.dark body {
+  background:
+    radial-gradient(
+      circle at 18% 20%,
+      color-mix(in oklch, var(--primary) 32%, transparent) 0,
+      transparent 58%
+    ),
+    radial-gradient(
+      circle at 82% 12%,
+      color-mix(in oklch, var(--secondary) 26%, transparent) 0,
+      transparent 52%
+    ),
+    radial-gradient(
+      circle at 50% 105%,
+      color-mix(in oklch, var(--accent) 18%, transparent) 0,
+      transparent 68%
+    ),
+    var(--background);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.container {
+  @apply mx-auto max-w-7xl px-4 md:px-8;
+}
+
+input,
+select,
+textarea {
+  @apply border-border outline-ring/50 bg-background;
+}
+
+button {
+  @apply cursor-pointer border-border outline-ring/50;
+}
+
+pre {
+  @apply px-4;
+}
+
+/* Bottom Navigation Safe Area Support */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Disable mobile tap highlight */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Main content spacing for bottom navigation */
+@media (max-width: 768px) {
+  .main-content {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0));
+  }
+}
+
+/* Bottom Navigation Animations */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Background glow animations */
+@keyframes animate-progress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.1;
+  }
+  33% {
+    transform: translate(10px, -10px) scale(1.1);
+    opacity: 0.15;
+  }
+  66% {
+    transform: translate(-5px, 5px) scale(0.95);
+    opacity: 0.08;
+  }
+}
+
+@keyframes float-delayed {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.12;
+  }
+  50% {
+    transform: translate(-8px, -15px) scale(1.05);
+    opacity: 0.18;
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.08;
+  }
+  25% {
+    transform: translate(5px, -8px) scale(1.02);
+    opacity: 0.12;
+  }
+  75% {
+    transform: translate(-3px, 12px) scale(0.98);
+    opacity: 0.06;
+  }
+}
+
+.animate-float {
+  animation: float 20s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 25s ease-in-out infinite;
+  animation-delay: 5s;
+}
+
+.animate-float-slow {
+  animation: float-slow 30s ease-in-out infinite;
+  animation-delay: 10s;
+}
+
+.animate-progress {
+  animation: animate-progress linear forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+.animate-ripple {
+  animation: ripple 0.6s linear;
+}
+
+/* AeroSection Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(251, 191, 36, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.8), 0 0 30px rgba(251, 191, 36, 0.6);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* 心跳动画和脉冲环动画 */
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.1);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.15);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.1;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-ring-delayed {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.05;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+.animate-pulse-ring-delayed {
+  animation: pulse-ring-delayed 2s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+/* 打字机光标闪烁动画 */
+@keyframes typewriter-cursor {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.animate-typewriter-cursor {
+  animation: typewriter-cursor 1s ease-in-out infinite;
+}
+
+/* 走马灯滚动动画 */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+/* 走马灯悬停暂停 */
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* 渐变背景动画 */
+@keyframes gradient-x {
+  0%, 100% {
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 3s ease infinite;
+}
+
+/* 品牌名称发光效果 */
+@keyframes brand-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.5)) 
+            drop-shadow(0 0 40px rgba(147, 51, 234, 0.3))
+            drop-shadow(0 0 60px rgba(236, 72, 153, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.8)) 
+            drop-shadow(0 0 60px rgba(147, 51, 234, 0.6))
+            drop-shadow(0 0 90px rgba(236, 72, 153, 0.4));
+  }
+}
+
+.animate-brand-glow {
+  animation: brand-glow 2s ease-in-out infinite;
+}
+
+/* 波光粼粼的倒影效果 */
+@keyframes water-ripple {
+  0%, 100% {
+    transform: scaleY(-1) translateY(-2px) scale(1);
+    opacity: 0.6;
+    filter: blur(0.5px) brightness(1);
+  }
+  25% {
+    transform: scaleY(-1) translateY(-3px) scale(1.01);
+    opacity: 0.7;
+    filter: blur(0.3px) brightness(1.1);
+  }
+  50% {
+    transform: scaleY(-1) translateY(-1px) scale(0.99);
+    opacity: 0.5;
+    filter: blur(0.7px) brightness(0.9);
+  }
+  75% {
+    transform: scaleY(-1) translateY(-4px) scale(1.005);
+    opacity: 0.8;
+    filter: blur(0.2px) brightness(1.2);
+  }
+}
+
+.animate-water-ripple {
+  animation: water-ripple 4s ease-in-out infinite;
+}
+
+.animate-corner-flow {
+  animation: corner-flow 4s ease-in-out infinite;
+}
+
+/* 磨砂颗粒动画 */
+@keyframes grain-float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-1px) translateX(1px) scale(1.1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-2px) translateX(-1px) scale(0.9);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(-1px) translateX(2px) scale(1.05);
+    opacity: 0.6;
+  }
+}
+
+.animate-grain-float {
+  animation: grain-float 6s ease-in-out infinite;
+}
+
+/* 光点浮动效果 */
+@keyframes float-light {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-2px) translateX(1px);
+  }
+  50% {
+    transform: translateY(-4px) translateX(-1px);
+  }
+  75% {
+    transform: translateY(-2px) translateX(2px);
+  }
+}
+
+.animate-float-light {
+  animation: float-light 4s ease-in-out infinite;
+}
+
+/* 自定义玻璃风格滚动条 */
+.custom-scrollbar {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(255, 255, 255, 0.45) transparent; /* Firefox 背景透明，拇指半透 */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px; /* 纵向滚动条宽度 */
+}
+
+/* 玻璃感透明轨道：无边框、微内阴影、背景模糊 */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border-radius: 9999px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06), inset 0 0 10px rgba(0,0,0,0.2);
+  backdrop-filter: blur(8px);
+}
+
+/* 玻璃拇指：半透明渐变 + 内外发光，悬停更亮 */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,255,255,0.25));
+  border-radius: 9999px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35), 0 2px 6px rgba(0,0,0,0.35);
+  border: 3px solid transparent; /* 留出内边距，使拇指更“玻璃” */
+  background-clip: padding-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(255,255,255,0.65), rgba(255,255,255,0.35));
+}
+
+/* 隐藏滚动条角落，避免外框感 */
+.custom-scrollbar::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* 隐藏滚动条样式 */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}

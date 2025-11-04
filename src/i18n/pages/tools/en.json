@@ -1,0 +1,15 @@
+{
+  "title": "All Tools",
+  "subtitle": "Explore our full suite of AI-powered creative tools",
+  "search_placeholder": "Search for a tool...",
+  "trending_title": "Trending Tools",
+  "trending_subtitle": "Most popular tools this week",
+  "favorites_hint_title": "Star your favorites",
+  "favorites_hint_description": "Click the star icon on any tool to add it to your favorites",
+  "results_found": "Found {count} {count, plural, one {tool} other {tools}} matching \"{query}\"",
+  "no_results_title": "No tools found",
+  "no_results_description": "Try adjusting your search or browse all tools",
+  "clear_search": "Clear search",
+  "view_tool": "View Tool",
+  "usage_count": "{count} uses"
+}

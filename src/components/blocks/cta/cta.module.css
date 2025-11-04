@@ -1,0 +1,70 @@
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.5;
+  }
+}
+
+.concentricCircle {
+  position: absolute;
+  border-radius: 50%;
+  animation: breathe 6s ease-in-out infinite;
+}
+
+.outerCircle {
+  composes: concentricCircle;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.1) 40%, rgba(34, 197, 94, 0.05) 60%, transparent 65%);
+  animation-delay: 0s;
+}
+
+.middleCircle {
+  composes: concentricCircle;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.2) 0%, rgba(34, 197, 94, 0.15) 40%, rgba(34, 197, 94, 0.075) 60%, transparent 65%);
+  animation-delay: 1.5s;
+}
+
+.innerCircle {
+  composes: concentricCircle;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.25) 0%, rgba(34, 197, 94, 0.2) 40%, rgba(34, 197, 94, 0.1) 60%, transparent 65%);
+  animation-delay: 3s;
+}
+
+.coreCircle {
+  composes: concentricCircle;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.35) 0%, rgba(34, 197, 94, 0.25) 40%, rgba(34, 197, 94, 0.125) 60%, transparent 65%);
+  animation-delay: 4.5s;
+}
+
+@media (max-width: 768px) {
+  .outerCircle {
+    width: 400px;
+    height: 400px;
+  }
+  
+  .middleCircle {
+    width: 280px;
+    height: 280px;
+  }
+  
+  .innerCircle {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .coreCircle {
+    width: 80px;
+    height: 80px;
+  }
+}

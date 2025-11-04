@@ -1,0 +1,128 @@
+---
+title: Installation
+description: Learn how to install and set up AIGXT in your development environment
+icon: "Download"
+---
+
+# Installation
+
+This guide will help you install and set up AIGXT on your local development machine.
+
+## Prerequisites
+
+Before installing AIGXT, make sure you have the following installed:
+
+- **Node.js** (version 18.0 or higher)
+- **pnpm** (recommended package manager)
+- **Git** for version control
+
+## Installation Steps
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-org/aigxt.git
+cd aigxt
+```
+
+### 2. Install Dependencies
+
+```bash
+pnpm install
+```
+
+### 3. Environment Setup
+
+Copy the environment template and configure your variables:
+
+```bash
+cp .env.example .env.local
+```
+
+Edit `.env.local` with your configuration:
+
+```bash
+# Database
+DATABASE_URL="postgresql://username:password@localhost:5432/aigxt"
+
+# Authentication
+NEXTAUTH_SECRET="your-secret-key"
+NEXTAUTH_URL="http://localhost:3000"
+
+# AI Services
+OPENAI_API_KEY="your-openai-api-key"
+REPLICATE_API_TOKEN="your-replicate-token"
+
+# Stripe
+STRIPE_PUBLISHABLE_KEY="your-stripe-publishable-key"
+STRIPE_SECRET_KEY="your-stripe-secret-key"
+```
+
+### 4. Database Setup
+这里会牵扯到后续增加数据表的情况。
+1，修改的数据表的地址：src\db\schema.ts
+2，需要将添加的新表，进行interface的转化，添加到src\types\？？？.d.ts 中，如果没有对应的interface，则创建一个。
+3，推送修改文件，pnpm db:push
+4，回到supabase，查看是否添加成功。
+5，需要一个数据操作的表，这些表需要怎么填入，是个问题~src\models在这个文件夹下面操作,新建一个操作数据表的方案~
+说是操作，就是增删改查
+6，其实就是关于OSS怎么配置，怎么植入，怎么删除，这个是在这个地方配置  src\app\api\demo\gen-image\route.ts
+7，
+我准备走一整套的wallpaper的植入方案，当中一个样板，来植入到我们的应用当中。从而后续都可以以此作为参考~
+Initialize the database:
+8，还有一个配置文件，这个config文件，通过修改这里面的参数，是否可以修改前端的界面显示呢？
+8,然后就是前端的显示的设计，最好是能组件化~
+
+```bash
+# Generate migration files
+pnpm db:generate
+
+# Apply migrations
+pnpm db:migrate
+
+# (Optional) Open Drizzle Studio
+pnpm db:studio
+```
+
+### 5. Start Development Server
+
+```bash
+pnpm dev
+```
+
+Your application will be available at `http://localhost:3000`.
+
+## Verification
+
+To verify your installation is working correctly:
+
+1. Visit `http://localhost:3000`
+2. Check that the homepage loads without errors
+3. Navigate to `/docs` to see the documentation
+4. Test the AI workstation at `/ai-workstation`
+
+## Troubleshooting
+
+### Common Issues
+
+**Port already in use:**
+```bash
+# Kill process on port 3000
+npx kill-port 3000
+```
+
+**Database connection issues:**
+- Verify your `DATABASE_URL` is correct
+- Ensure PostgreSQL is running
+- Check database permissions
+
+**Missing dependencies:**
+```bash
+# Clear cache and reinstall
+rm -rf node_modules pnpm-lock.yaml
+pnpm install
+```
+
+## Next Steps
+
+After successful installation, proceed to the [Configuration Guide](/docs/getting-started/configuration) to customize your setup.

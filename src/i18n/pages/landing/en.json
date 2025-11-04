@@ -1,0 +1,662 @@
+{
+  "template": "mondkalender",
+  "theme": "light",
+  "header": {
+    "brand": {
+      "title": "Mondkalender",
+      "logo": {
+        "src": "/logo.png",
+        "alt": "Mondkalender"
+      },
+      "url": "/"
+    },
+    "nav": {
+      "items": [
+        {
+          "title": "Home",
+          "url": "/",
+          "icon": "RiHomeHeartLine"
+        },
+        {
+          "title": "Tools",
+          "url": "/tools",
+          "icon": "RiToolsLine",
+          "children": []
+        },
+        {
+          "title": "Blog",
+          "url": "/posts",
+          "icon": "RiArticleLine"
+        },
+        {
+          "title": "Glossary",
+          "url": "/glossary",
+          "icon": "RiBookOpenLine"
+        },
+        {
+          "title": "Docs",
+          "url": "/docs",
+          "icon": "RiBookOpenLine"
+        },
+        {
+          "title": "Community",
+          "url": "/discord",
+          "icon": "RiDiscordFill"
+        }
+      ]
+    },
+    "buttons": [
+      {
+        "title": "Open Moon Today",
+        "url": "/tools/mond-heute",
+        "target": "_self",
+        "variant": "link",
+        "icon": "RiArrowRightUpLine"
+      }
+    ],
+    "show_sign": true,
+    "show_theme": true,
+    "show_locale": true
+  },
+  "hero": {
+    "title": "Mondkalender 2026 – Live in Harmony with the Moon",
+    "highlight_text": "Hair Cutting, Gardening & More by Moon Phases",
+    "description": "The comprehensive Mondkalender with all important moon phases for 2026. Plan haare schneiden (hair cutting), gardening, health and daily activities by Mondkalender – with precise recommendations for every day of the year.",
+    "announcement": {
+      "label": "New",
+      "title": "✨ Mondkalender 2026 zum Ausdrucken (Printable) Available",
+      "url": "/mondkalender-2026-zum-ausdrucken"
+    },
+    "tip": "🌙 Discover all 12 Mondkalender tools for free",
+    "buttons": [
+      {
+        "title": "Open Mondkalender 2026",
+        "icon": "RiCalendar2Line",
+        "url": "/mondkalender-2026",
+        "target": "_self",
+        "variant": "default"
+      },
+      {
+        "title": "Haare Schneiden Calendar",
+        "icon": "RiScissors2Line",
+        "url": "/tools/mondkalender-haare-schneiden",
+        "target": "_self",
+        "variant": "outline"
+      }
+    ],
+    "show_happy_users": true,
+    "show_badge": true
+  },
+  "branding": {
+    "title": "Built on trusted foundations",
+    "items": [
+      {
+        "title": "Next.js",
+        "image": {
+          "src": "/imgs/logos/nextjs.svg",
+          "alt": "Next.js"
+        }
+      },
+      {
+        "title": "React",
+        "image": {
+          "src": "/imgs/logos/react.svg",
+          "alt": "React"
+        }
+      },
+      {
+        "title": "TailwindCSS",
+        "image": {
+          "src": "/imgs/logos/tailwindcss.svg",
+          "alt": "TailwindCSS"
+        }
+      },
+      {
+        "title": "Shadcn/UI",
+        "image": {
+          "src": "/imgs/logos/shadcn.svg",
+          "alt": "Shadcn UI"
+        }
+      },
+      {
+        "title": "Vercel",
+        "image": {
+          "src": "/imgs/logos/vercel.svg",
+          "alt": "Vercel"
+        }
+      }
+    ]
+  },
+  "introduce": {
+    "name": "introduce",
+    "title": "Your Digital Mondkalender for 2026",
+    "label": "Overview",
+    "description": "Mondkalender provides precise moon phase information and practical recommendations for haare schneiden (hair cutting), gardening, cooking and health. Harness the power of the moon for your daily life – scientifically based and easy to apply.",
+    "image": {
+      "src": "/imgs/features/1.png"
+    },
+    "items": [
+      {
+        "title": "12 Specialized Mondkalender Tools",
+        "description": "Mondkalender haare schneiden, hair coloring, garden calendar, cooking calendar, moonrise, health and more – all based on current moon phases.",
+        "icon": "RiMoonClearLine"
+      },
+      {
+        "title": "Daily Moon Phase Recommendations",
+        "description": "Get personalized tips based on the current moon phase, your location and interests for optimal results throughout 2026.",
+        "icon": "RiUserHeartLine"
+      },
+      {
+        "title": "Mondkalender 2026 zum Ausdrucken",
+        "description": "Download the complete Mondkalender 2026 as PDF – perfect for home, office or as a gift with all moon phases printed.",
+        "icon": "RiRocketLine"
+      }
+    ]
+  },
+  "benefit": {
+    "name": "benefit",
+    "title": "Why Mondkalender is the Best Choice",
+    "label": "Benefits",
+    "description": "Use the proven power of moon phases for your daily life. With Mondkalender, make decisions at the optimal time – for hair, garden, health and more.",
+    "items": [
+      {
+        "title": "Complete Mondkalender Toolkit",
+        "description": "From haare schneiden nach Mondkalender to gardening – plan and optimize all important areas of life in harmony with moon phases.",
+        "icon": "RiApps2Line",
+        "image": {
+          "src": "/imgs/features/2.png",
+          "alt": "Tool ecosystem before"
+        },
+        "afterImage": {
+          "src": "/imgs/features/2-after.png",
+          "alt": "Tool ecosystem after"
+        }
+      },
+      {
+        "title": "Precise Moon Phase Data for 2026",
+        "description": "Based on astronomical Swiss Ephemeris calculations, get day-accurate moon phases, zodiac signs and optimal time windows for your activities.",
+        "icon": "RiTimerFlashLine",
+        "image": {
+          "src": "/imgs/features/3.png",
+          "alt": "Recommendations before"
+        },
+        "afterImage": {
+          "src": "/imgs/features/3-after.png",
+          "alt": "Recommendations after"
+        }
+      },
+      {
+        "title": "Location-Based Calculations",
+        "description": "Moonrise and moonset for your location, multilingual interface (EN/DE/中文) and personalized Mondkalender recommendations for your region.",
+        "icon": "RiTranslate2",
+        "image": {
+          "src": "/imgs/features/4.png",
+          "alt": "Internationalisation before"
+        },
+        "afterImage": {
+          "src": "/imgs/features/4-after.png",
+          "alt": "Internationalisation after"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "name": "usage",
+    "title": "From fork to launch in four steps",
+    "description": "Everything you need is packaged—just follow the workflow and deploy your lunar platform.",
+    "image": {
+      "src": "/imgs/features/1.png"
+    },
+    "image_position": "left",
+    "text_align": "center",
+    "items": [
+      {
+        "title": "Clone & configure",
+        "description": "Clone the repo, install dependencies, copy the env template. Demo seeds populate each tool instantly.",
+        "image": {
+          "src": "/imgs/features/5.png"
+        }
+      },
+      {
+        "title": "Connect data sources",
+        "description": "Plug in Supabase, Stripe, OpenAI/Kling and optional storage—everything is controlled via environment variables.",
+        "image": {
+          "src": "/imgs/features/6.png"
+        }
+      },
+      {
+        "title": "Adjust content",
+        "description": "Edit MDX pages, landing copy and translation JSONs. Feature flags help you turn tools on or off per launch.",
+        "image": {
+          "src": "/imgs/features/7.png"
+        }
+      },
+      {
+        "title": "Deploy & grow",
+        "description": "Use the prebuilt Vercel/Cloudflare pipelines, enable billing, onboard your community and scale confidently.",
+        "image": {
+          "src": "/imgs/features/8.png"
+        }
+      }
+    ]
+  },
+  "feature": {
+    "name": "feature",
+    "title": "All Mondkalender Features at a Glance",
+    "description": "Discover the diverse possibilities of our Mondkalender – from hair care to gardening.",
+    "items": [
+      {
+        "title": "Mondkalender Haare Schneiden & Färben",
+        "description": "Find optimal days for haare schneiden nach Mondkalender. Includes hair coloring calendar with moon phase recommendations for healthy, strong hair.",
+        "icon": "RiMoonLine"
+      },
+      {
+        "title": "Mondkalender Garden 2026",
+        "description": "Plan sowing, planting and harvest by moon phases. The garden calendar shows the best days for all gardening activities in 2026.",
+        "icon": "RiProfileLine"
+      },
+      {
+        "title": "Daily Mondkalender",
+        "description": "Current moon phase, zodiac sign and personalized recommendations for today. Stay updated with Mond Heute (Moon Today).",
+        "icon": "RiDatabase2Line"
+      },
+      {
+        "title": "Mondkalender 2026 zum Ausdrucken",
+        "description": "Download the complete year calendar 2026 as PDF – with all moon phases, full moon and new moon dates for printing.",
+        "icon": "RiSecurePaymentLine"
+      },
+      {
+        "title": "Moonrise & Moonset Times",
+        "description": "Precise times for moonrise and moonset at your location – important for photography, rituals and nature observation.",
+        "icon": "RiBarChart2Line"
+      },
+      {
+        "title": "Cooking by Mondkalender",
+        "description": "Nutrition planning in rhythm with the elements. Recipes and cooking tips aligned with current moon phase for better wellbeing.",
+        "icon": "RiRobot2Line"
+      }
+    ]
+  },
+  "stats": {
+    "name": "stats",
+    "label": "Metrics",
+    "title": "Trust in Proven Mondkalender Expertise",
+    "description": "Thousands of users plan their lives by Mondkalender – for health, beauty and wellbeing.",
+    "icon": "FaRegHeart",
+    "items": [
+      {
+        "title": "Active Users",
+        "label": "10,000+",
+        "description": "trust our Mondkalender"
+      },
+      {
+        "title": "Mondkalender Tools",
+        "label": "12",
+        "description": "specialized applications"
+      },
+      {
+        "title": "Moon Phases 2026",
+        "label": "365",
+        "description": "days fully covered"
+      }
+    ]
+  },
+  "testimonial": {
+    "name": "testimonial",
+    "label": "Testimonials",
+    "title": "Loved by lunar entrepreneurs",
+    "description": "Astrology coaches, wellness brands and content creators use Mondkalender to serve their communities.",
+    "icon": "GoThumbsup",
+    "items": [
+      {
+        "title": "Leonie Fischer",
+        "label": "Astrology Coach",
+        "description": "“Moon Today and the haircut planner let me send personalised guidance every morning—without hiring developers.”",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      },
+      {
+        "title": "Dr. Markus Held",
+        "label": "Wellness Clinic Director",
+        "description": "“Stripe, Supabase and the admin dashboards saved us weeks. We focus on programs while the template handles operations.”",
+        "image": {
+          "src": "/imgs/users/2.png"
+        }
+      },
+      {
+        "title": "Aylin Kaya",
+        "label": "Content Creator",
+        "description": "“LunaColor makes it easy to share creative colour rituals. My audience loves the before/after storytelling.”",
+        "image": {
+          "src": "/imgs/users/3.png"
+        }
+      },
+      {
+        "title": "Jonas Weber",
+        "label": "Founder LunarEats",
+        "description": "“The cooking tool delivers fresh menus daily. We built a paid membership in two days.”",
+        "image": {
+          "src": "/imgs/users/4.png"
+        }
+      },
+      {
+        "title": "Sofia Mendes",
+        "label": "Product Manager",
+        "description": "“The moon sign calculator plus onboarding drives huge activation. Great UX and rock-solid code.”",
+        "image": {
+          "src": "/imgs/users/5.png"
+        }
+      },
+      {
+        "title": "Nina Baumann",
+        "label": "Holistic Coach",
+        "description": "“I forked Mondkalender, branded it and launched in a week. My clients love the personalised dashboards.”",
+        "image": {
+          "src": "/imgs/users/6.png"
+        }
+      }
+    ]
+  },
+  "faq": {
+    "name": "faq",
+    "label": "FAQ",
+    "title": "Frequently asked questions",
+    "description": "Need more details? Reach out via Discord or email—our team is happy to help.",
+    "items": [
+      {
+        "title": "What’s included in the template?",
+        "description": "All lunar tools, admin dashboards, authentication, Stripe billing, content structures, AI workflows and i18n building blocks."
+      },
+      {
+        "title": "Do I need advanced technical skills?",
+        "description": "Basic TypeScript knowledge is enough. Clear docs, scripts and seeds make the setup straightforward."
+      },
+      {
+        "title": "Can I add new tools?",
+        "description": "Yes. The architecture is modular—duplicate the existing pattern to launch your own lunar features."
+      },
+      {
+        "title": "How accurate is the data?",
+        "description": "Astronomical calculations use the Swiss Ephemeris. You can enable caching or plug in alternative sources if needed."
+      },
+      {
+        "title": "Do you offer launch support?",
+        "description": "The Pro package includes an onboarding call and premium support. All plans include lifetime updates."
+      }
+    ]
+  },
+  "cta": {
+    "name": "cta",
+    "title": "Start Today with Mondkalender 2026",
+    "description": "Harness the power of moon phases for your daily life. Whether haare schneiden, gardening or health – find the optimal time with our Mondkalender.",
+    "buttons": [
+      {
+        "title": "Open Mondkalender 2026",
+        "url": "/mondkalender-2026",
+        "target": "_self",
+        "icon": "RiCalendar2Line"
+      },
+      {
+        "title": "Discover All Tools",
+        "url": "/tools",
+        "target": "_self",
+        "variant": "outline"
+      }
+    ]
+  },
+  "pricing": {
+    "name": "pricing",
+    "label": "Pricing",
+    "title": "Flexible licensing",
+    "description": "Pay once and launch unlimited moon products—or opt into subscriptions for continuous support.",
+    "groups": [
+      {
+        "name": "one-time",
+        "title": "One-time"
+      },
+      {
+        "name": "monthly",
+        "title": "Monthly",
+        "is_featured": true,
+        "label": "Popular"
+      },
+      {
+        "name": "yearly",
+        "title": "Yearly"
+      }
+    ],
+    "items": [
+      {
+        "title": "Starter",
+        "description": "Ideal for creators and boutique studios.",
+        "features_title": "Includes",
+        "features": [
+          "Access to all lunar tools",
+          "Supabase + Drizzle ORM setup",
+          "Stripe checkout & billing",
+          "Internationalised landing page",
+          "MDX documentation & content",
+          "One year of updates"
+        ],
+        "interval": "one-time",
+        "amount": 11900,
+        "currency": "USD",
+        "price": "$119",
+        "original_price": "$149",
+        "unit": "one time",
+        "is_featured": false,
+        "tip": "Fork, customise, launch",
+        "button": {
+          "title": "Choose Starter",
+          "url": "/#pricing",
+          "icon": "RiFlashlightFill"
+        },
+        "product_id": "starter-usd",
+        "product_name": "Mondkalender Starter",
+        "credits": 100,
+        "valid_months": 12,
+        "group": "one-time"
+      },
+      {
+        "title": "Pro",
+        "description": "For growing brands with premium expectations.",
+        "label": "Recommended",
+        "features_title": "Everything in Starter plus",
+        "features": [
+          "Premium support (48h SLA)",
+          "60 min onboarding call",
+          "Extended admin dashboards",
+          "AI credits & sample flows",
+          "White-label email templates",
+          "Lifetime updates"
+        ],
+        "interval": "one-time",
+        "amount": 19900,
+        "currency": "USD",
+        "price": "$199",
+        "original_price": "$259",
+        "unit": "one time",
+        "is_featured": true,
+        "tip": "Launch with expert guidance",
+        "button": {
+          "title": "Upgrade to Pro",
+          "url": "/#pricing",
+          "icon": "RiFlashlightFill"
+        },
+        "product_id": "pro-usd",
+        "product_name": "Mondkalender Pro",
+        "credits": 200,
+        "valid_months": 24,
+        "group": "one-time"
+      },
+      {
+        "title": "Business",
+        "description": "Enterprise-grade support and feature co-creation.",
+        "features_title": "Designed for scale",
+        "features": [
+          "Priority roadmap requests",
+          "Multi-tenant capabilities",
+          "Audit logging & compliance guides",
+          "SAML/SCIM integrations",
+          "Custom SLA & workshops",
+          "Joint tool development"
+        ],
+        "interval": "month",
+        "amount": 4500,
+        "currency": "USD",
+        "price": "$45",
+        "original_price": "$59",
+        "unit": "per month",
+        "is_featured": true,
+        "tip": "Cancel any time",
+        "button": {
+          "title": "Talk to sales",
+          "url": "/pricing",
+          "icon": "RiCustomerService2Line"
+        },
+        "product_id": "business-monthly",
+        "product_name": "Mondkalender Business",
+        "credits": 400,
+        "valid_months": 1,
+        "group": "monthly"
+      },
+      {
+        "title": "Pro Annual",
+        "description": "Save 20% and access exclusive beta features.",
+        "features_title": "Best value",
+        "features": [
+          "Everything in Pro",
+          "12 months premium support",
+          "Exclusive template drops",
+          "Beta feature access",
+          "Launch checklist & playbooks",
+          "Partner listing on mondkalender.app"
+        ],
+        "interval": "year",
+        "amount": 179900,
+        "currency": "USD",
+        "price": "$179 / month",
+        "original_price": "$219 / month",
+        "unit": "billed yearly",
+        "is_featured": true,
+        "tip": "20% cheaper than monthly",
+        "button": {
+          "title": "Choose annual plan",
+          "url": "/pricing",
+          "icon": "RiSparklingLine"
+        },
+        "product_id": "pro-yearly",
+        "product_name": "Mondkalender Pro Annual",
+        "credits": 2400,
+        "valid_months": 12,
+        "group": "yearly"
+      }
+    ]
+  },
+  "footer": {
+    "name": "footer",
+    "brand": {
+      "title": "Mondkalender",
+      "description": "Your comprehensive Mondkalender 2026 with tools for haare schneiden, gardening, cooking and health by moon phases. Precise calculations for every day.",
+      "logo": {
+        "src": "/logo.png",
+        "alt": "Mondkalender 2026"
+      },
+      "url": "/"
+    },
+    "copyright": "© 2025 • Mondkalender – Your Moon Phase Guide",
+    "nav": {
+      "items": [
+        {
+          "title": "Product",
+          "children": [
+            {
+              "title": "Features",
+              "url": "/#feature",
+              "target": "_self"
+            },
+            {
+              "title": "Tools",
+              "url": "/tools",
+              "target": "_self"
+            },
+            {
+              "title": "Pricing",
+              "url": "/#pricing",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "Tools",
+          "children": []
+        },
+        {
+          "title": "Network",
+          "children": [
+            {
+              "title": "Partner Program",
+              "url": "/partners",
+              "target": "_self"
+            },
+            {
+              "title": "Support",
+              "url": "mailto:support@mondkalender.codes",
+              "target": "_self"
+            },
+            {
+              "title": "Community",
+              "url": "/discord",
+              "target": "_self"
+            }
+          ]
+        }
+      ]
+    },
+    "social": {
+      "items": [
+        {
+          "title": "X",
+          "icon": "RiTwitterXFill",
+          "url": "https://x.com/mondkalenderai",
+          "target": "_blank"
+        },
+        {
+          "title": "GitHub",
+          "icon": "RiGithubFill",
+          "url": "https://github.com/mondkalenderai",
+          "target": "_blank"
+        },
+        {
+          "title": "Discord",
+          "icon": "RiDiscordFill",
+          "url": "https://discord.gg/HQNnrzjZQS",
+          "target": "_blank"
+        },
+        {
+          "title": "Email",
+          "icon": "RiMailLine",
+          "url": "mailto:support@mondkalender.codes",
+          "target": "_self"
+        }
+      ]
+    },
+    "agreement": {
+      "items": [
+        {
+          "title": "Privacy Policy",
+          "url": "/privacy-policy"
+        },
+        {
+          "title": "Terms of Service",
+          "url": "/terms-of-service"
+        },
+        {
+          "title": "Legal Notice",
+          "url": "/imprint"
+        }
+      ]
+    }
+  }
+}

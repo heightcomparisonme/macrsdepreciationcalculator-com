@@ -1,0 +1,187 @@
+---
+title: Tool Page Layout Guide
+description: How to compose Mondkalender tool pages with the shared ToolPageLayout and its hero, features, showcase, FAQ, CTA, and before/after sections.
+icon: "LayoutDashboard"
+---
+
+# Tool Page Layout Guide
+
+The tool calculators share the same presentation sections: hero, two feature blocks, showcase, FAQ, and CTA. To speed up new tool pages we ship a composite wrapper component, `ToolPageLayout`, that wires these blocks together with a single import.
+
+This document explains how to use the layout, prepare translation files, and customise styling for additional tools such as calculators or astronomy utilities.
+
+## 1. Prerequisites
+
+Before you start:
+
+- The six building blocks live in `src/components/blocks/tools/*`.
+- Translations for tool pages sit in `src/i18n/pages/tools/<slug>/<locale>.json`.
+- API handlers and feature-specific components (e.g. a calculator) stay unchanged; `ToolPageLayout` only replaces the repeated page shell.
+
+## 2. Provide Translations
+
+`ToolPageLayout` expects a **tool key** such as `cpa`. Under the hood it reads from `tools.<toolKey>.<section>`. Make sure each tool JSON exposes these sections:
+
+- `hero`
+- `features`
+- `showcase`
+- `features2`
+- `faq`
+- `cta`
+
+Each key follows the structure already used by existing calculators. Below is an abbreviated example (`src/i18n/pages/tools/your-tool/en.json`):
+
+```jsonc
+{
+  "hero": {
+    "badge": "Tool Badge",
+    "title": "Tool Title",
+    "subtitle": "Short pitch",
+    "description": "Optional extended copy",
+    "cta_primary": "Primary Action",
+    "cta_secondary": "Secondary Action"
+  },
+  "features": {
+    "title": "Section title",
+    "description": "Section intro",
+    "calculate": {
+      "title": "Card title",
+      "description": "Card description"
+    }
+  },
+  "showcase": {
+    "badge": "Label",
+    "title": "Showcase title",
+    "description": "Supporting text",
+    "image_url": "/images/tool.png",
+    "image_alt": "Accessible alt",
+    "benefits": ["Point one", "Point two"]
+  },
+  "features2": {
+    "label": "Optional label",
+    "title": "Before/after title",
+    "description": "Before/after description",
+    "items": {
+      "calculate": {
+        "title": "Card title",
+        "description": "Card description"
+      }
+    }
+  },
+  "faq": {
+    "title": "FAQ",
+    "description": "Intro",
+    "items": [
+      {
+        "title": "Question",
+        "description": "Answer"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Call to action",
+    "description": "Supporting copy",
+    "primary_button": "Primary CTA",
+    "secondary_button": "Secondary CTA",
+    "primary_link": "/tools",
+    "secondary_link": "/docs"
+  }
+}
+```
+
+> **Tip**  
+> Keep the JSON filename/slug consistent (e.g. `haare-farben-mondkalender`). The loader in `src/i18n/request.ts` automatically mounts every file under `tools/<slug>` into `tools.<slug>.*`.
+
+## 3. Use the Layout in a Page Component
+
+Tool pages live under `src/app/[locale]/(default)/tools/<slug>/page.tsx`. Replace the repeated imports with `ToolPageLayout` and pass:
+
+- `toolKey`: the slug used in the translation path (for example `"cpa"`).
+- `calculator`: the feature-specific React node (`<CPACalculator />`, `<AufUntergangClient />`, etc.).
+- `features`: list of `FeatureItem` configs for the first features section.
+- `features2`: list of `Features2Item` configs for the before/after slider.
+- Optional styling props such as `containerClassName` or `calculatorWrapperClassName`.
+
+```tsx
+import {
+  ToolPageLayout,
+  type FeatureItem,
+  type Features2Item,
+} from "@/components/blocks/tools/ToolPageLayout";
+import { YourCalculator } from "@/components/blocks/calculator/Your/YourCalculator";
+
+const features: FeatureItem[] = [
+  { icon: "calculator", key: "calculate", color: "text-blue-600" },
+  { icon: "target", key: "optimize", color: "text-green-600" },
+];
+
+const features2: Features2Item[] = [
+  {
+    icon: "calculator",
+    key: "calculate",
+    beforeImage: "/imgs/features/5.png",
+    afterImage: "/imgs/features/6.png",
+  },
+];
+
+export default function YourToolPage() {
+  return (
+    <ToolPageLayout
+      toolKey="your-tool"
+      calculator={<YourCalculator />}
+      features={features}
+      features2={features2}
+    />
+  );
+}
+```
+
+The component needs to run in a client context only if your calculator does; `ToolPageLayout` itself is a server-safe wrapper.
+
+## 4. Customising Styling
+
+`ToolPageLayout` exposes two styling hooks:
+
+- `containerClassName` applies extra classes to the outer `<div>`. Use this to preserve custom gradients (see the Auf-Untergang astronomy tool).
+- `calculatorWrapperClassName` adjusts the calculator section container width/margins.
+
+```tsx
+<ToolPageLayout
+  toolKey="auf-untergang"
+  calculator={<AufUntergangClient />}
+  features={features}
+  features2={features2}
+  containerClassName="bg-gradient-to-b from-[#0a0a1a] via-[#1a1a2e] to-[#0a0a1a]"
+  calculatorWrapperClassName="max-w-6xl"
+/>
+```
+
+You can also pass any React node into `calculator`, including composite layouts or additional wrappers if the tool needs context providers.
+
+## 5. Feature & Features2 Configuration
+
+- `FeatureItem.icon` must match one of the keys exported inside `ToolFeatures` (`calculator`, `trending`, `target`, `chart`, `zap`, `shield`, `users`, `award`).
+- `Features2Item.icon` supports the same icons plus `check` and `sparkles`.
+- The `key` property maps to translation keys: `features.<key>` for the first block and `features2.items.<key>` for the second block. Ensure both locales include the matching strings.
+- Images referenced in `beforeImage`/`afterImage` should sit in `public/` and be optimised for the slider.
+
+## 6. Existing Examples
+
+Look at these pages for practical implementations:
+
+- `src/app/[locale]/(default)/tools/cpa-calculator/page.tsx`
+- `src/app/[locale]/(default)/tools/roi-calculator/page.tsx`
+- `src/app/[locale]/(default)/tools/auf-untergang/page.tsx` (custom gradient and astronomy content)
+
+The Auf-Untergang translations (`src/i18n/pages/tools/auf-untergang/en.json`) show the expected structure: keys such as `hero`, `features`, `showcase`, `features2`, `faq`, and `cta` live directly under the tool root. Each file is loaded as `tools.<slug>.*`, so no additional nesting is required.
+
+## 7. Checklist for New Tool Pages
+
+1. Create or update translations under `src/i18n/pages/tools/<slug>/<locale>.json`.
+2. Ensure `src/i18n/request.ts` imports the new slug (follow existing patterns).
+3. Build or reuse the calculator/client component that renders the main feature.
+4. Add feature arrays and render the page using `ToolPageLayout`.
+5. Optionally customise styling via the provided class name props.
+6. Run `pnpm lint` and `pnpm test` (or the relevant suite) before submitting your PR.
+
+Following this process keeps tool pages consistent, reduces duplicated markup, and makes it easier for designers to update shared components in one place.
