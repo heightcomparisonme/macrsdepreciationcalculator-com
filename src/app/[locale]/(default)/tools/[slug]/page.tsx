@@ -6,8 +6,9 @@ import {
   type FeatureItem,
   type Features2Item,
 } from "@/components/blocks/tools/ToolPageLayout";
-import ToolPlaceholder from "@/components/Tools/aiMoonAdvisor";
+import ToolPlaceholder from "@/components/Tools/ToolPlaceholder";
 import { getAllToolSlugs, getToolConfig } from "@/lib/tools-config";
+import { type ReactElement } from "react";
 import {
   generateToolSchema,
   generateToolBreadcrumbSchema,
@@ -100,6 +101,11 @@ export default async function ToolPage({ params }: Props) {
     notFound();
   }
 
+  // TypeScript assertion: toolConfig is guaranteed to be non-null after notFound() check
+  // (notFound() throws and never returns, but TypeScript doesn't understand this)
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const config = toolConfig!;
+
   // Get translations for structured data
   const baseUrl = getBaseUrl();
 
@@ -111,12 +117,12 @@ export default async function ToolPage({ params }: Props) {
   let description = fallbackDescription;
 
   // Safely get translations
-  const titleKey = toolConfig.translationKey
-    ? `${toolConfig.translationKey}.metadata.title`
+  const titleKey = config.translationKey
+    ? `${config.translationKey}.metadata.title`
     : `${slug}.metadata.title`;
 
-  const descriptionKey = toolConfig.translationKey
-    ? `${toolConfig.translationKey}.metadata.description`
+  const descriptionKey = config.translationKey
+    ? `${config.translationKey}.metadata.description`
     : `${slug}.metadata.description`;
 
   try {
@@ -145,7 +151,7 @@ export default async function ToolPage({ params }: Props) {
   // Generate structured data
   const toolSchema = generateToolSchema({
     toolSlug: slug,
-    toolConfig,
+    toolConfig: config,
     title,
     description,
     locale,
@@ -204,6 +210,39 @@ export default async function ToolPage({ params }: Props) {
     },
   ];
 
+  // Dynamically load tool component based on slug
+  // Map slug to component directory name (e.g., "test-calculator" -> "testCalculator")
+  const getToolComponent = async (): Promise<ReactElement> => {
+    // Normalize slug to component directory name format (camelCase)
+    const componentDir = slug
+      .split("-")
+      .map((part, index) => 
+        index === 0 
+          ? part.toLowerCase() 
+          : part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
+      )
+      .join("");
+
+    try {
+      // Try to dynamically import the tool component from the directory
+      // Path format: @/components/Tools/{componentDir}/index.tsx
+      const toolModule = await import(`@/components/Tools/${componentDir}`);
+      const ToolComponent = toolModule.default;
+
+      if (ToolComponent && typeof ToolComponent === "function") {
+        return <ToolComponent />;
+      }
+    } catch (error) {
+      // Component doesn't exist, fall back to placeholder
+      // This is expected for tools that don't have custom components yet
+    }
+
+    // Fall back to placeholder if component doesn't exist
+    return <ToolPlaceholder variant="gradient" />;
+  };
+
+  const calculatorComponent = await getToolComponent();
+
   return (
     <>
       {/* Schema.org structured data for SEO */}
@@ -217,8 +256,8 @@ export default async function ToolPage({ params }: Props) {
       />
 
       <ToolPageLayout
-        toolKey={toolConfig.translationKey || slug}
-        calculator={<ToolPlaceholder variant="gradient" />}
+        toolKey={config.translationKey || slug}
+        calculator={calculatorComponent}
         features={features}
         features2={features2}
         containerClassName="bg-gradient-to-b from-[#0a0a1a] via-[#1a1a2e] to-[#16213e]"
