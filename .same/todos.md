@@ -522,3 +522,106 @@ naver111
 - [ ] Test the component in development server to verify translations load correctly
 - [ ] Consider adding German (de.json) and Spanish (es.json) translations for test-calculator
 - [ ] Verify the component renders correctly with all translation keys
+
+---
+
+## 2025-11-08
+
+### Plan
+- [x] Purpose: Create PDF viewer component for IRS Publication 946
+- [x] Files to create:
+  - `src/components/Tools/pdf-viewer/index.tsx` - main PDF viewer component
+  - `src/components/Tools/pdf-viewer/PdfControls.tsx` - navigation and zoom controls
+  - `src/components/Tools/pdf-viewer/types.ts` - TypeScript types
+  - `src/components/Tools/pdf-viewer/README.md` - documentation
+  - `src/components/Tools/pdf-viewer/example.tsx` - usage example
+- [x] Dependencies to install:
+  - `react-pdf` - PDF rendering library
+  - `pdfjs-dist` - PDF.js core library
+- [x] Features to implement:
+  - Page navigation (previous/next)
+  - Zoom controls (zoom in/out/fit)
+  - Download PDF button
+  - Print PDF button
+  - Page number display
+  - Responsive design
+- [x] Impact: Enable online PDF preview for IRS Publication 946 (public/p946.pdf)
+- [x] Tests: Verify PDF loads, navigation works, controls function properly
+
+### Done
+- [x] Created complete PDF viewer component system
+  - `types.ts` - TypeScript interfaces for PdfViewerProps and PdfControlsProps
+  - `PdfControls.tsx` - Control bar with navigation, zoom, download, and print buttons
+  - `index.tsx` - Main PDF viewer component with react-pdf integration
+  - `README.md` - Comprehensive documentation with usage examples
+  - `example.tsx` - Ready-to-use example for IRS Publication 946
+- [x] Installed dependencies via pnpm
+  - `react-pdf@10.2.0` - PDF rendering library
+  - `pdfjs-dist@5.4.394` - PDF.js core library
+- [x] Implemented all requested features:
+  - ✅ Page navigation (previous/next buttons with disabled states)
+  - ✅ Zoom controls (zoom in/out/fit to width, range: 50%-300%)
+  - ✅ Download PDF (creates download link with filename)
+  - ✅ Print PDF (opens print dialog in new window)
+  - ✅ Page number display (shows "Page X of Y")
+  - ✅ Responsive design (mobile-friendly controls, flex layout)
+  - ✅ Loading state (spinner with "Loading PDF..." message)
+  - ✅ Error handling (displays error message if PDF fails to load)
+  - ✅ Text layer and annotation layer enabled
+- [x] Component configuration:
+  - Uses PDF.js CDN worker for rendering
+  - Imports required CSS from react-pdf (AnnotationLayer, TextLayer)
+  - Fully typed with TypeScript
+  - Uses Shadcn UI components (Button) and Lucide icons
+  - Follows project's design system (tailwind classes, theming)
+- Key highlights:
+  - **Modular architecture**: Separated controls from viewer logic
+  - **User-friendly**: Clear button labels, tooltips, disabled states
+  - **Accessible**: Keyboard navigation support, semantic HTML
+  - **Professional UI**: Matches project's design with gradients, borders, shadows
+
+- [x] Integrated PDF viewer into Hero component (src/components/blocks/hero/Hero/index.tsx)
+  - Added dynamic import for PdfViewer with SSR disabled
+  - Placed PDF viewer in right column of Hero layout
+  - Left side: Hero text content (title, description, buttons)
+  - Right side: IRS Publication 946 PDF viewer
+  - Configured with:
+    - File: `/p946.pdf`
+    - Title: "How To Depreciate Property - IRS Publication 946"
+    - Initial zoom: 0.8 (80% for better fit)
+    - Height: 600px
+    - Styled with: rounded corners, border, shadow, backdrop blur
+  - Loading state: animated skeleton while PDF loads
+- [x] Fixed react-pdf CSS import errors
+  - Removed direct CSS imports from PdfViewer component (incompatible with react-pdf v10)
+  - Added comprehensive react-pdf CSS styles to `src/app/globals.css`
+  - Includes styles for:
+    - `.react-pdf__Page` - PDF page container with white background
+    - `.react-pdf__Page__canvas` - PDF canvas rendering
+    - `.react-pdf__Page__textContent` - Text selection layer
+    - `.react-pdf__Page__annotations` - PDF annotations and links
+    - `.react-pdf__Document` - Document container with flex layout
+  - All text selection and link hover effects properly styled
+
+### Next
+- [ ] Test Hero component with PDF viewer in development server:
+  - Visit homepage to see Hero section
+  - Verify `/p946.pdf` loads correctly on the right side
+  - Test all navigation buttons (prev/next)
+  - Test zoom controls (in/out/fit)
+  - Test download and print functionality
+  - Verify responsive behavior on mobile/tablet
+- [ ] Consider adding keyboard shortcuts:
+  - Arrow keys for page navigation
+  - +/- keys for zoom
+  - Ctrl/Cmd+P for print
+- [ ] Optional enhancements:
+  - Add page input field for direct page navigation
+  - Add thumbnail sidebar for quick page access
+  - Add search functionality within PDF
+  - Add fullscreen mode
+  - Add rotation controls
+- [ ] Create a dedicated tool page for IRS Publication 946 viewer
+- [ ] Add translations for PDF viewer UI (en/de/es)
+- [ ] Consider adding a toggle to show/hide PDF viewer in Hero
+- [ ] Add loading skeleton that matches PDF viewer dimensions

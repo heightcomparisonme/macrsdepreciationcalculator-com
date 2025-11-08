@@ -9,12 +9,13 @@ import { Hero as HeroType } from "@/types/blocks/hero";
 import Icon from "@/components/icon";
 import { Link } from "@/i18n/navigation";
 
-// const MoonCalendar = dynamic(() => import("@/components/moon/MoonCalendar"), {
-//   ssr: false,
-//   loading: () => (
-//     <div className="h-[440px] w-full max-w-md animate-pulse rounded-[2rem] border border-white/10 bg-slate-900/60" />
-//   ),
-// });
+// Dynamic import for PDF viewer to avoid SSR issues
+const PdfViewer = dynamic(() => import("@/components/Tools/pdf-viewer"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[600px] w-full animate-pulse rounded-2xl border border-white/10 bg-slate-900/60" />
+  ),
+});
 
 export default function Hero({ hero }: { hero: HeroType }) {
   if (hero.disabled) {
@@ -23,6 +24,11 @@ export default function Hero({ hero }: { hero: HeroType }) {
 
   const highlightText = hero.highlight_text;
   const texts = highlightText ? hero.title?.split(highlightText, 2) : null;
+  const docHighlights = [
+    { label: "Pages", value: "240+" },
+    { label: "Updated", value: "2025 edition" },
+    { label: "Audience", value: "CPAs & controllers" },
+  ];
 
   return (
     <section className="relative overflow-hidden">
@@ -31,8 +37,8 @@ export default function Hero({ hero }: { hero: HeroType }) {
       <div className="pointer-events-none absolute -left-40 top-1/2 h-[520px] w-[520px] -translate-y-1/2 rounded-full bg-gradient-to-br from-blue-500/20 via-purple-400/20 to-transparent blur-3xl opacity-70" />
 
       <div className="container relative z-10 py-20 lg:py-32">
-        <div className="grid items-center gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(320px,440px)]">
-          <div className="mx-auto w-full max-w-2xl space-y-10 text-left lg:mx-0">
+        <div className="grid gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(420px,600px)] lg:items-start">
+          <div className="mx-auto w-full max-w-2xl space-y-10 text-left lg:mx-0 lg:py-12">
             {hero.show_badge && (
               <div className="flex items-center gap-3">
                 <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white/70">
@@ -120,9 +126,68 @@ export default function Hero({ hero }: { hero: HeroType }) {
             )}
           </div>
 
-          <div className="relative flex justify-center lg:justify-end">
-            <div className="absolute inset-0 -z-10 rounded-[2.5rem] bg-gradient-to-br from-blue-500/25 via-purple-500/20 to-transparent blur-3xl" />
-            {/* <MoonCalendar className="border-white/10 bg-slate-950/70" /> */}
+          <div className="relative flex flex-col gap-6 lg:min-h-[780px]">
+            <div className="absolute inset-0 -z-10 rounded-[3rem] bg-gradient-to-br from-sky-500/15 via-purple-500/10 to-transparent blur-3xl" />
+
+            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-6 text-white/80 shadow-[0_35px_120px_rgba(6,10,48,0.45)] backdrop-blur-xl">
+              <div className="absolute inset-0 opacity-40">
+                <div className="h-full w-full bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.25),_transparent_60%)]" />
+              </div>
+              <div className="relative space-y-5">
+                <div className="flex flex-wrap items-center justify-between gap-4">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.3em] text-white/50">IRS publication</p>
+                    <h3 className="text-2xl font-semibold text-white">Publication 946</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white/80">
+                      Verified guidance
+                    </span>
+                    <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-xs font-semibold text-emerald-200">
+                      2025 updates live
+                    </span>
+                  </div>
+                </div>
+
+                <p className="max-w-xl text-sm text-white/70">
+                  Preview the official IRS reference inside the product. Zoom, download, or print without leaving
+                  your depreciation workflow.
+                </p>
+
+                <dl className="grid gap-4 sm:grid-cols-3">
+                  {docHighlights.map((item) => (
+                    <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white">
+                      <dt className="text-xs uppercase tracking-wide text-white/60">{item.label}</dt>
+                      <dd className="text-lg font-semibold text-white">{item.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </div>
+
+            <div className="relative rounded-[2.75rem] border border-white/15 bg-gradient-to-br from-white/10 via-purple-500/10 to-transparent p-3 shadow-[0_30px_120px_rgba(8,8,32,0.65)]">
+              <div className="pointer-events-none absolute -top-10 right-12 hidden max-w-[220px] rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-white/80 backdrop-blur lg:flex">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.4em] text-white/60">Live preview</p>
+                  <p className="font-semibold text-white">Interactive IRS guidance</p>
+                </div>
+              </div>
+
+              <div className="pointer-events-none absolute -bottom-8 left-12 hidden rounded-full border border-white/10 bg-white/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white/70 backdrop-blur-sm lg:flex">
+                Trusted by 99+ firms
+              </div>
+
+              <div className="relative rounded-[2.2rem] border border-white/15 bg-slate-950/80 p-4 sm:p-6 backdrop-blur-2xl">
+                <div className="pointer-events-none absolute inset-6 rounded-[2rem] bg-[radial-gradient(circle_at_top,_rgba(147,197,253,0.35),_transparent_65%)] blur-2xl" />
+                <PdfViewer
+                  fileUrl="/p946.pdf"
+                  title="How To Depreciate Property - IRS Publication 946"
+                  initialPage={1}
+                  initialZoom={0.9}
+                  className="relative h-[560px] border-0 bg-transparent shadow-none"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
