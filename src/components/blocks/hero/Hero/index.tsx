@@ -10,12 +10,12 @@ import Icon from "@/components/icon";
 import { Link } from "@/i18n/navigation";
 
 // Dynamic import for PDF viewer to avoid SSR issues
-const PdfViewer = dynamic(() => import("@/components/Tools/pdf-viewer"), {
-  ssr: false,
-  loading: () => (
-    <div className="h-[600px] w-full animate-pulse rounded-2xl border border-white/10 bg-slate-900/60" />
-  ),
-});
+// const PdfViewer = dynamic(() => import("@/components/Tools/pdf-viewer"), {
+//   ssr: false,
+//   loading: () => (
+//     <div className="h-[600px] w-full animate-pulse rounded-2xl border border-white/10 bg-slate-900/60" />
+//   ),
+// });
 
 export default function Hero({ hero }: { hero: HeroType }) {
   if (hero.disabled) {
@@ -179,13 +179,13 @@ export default function Hero({ hero }: { hero: HeroType }) {
 
               <div className="relative rounded-[2.2rem] border border-white/15 bg-slate-950/80 p-4 sm:p-6 backdrop-blur-2xl">
                 <div className="pointer-events-none absolute inset-6 rounded-[2rem] bg-[radial-gradient(circle_at_top,_rgba(147,197,253,0.35),_transparent_65%)] blur-2xl" />
-                <PdfViewer
+                {/* <PdfViewer
                   fileUrl="/p946.pdf"
                   title="How To Depreciate Property - IRS Publication 946"
                   initialPage={1}
                   initialZoom={0.9}
                   className="relative h-[560px] border-0 bg-transparent shadow-none"
-                />
+                /> */}
               </div>
             </div>
           </div>
